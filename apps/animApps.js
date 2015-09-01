@@ -951,11 +951,11 @@ SPRITE=function(sprite){
         padding:20, opacity:.9
     }).dg().A(
         $.sp(' '),
-        $.bt('spin',function(){    controls.spin() }), $.span(' '),
-        $.bt('jump',function(){    controls.jump() }), $.span(' '),
-        $.bt('explode',function(){   controls.explode()  }), $.span(' '),
-        $.bt('play',function(){   controls.play()  }), $.span(' '),
-        $.bt('stop',function(){   controls.stop()  }), $.span(' '),
+        $.bt('spin',function(){    controls.spin() }), $.sp(' '),
+        $.bt('jump',function(){    controls.jump() }), $.sp(' '),
+        $.bt('explode',function(){   controls.explode()  }), $.sp(' '),
+        $.bt('play',function(){   controls.play()  }), $.sp(' '),
+        $.bt('stop',function(){   controls.stop()  }), $.sp(' '),
         $.bt('meta', function(){ SPRITE() })
 
     )

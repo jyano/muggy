@@ -1,3 +1,4 @@
+
 ////////////////////////
 ////////////////////////
 ////////////////////////
@@ -11,7 +12,7 @@ $(function(){
         if( isGuest(un) ){ Y('GuestPage') } else { logInUser(un) }
         function logInUser(un){
             k.em('id', un);   k.em('jRm',  _username )
-            $.G('myMug', function(mug){
+            $.g('myMug', function(mug){
                 Y._userMug = _userMug  = mug
                 $l('going to home page..')
                 Y('HomePage')})}})
@@ -22,7 +23,6 @@ $(function(){
 ////////////////////////
 ////////////////////////
 ////////////////////////
-
 
 
  $.dCt = $.ctD = function () {
@@ -427,7 +427,7 @@ $(function(){
      o.sc = N(o.sc) ? o.sc : 1
      o.fn = o.fn || function () {
      }
-     $.G('myMug', function (m) {
+     $.g('myMug', function (m) {
          if (!m) {
              alert('!mug')
          }
@@ -437,7 +437,7 @@ $(function(){
  }
  $.user=function(u){
      $.wStatus  = function(user, fn){
-         $.G('sts1', {u: user},
+         $.g('sts1', {u: user},
              function(sts){ fn(sts.c) }) } //with first status?
      var userA = $.a('', function () {
          window.location = '/wap/user/' + u.username
@@ -610,7 +610,7 @@ $(function(){
              }
 
              username = username || 'a'
-             $.G('profile/' + username, function (d) {
+             $.g('profile/' + username, function (d) {
 
                  data = {
                      aboutMe: d.aboutMe,
