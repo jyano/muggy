@@ -1237,3 +1237,11 @@ h.drawPolygonYesNo = function (V, c, C, l) {
 
     return h
 } // h.cir=  function(r,x,y,c,C){var h = this, gx = h.graphics; return N(x) ?  h.c(c,C).dc(x,y,r) : h.c(x,y).dc(r)  }
+
+cjs.niceText=function(text,x,y){
+
+    var t= cjs.text(text, 'yellow', '40px Arial')
+
+    if(N(x)){t.XY(x,y)}
+    return t.drag()
+}
