@@ -1,4 +1,3 @@
-
  _.iDU = cjs.iDU=function(e){if(S(e)){return s$(e).contains('data:')}}
 
  $Ct=function(){return new cjs.Container()}
@@ -410,11 +409,6 @@ function bmp(){
      }
 
  }
-
-
-
-
-
  cjs.iDO=cjs.isDisplayOb=function(ob){ return O(ob)  &&  F(ob.getStage) }
  ob =  cjs.DisplayObject.prototype
  ob.CURSOR= ob.cu= ob.bM=function(cu){var ob=this, st=ob.st()

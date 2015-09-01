@@ -1,4 +1,3 @@
-
 objects()
 function objects(){
     COLOR={
@@ -920,15 +919,11 @@ $CSS = function $CSS(rusOb) {
     if (g.u) {
         return $l($('style').oh())
     }
-
-
     _.e(rusOb, function (decs, sel) {
         rus += $CSS.rule(sel, decs, rusOb) + '\n'
     })
     rus += '\n'
     $.hd($CSS.sty(rus))
-
-
     return rus
 }
 $CSS.sel = function (sel) {
@@ -1283,7 +1278,7 @@ $.fn.src = function (a) {
         return this.attr('src')
     }
 
-    this.attr('src', $src(a))
+    this.attr('src', _.src(a))
 
     return this
 }
@@ -1298,7 +1293,7 @@ $.fn.role = function (role) {
 $.fn.src= function(a){
     if( U(a) ){return this.attr('src')}
 
-    this.attr('src', $src(a) )
+    this.attr('src', _.src(a) )
 
     return this
 }
@@ -2198,7 +2193,7 @@ function atts() {
             return this.attr('src')
         }
 
-        this.attr('src', $src(a))
+        this.attr('src', _.src(a))
 
         return this
     }
@@ -2214,7 +2209,7 @@ function atts() {
     $.fn.src= function(a){
         if( U(a) ){return this.attr('src')}
 
-        this.attr('src', $src(a) )
+        this.attr('src', _.src(a) )
 
         return this
     }
@@ -2256,7 +2251,7 @@ function background(){
         return this
     }
     $.fn.bg = $.fn.bgI = function (url) {//set background image
-        this.bgI('url("' + Y.src(url) + '")');
+        this.bgI('url("' + _.src(url) + '")');
         return this
     }
     $.fn.bp = $.positionBackgroundImage = function (x, y) {
@@ -4016,9 +4011,11 @@ function htmll(){
     }
 }
 graf()
+
 function graf(){
+
     $l('image')
-    $src =    function f(e){
+    _.src=$src =    function f(e){
         var _src=function(a){ a = _.ext(a);
             return s$(a).startsWith('/')? a : '/'+ a };
         //if(Q(e)){$l('q');e=$(e)[0]}
@@ -4087,7 +4084,6 @@ function graf(){
         //s$(e).contains('data:')
         return i
     }
-
     E = function E(a, b, c) {
         if (O(a)) {
             a = O(a.e) ? a.e : O(a.c) ? a.c : a
@@ -4125,12 +4121,10 @@ function graf(){
         return $.c(c || 'r', b || 700, b || 700).A().fit(a || 'me')
 
     }
-
     $.C=function(){ z();
         c = $.c('y',900,500).A().drag()
         x = c.ctx()
     }
-
     _superCanvas=function(el){
         el.W = function (width) {
             var args = G(arguments)
@@ -5411,14 +5405,12 @@ function graf(){
 //why would i need this?
         return a.split('/').pop().split('.png')[0]
     }
-
     $.iI=function(i){
 
         if(O(i)){
             return S($(i)[0].src)
         }
     }
-
     _src=function(a){ a = _.ext(a);
         return s$(a).startsWith('/')? a : '/'+ a
     }
@@ -5458,8 +5450,6 @@ function graf(){
         //i.A()
         return i
     }
-
-
 //gets rid of auto-scaling quirk
     /*
      i.i=i.l=i.load(function(i){
@@ -5469,7 +5459,7 @@ function graf(){
      // img.H( img.H() )
      })*/
     $.fn.bg = $.fn.bgI = function (url) {//set background image
-        this.bgI('url("' + Y.src(url) + '")');
+        this.bgI('url("' + _.src(url) + '")');
         return this
     }
     $.fn.src= function(a){

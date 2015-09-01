@@ -79,7 +79,6 @@ $.fn.tg = $.fn.target = function (a) {
     return this.attr("data-target", a)
 }
 
-
 //modal
 $.mF= $.modalFooter=function(){var d= $.dK('modal-footer')
     _.e( arguments, function(g){d.A(g)})
@@ -412,7 +411,6 @@ $.dF = $.Ft = $.footer = FT = function () {
 
 }
 
-
 // -rows must be placed within a .container(-fluid) for proper alignment and padding
 // -only columns may be immediate children of rows
 // -Columns create gutters (gaps between column content) via padding.
@@ -515,28 +513,18 @@ $.row363 = function (a, b, c) {
         $.col(3, c)
     )
 }
-$.ROW = function (a, b, c, d) {
-
-    var g = G(arguments), z = g.z
-
-
+$.ROW = function (a, b, c, d) {var g = G(arguments), z = g.z
     if (z == 1) {
         return $.row($.col(12, a))
     }
-
     if (z == 2) {
         return g.p ? $.row93(a, b)
             : g.n ? $.row39(a, b)
             : $.row2(a, b)
     }
-
-
     if (z == 3) {
         return g.n ? $.row363(a, b, c) : $.row3(a, b, c)
     }
-
     if (z == 4) {
         return $.row4(a, b, c, d)
-    }
-
-}
+    }}
