@@ -410,13 +410,11 @@ function bmp(){
      }
 
  }
- cjs.bm=function(img){
-     alert('J.bm')
-     var g=G(arguments), img=g[0],
-         bm = new J.Bitmap(img)
-     if(g.N){bm.rC()}
-     return bm
- } //warning: can't yet change to $Bm!!
+
+
+
+
+
  cjs.iDO=cjs.isDisplayOb=function(ob){ return O(ob)  &&  F(ob.getStage) }
  ob =  cjs.DisplayObject.prototype
  ob.CURSOR= ob.cu= ob.bM=function(cu){var ob=this, st=ob.st()

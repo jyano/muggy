@@ -40,7 +40,7 @@ TWOSTAGES = function () {
     z()
 
 
-    $.header().K("EaselJS").A(
+    $.hdr().K("EaselJS").A(
         $.h1('nextStage'),
         $.p("This is an example")).A()
 
@@ -109,42 +109,7 @@ TWOSTAGES = function () {
 
 
 }
-TRANSFORMSIMPLE = function () {
-    z()
 
-
-    angle = 0
-    img = $.img('me', handleImageLoad)[0]
-
-
-    function stop() {
-        cjs.Ticker.removeEventListener("tick", tick)
-    }
-
-    function handleImageLoad() {
-        canvas = $.canvas('p', 960, 400).id("testCanvas").A()
-        stage = cjs.stage(canvas)
-        stage.autoClear = true;
-
-        bmp = new cjs.Bitmap(img)
-            .rXY(img.width >> 1, img.height >> 1)
-            .XY(canvas.W() >> 1, canvas.H() >> 1).sXY(0.1)
-        stage.A(bmp).update();
-
-        cjs.Ticker.timingMode = cjs.Ticker.RAF
-        cjs.tick(tick)
-    }
-
-
-    function tick(event) {
-        angle += 0.01
-        var value = Math.sin(angle) * 360
-        bmp.rT(value).sXY(value / 360)
-        stage.update(event)
-    }
-
-
-}
 TRANSF = function () {
     stage = St()
 
@@ -229,18 +194,62 @@ DISTRACT = function () {
     st = new cjs.Stage("testCanvas")
 
 }
+
+//awesome:
 WINDING = function () {
     z()
+    cjs.worldsMostInterestingShape = function () {
+        var h = cjs.shape()
+        h.graphics.f("pink").dr(20, 20, 450, 360)
+            .arc(160, 160, 110, 0, Math.PI * 2, true).closePath()
+            .arc(330, 240, 110, 0, Math.PI * 2, true).closePath()
 
+        return h
+    }
     cjs.manifest(function (q) {
-        $.header().A($.h1('grahics winding')).A()
-        $.d().A($.c(960, 400).id("testCanvas"))
+        $.hdr().A($.h1('grahics winding')).A()
+
+        $.d().A($.c(960, 400)
+            .id("testCanvas"))
 
         st = s = stage = $St(["testCanvas"])
 
         h = shape = cjs.worldsMostInterestingShape().a2(stage).drag()
-        bm = cjs.bm(q("chicks"), '-').a2(s).X(470).drag()
+        cjs.bm=function(img){
+            var g=G(arguments), img=g[0],
+                bm = new cjs.Bitmap(img)
+            if(g.N){bm.rC()}
+            return bm
+        } //warning: can't yet change to $Bm!!
+        bm = cjs.bm(q("chicks"), '-')
+            .a2(s).X(470).drag()
         bm.mask = h.same().X(470)
     })
 
+} //Uncaught TypeError: Cannot read property 'image' of undefined
+POPSPIN= function () {
+    z()
+    angle = 0
+    img = $.img('me', handleImageLoad)[0]
+    function stop() {
+        cjs.Ticker.removeEventListener("tick", tick)
+    }
+    function handleImageLoad() {
+        canvas = $.canvas('p', 960, 400).id("testCanvas").A()
+        stage = $St(canvas)
+        stage.autoClear = true;
+
+        bmp = new cjs.Bitmap(img)
+            .rXY(img.width >> 1, img.height >> 1)
+            .XY(canvas.W() >> 1, canvas.H() >> 1).sXY(0.1)
+        stage.A(bmp).update();
+        cjs.Ticker.timingMode = cjs.Ticker.RAF
+        cjs.tick(tick)
+    }
+    function tick(event) {
+        angle += 0.01
+        var value = Math.sin(angle) * 360
+        bmp.rt(value).sXY(value / 360)
+        stage.update(event)
+    }
 }

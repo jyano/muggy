@@ -122,14 +122,7 @@ cjs.slider = function () {
     window.Slider = cjs.promote(Slider, "Shape");
 
 }
-cjs.worldsMostInterestingShape = function () {
-    var h = cjs.shape()
-    h.graphics.f("pink").dr(20, 20, 450, 360)
-        .arc(160, 160, 110, 0, Math.PI * 2, true).closePath()
-        .arc(330, 240, 110, 0, Math.PI * 2, true).closePath()
 
-    return h
-}
 mvClip()
 function mvClip() {
     this.createjs = this.createjs || {}, function () {
