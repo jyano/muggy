@@ -483,6 +483,84 @@ SPACE = function () {
     })
 }
 SOLAR = function () {
+    i =  cjs.DisplayObject.prototype
+
+    cjs.bulletHit = function (bu, inWhat) { //used in solar
+        var res
+
+        res = M.pointInCircle(bu.cX(), bu.cY(), {x: inWhat.x, y: inWhat.y, radius: inWhat.H() / 2})
+
+        if (res == true) {
+            $l('hit!')
+        }
+
+        return res
+    }
+    i.bounce = function (n) {
+        n = N(n) ? n : 0
+        var ob = this, st = this.st(), h = st.H(), w = st.W()
+        J.tick(
+            function () {
+                var x = ob.x, y = ob.y
+                if (x > w - ob.W() - n || x < (n )) {
+                    ob.vX('-')
+                }
+                if (y > h - ob.H() - n || y < (n )) {
+                    ob.vY('-')
+                }
+            })
+        return st
+    }
+    i.vX = function (a) {
+        var g = G(arguments);
+        a = g[0]
+
+        if (g.p) {
+            this.vx = this.vx + a;
+            return this
+        }
+
+        else if (g.n) {
+            if (N(a)) {
+                this.vx = this.vx - a
+            }
+
+            else {
+                this.vx = this.vx * -1
+            }
+            return this
+        }
+        else if (U(g[0])) {
+            return this.vx
+        }
+        this.vx = a;
+        return this
+    }
+    i.vY = function (a) {
+        var g = G(arguments);
+        a = g[0]
+        if (g.p) {
+            this.vy = this.vy + a;
+            return this
+        }
+        else if (g.n) {
+            if (N(a)) {
+                this.vy = this.vy - a
+            }
+            else {
+                this.vy = this.vy * -1
+            }
+            return this
+        }
+        else if (U(g[0])) {
+            return this.vy
+        }
+
+        this.vy = a
+        return this
+    }
+    i.vXY = function (x, y) {return this.vX(x).vY(y)}
+
     z();
     st = $St(1000, 500).bgI('/space.jpg')
 

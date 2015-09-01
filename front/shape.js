@@ -1,3 +1,223 @@
+$H = function (a, b, c) {
+    return new cjs.Shape(a, b, c)
+}
+$Gx = function () {
+    return new cjs.Graphics
+}
+cjs.isShape = function (h) {
+    return O(h) && h.graphics
+}
+cjs.graphics = function (a) {
+    return new cjs.Graphics(a)
+}
+cjs.isCont = function (cont) {
+    if (O(cont)) {
+        if (cont.addContainer) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+}
+cjs.rulers = function () {
+    var d1 = $.div('b', 100, 100).drag().opacity(.3)
+    $.div('r', 100, 300).drag().opacity(.3)
+    return d1
+}
+cjs.circ = cjs.circle = function (r, c) {
+    if (!N(r)) {
+        c = r;
+        r = 8
+    }
+    c = oO('c', c || 'z')
+    return cjs.h().c(c).dc(r)
+}
+cjs.cir = function (c, r, x, y) {
+    if (!S(c)) {
+        y = x;
+        x = r;
+        r = c;
+        c = 'y'
+    }
+    y = _.tN(y)
+    x = _.tN(x)
+    r = _.tN(r, 50)
+    return cjs.h().c(c).dc(x, y, r)
+}
+cjs.diamond = function self(width, height, fc, sc) {
+
+    fc = fc || 'green'
+    sc = sc || 'white'
+
+    width = width || 100
+    height = height || width
+    halfwidth = width / 2
+    halfheight = height / 2
+    var h = new createjs.Shape()
+    h.graphics.f(fc).s(sc)
+        .mt(0, -halfheight)
+        .lt(-halfwidth, 0).lt(0, halfheight)
+        .lt(halfwidth, 0).lt(0, -halfheight)
+
+    return h
+}
+cjs.rect2 = function self(width, height, x, y, fc, sc) {
+    width = width || 100
+    height = height || width
+
+    x = N(x) ? x : 0;
+    y = N(y) ? y : 0
+    fc = fc || 'green'
+    sc = sc || 'white'
+
+    halfwidth = width / 2
+    halfheight = height / 2
+    var h = new createjs.Shape()
+
+    h.graphics.f(fc).s(sc)
+        .mt(-halfwidth + x, -halfheight + y)
+        .lt(-halfwidth + x, halfheight + y)
+        .lt(halfwidth + x, halfheight + y)
+        .lt(halfwidth + x, -halfheight + y)
+        .lt(-halfwidth + x, -halfheight + y)
+
+    return h
+}
+cjs.rect = function self(width, height, fc, sc) {
+    width = width || 100
+    height = height || width
+    fc = fc || 'green'
+    sc = sc || 'white'
+
+    halfwidth = width / 2
+    halfheight = height / 2
+    var h = new cjs.Shape()
+
+    h.graphics.f(fc).s(sc)
+        .mt(-halfwidth, -halfheight)
+        .lt(-halfwidth, halfheight).lt(halfwidth, halfheight)
+        .lt(halfwidth, -halfheight).lt(-halfwidth, -halfheight)
+
+    return h
+}
+cjs.RECT = function (c, W, H, x, y, a) {
+    var g = G(arguments), ct = cjs.ct(), h, o;
+    if (O(c)) {
+        o = c
+    } else if (S(c)) {
+        o = {c: c, w: W, h: H, x: x, y: y, a: a}
+    }
+    o =  oDef(o)
+
+
+    h = ct.h(o.x, o.y).c(o.c, o.C, o.l).rot(o.a)
+    if (o.bm) {
+        h.bm('me', function () {
+            h.dr2(o.x, o.y, o.w, o.h)
+        });
+        return h
+    }
+    if (o.rg) {
+        h.rg(o.c, o.C)
+    }
+    if (o.lg) {
+        h.lg(o.c, o.C)
+    }
+    h.dr2(o.x, o.y, o.w, o.h)
+
+    return h
+}
+oDef = function(o){o=o||{}
+    o.x =  N(o.x,0)
+    o.y =  N(o.y,0)
+    o.a =  N(o.a,0)
+    o.c = o.c || 'z'
+    o.C = o.C || 'w'
+    o.w =  N(o.w, 50)
+    o.h =  N(o.h, 50)
+    return o
+}
+$h = cjs.h = cjs.shape = cjs.shp = function (x, y, c, C, l) {
+    var g = G(arguments),
+        x = g[0],
+        y = g[1],
+        c = g[2],
+        C = g[3],
+        l = g[4],
+        h
+
+    if (cjs.isShape(x)) {
+        return new cjs.Shape(x.graphics)
+    }
+
+    h = new cjs.Shape()
+
+    if (S(x)) {
+        h.c(x, y, c)
+    }
+
+    else {
+
+        if (N(x)) {
+            h.X(x)
+        }
+        if (N(y)) {
+            h.Y(y)
+        }
+
+        if (S(c)) {
+            h.c(c, C, l)
+        }
+
+
+        else if (N(c)) {
+            h.l(c)
+        }
+    }
+    //if(g.N){h.drag()}
+    return h
+}
+
+gx.poly = function (verts, f, s, width) {
+    var that = this
+    //  _.each(arguments,function(vert){that.lt(vert[0],vert[1])});this.cp()
+    if (N(verts[0])) {
+
+        _.each(arguments, function (vert) {
+            that.lt(vert[0], vert[1])
+        });
+        this.cp()
+    }
+    else {
+        this.fs(f, s, width)
+        _.each(verts, function (vert) {
+            that.lt(vert[0], vert[1])
+        });
+        this.cp()
+    }
+    return this
+}
+gx.fC = gx.fs = function (c, C, l) {
+    var gx = this
+    gx.f(oO('c', c || 'z'))
+    gx.s(oO('c', C || null))
+    gx.ss(N(l) ? l : 2)
+    return gx
+}
+gx.sC = function (s, w) {
+    var gx = this
+
+    w = N(w) ? w : 2
+
+    s = O(s) ? s : oO('c', s || null)
+
+    gx.s(s)
+
+    gx.ss(w)
+
+    return gx
+}
 // *** fix gx.cir and h.cir !!!! *** (to match with gen and spaz)
 h.poly = function (V, c, C, l) {
 
@@ -1052,4 +1272,3 @@ function old() {
         return h
     }// s.B = function(x,y){return this.ct(x,y).drag() }
 }
-
