@@ -1,3 +1,15 @@
+$r = function (a, b) {
+    a = a || 'c'; //cannot be 'color' ?? only abr??
+    var values = _.values(oO(a))
+    return Oo(a, b) || values[_.random(_.size(values) - 1)]
+}
+
+//for cssRule
+_.$Id=function(str){
+    str = str.replace('$', '#')
+    str = str.replace('_', '.')
+    return str
+}
 $CSS = function $CSS(rusOb) {
     var g = G(arguments), rus = '\n\n', sty
     if (g.u) {
