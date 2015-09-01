@@ -1,31 +1,11 @@
 dirs= [
-
     '/public/deps', '/public/deps/css',     '/public/deps/js',
     '/public/pics', '/public/graphics', '/public/uploads',
     '/public/deps/ui-images', // assets: where i can publically, statically fetch items from // css, fonts, js (bs, cjs, jq, string, us)
-
-    '/../',
-
-
-    '/../create',
-    '/../app',
-    '/../apps',
-
-
-    '/../front',
-    '/../front/css',
-    '/../front/both',
-    '/../games',
-    '/../lib',
-    '/../knock',
-    '/../back',
-    '/../jqui',
-
-    '/../css',
-    '/../three', '/../mvc',
-    '/../tests',   '/../deps', '/../beta', '/../g'
+    '/../', '/../deps', '/../front', '/../front/handy', '/../apps'
 ]
-console.log('------- wappy --1------')
+
+
 require('./both');
 http = require('http')
 path = require('path')
