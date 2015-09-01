@@ -102,7 +102,6 @@ Q = function (imgs, func) {
 
 }
 
-
 $Ct=function(){return new cjs.Container()}
 $Bm = function (i) {
     if (O(i)) {
@@ -1053,918 +1052,994 @@ t.C = t.col = function (color) {
     return this
 }
 
-cjs.Keys = function(o){
-    if(O(o)){
-        if(F(o.u)){
-            cjs.tick(function(){if(cjs.Keys.u){ o.u(cjs.Keys.u) } })}
-        if(F(o.d)){
-            cjs.tick(function(){
-                if(cjs.Keys.d){ o.d(cjs.Keys.d) } })
-        }
-        if(F(o.l)){
-            cjs.tick(function(){
-                if(cjs.Keys.l){
-                    o.l(cjs.Keys.l)
-                } })}
-        if(F(o.r)){
-            cjs.tick(function(){if(cjs.Keys.r){
-                o.r(cjs.Keys.r)
-            } })
-        }
-    }
+
+
+$H = function (a, b, c) {
+    return new cjs.Shape(a, b, c)
 }
-cjs.watchKeys=function(){
-    cjs.Keys.l = cjs.Keys.left = false
-    cjs.Keys.r = cjs.Keys.right = false
-    cjs.Keys.u = cjs.Keys.up = false
-    cjs.Keys.d = cjs.Keys.down = false
-    $.kD('l',function(){
-        if($.test){$l('left pressed')}
-        cjs.Keys.l = cjs.Keys.left = true
-        cjs.Keys.dir = 'left'})
-    $.kU('l',function(){if($.test){$l('left lifted')}
-        cjs.Keys.l = cjs.Keys.left = false
-    })
-    $.kD('r',function(){if($.test){$l('right pressed')}
-        cjs.Keys.r = cjs.Keys.right = true
-        cjs.Keys.dir = 'right'})
-    $.kU('r',function(){if($.test){$l('right lifted')}
-        cjs.Keys.r = cjs.Keys.right = false
-    })
-    $.kD('u',function(){if($.test){$l('up pressed')}
-        cjs.Keys.u = cjs.Keys.up = true
-    })
-    $.kU('u',function(){if($.test){$l('up lifted')}
-        cjs.Keys.u = cjs.Keys.up = false
-    })
-    $.kD('d',function(){if($.test){$l('down pressed')}
-        cjs.Keys.d = cjs.Keys.down = true
-    })
-    $.kU('d',function(){
-        if($.test){$l('down lifted')}
-        cjs.Keys.d = cjs.Keys.down = false
-    })
+$Gx = function () {
+    return new cjs.Graphics
 }
-TESTWATCHKEYS=function(){z()
-    $.test=true
-    cjs.watchKeys()
+cjs.circ = cjs.circle = function (r, c) {
+    if (!N(r)) {
+        c = r;
+        r = 8
+    }
+    c = oO('c', c || 'z')
+    return cjs.h().c(c).dc(r)
 }
-KEYWATCH = function(){
-    J=cjs
-    $.test=true
-    J.Keys.l = J.Keys.left = false
-    J.Keys.r = J.Keys.right = false
-    J.Keys.u = J.Keys.up = false
-    J.Keys.d = J.Keys.down = false
-    $.kU('l',function(){
-        if($.test){$l('left lifted')}
-        J.Keys.l = J.Keys.left = false
-    })
-    $.kD('l',function(){
-        if($.test){$l('left pressed')}
-        J.Keys.l = J.Keys.left = true
-        J.Keys.dir = 'left'})
-    $.kD('l',function(){
-        if($.test){$l('left pressed')}
-        J.Keys.l = J.Keys.left = true
-        J.Keys.dir = 'left'})
-    $.kD('r',function(){if($.test){$l('right pressed')}
-        J.Keys.r = J.Keys.right = true
-        J.Keys.dir = 'right'})
-    $.kU('r',function(){if($.test){$l('right lifted')}
-        J.Keys.r = J.Keys.right = false
-    })
-    $.kD('u',function(){if($.test){$l('up pressed')}
-        J.Keys.u = J.Keys.up = true
-    })
-    $.kU('u',function(){if($.test){$l('up lifted')}
-        J.Keys.u = J.Keys.up = false
-    })
-    $.kD('d',function(){if($.test){$l('down pressed')}
-        J.Keys.d = J.Keys.down = true})
-    $.kU('d',function(){if($.test){$l('down lifted')}
-        J.Keys.d = J.Keys.down = false
-    })
+cjs.cir = function (c, r, x, y) {
+    if (!S(c)) {
+        y = x;
+        x = r;
+        r = c;
+        c = 'y'
+    }
+    y = _.tN(y)
+    x = _.tN(x)
+    r = _.tN(r, 50)
+    return cjs.h().c(c).dc(x, y, r)
+}
+cjs.diamond = function self(width, height, fc, sc) {
+
+    fc = fc || 'green'
+    sc = sc || 'white'
+
+    width = width || 100
+    height = height || width
+    halfwidth = width / 2
+    halfheight = height / 2
+    var h = new createjs.Shape()
+    h.graphics.f(fc).s(sc)
+        .mt(0, -halfheight)
+        .lt(-halfwidth, 0).lt(0, halfheight)
+        .lt(halfwidth, 0).lt(0, -halfheight)
+
+    return h
+}
+oDef = function(o){o=o||{}
+    o.x =  N(o.x,0)
+    o.y =  N(o.y,0)
+    o.a =  N(o.a,0)
+    o.c = o.c || 'z'
+    o.C = o.C || 'w'
+    o.w =  N(o.w, 50)
+    o.h =  N(o.h, 50)
+    return o
+}
+$h = cjs.h = cjs.shape = cjs.shp = function (x, y, c, C, l) {
+    var g = G(arguments),
+        x = g[0],
+        y = g[1],
+        c = g[2],
+        C = g[3],
+        l = g[4],
+        h
+
+    if (cjs.isShape(x)) {
+        return new cjs.Shape(x.graphics)
+    }
+
+    h = new cjs.Shape()
+
+    if (S(x)) {
+        h.c(x, y, c)
+    }
+
+    else {
+
+        if (N(x)) {
+            h.X(x)
+        }
+        if (N(y)) {
+            h.Y(y)
+        }
+
+        if (S(c)) {
+            h.c(c, C, l)
+        }
+
+
+        else if (N(c)) {
+            h.l(c)
+        }
+    }
+    //if(g.N){h.drag()}
+    return h
+}
+h.z = h.clr = function () {
+    this.graphics.clear();
+    return this
 }
 
-function later(){
-
-    cjs.stop = function () {
-        alert('cjs.stop')
-        cjs.Ticker.removeAllEventListeners()
-
-    }
-    tickX = function (e) {
-        alert('tickX')
-        j.Y(e.delta / 1000 * 100, '-')
-    }
-    timeStamp2 = function (s, j, pxPerSec) {
-        alert('timeStamp2')
-        var fn = function (s, e) {
-
-            if (!N(j.ts)) {
-                j.ts = 0;
-                j.lts = e.ts
-            }
-
-            else {
-                j.ts = e.ts - j.lts;
-                j.lts = e.ts
-
-                j.y((j.ts / 1000) * pxPerSec, '-')
-            }
-        }
-        return s.t(fn)
-    }
-
-    cjs.tick2 = function (func) {
-        alert('cjs.tick2')
-        cjs.Ticker.addEventListener('tick', func)
-        return cjs.Ticker
-    }
-    cjs.stopListening = function () {
-        alert('cjs.stopListening')
-        cjs.Ticker.removeAllEventListeners()
-    }
-    function toSpaz(){
-        ct = cjs.Container.prototype
-
-        ///WARNING ..USED B2D.ISGPOLY TO MAKE DOT
-        ct.dot = function (c, x, y) {
-            var that = this,
-                s = this,
-                dot,
-                tween
-
-            if (b2d.isGPoly(c)) {
-                _.each(c.verts(), function (v) {
-                    s.dot(V(v))
-                })
-                return this
-            }
-
-            if (A(c)) {
-
-                _.each(c,
-                    function (G) {
-                        if (A(G)) {
-                            s.dot.apply(s, G)
-                        }
-                        else {
-                            s.dot(G)
-                        }
-                    })
-
-                return
-            }
-
-            if (!S(c)) {
-                y = x;
-                x = c;
-                c = 'y'
-            }
-
-            if (O(x)) {
-                y = x.y;
-                x = x.x
-            }
-
-            x = N(x) ? x : s.W() / 2
-            y = N(y) ? y : s.H() / 2
-
-            //dot = s.circ(x,y, 6,  oO('c', c)).drag()//.opacity(.4)
-
-            //dot = s.h(x,y).circ(0,0, 6,  oO('c', c)).drag()//.opacity(.4)
-
-            dot = s.h(x, y).circ(8, c, c).drag()
-
-            tween = dot.tweenLoop([{sxy: 1.3}, 100], [{sxy: 1}, 100]).toggle()
-
-            dot.$$(function () {
-                tween.toggle()
-            })
-
-            dot.N('dot')
-
-            return s
-        }
-
-    }
-    cjs.chalk = function (t, c) {
-        if (O(t)) {t = 'x: ' + t.x + ', ' + 'y: ' + t.y}
-        return new J.Text(t, "26px Arial", oO('c', c || 'white')).XY(50, 50)
-    }
-    ct.squareDot=function(color, x, y){var squareDot, tween
-        if(!S(color)){y=x; x=color; color='orange'}
-        if(O(x)){y= x.y;x= x.x  }
-        x= N(x)? x:300
-        y= N(y)? y:300
-        __squareDot = squareDot = J.rect(20, 20, oO('c', color))//.opacity(.4)
-        this.A(squareDot.XY(x, y)//.drag()
-        )
-        //tween = dot.tweenLoop([{sxy:1.3},100],[{sxy:1},100]).toggle()
-
-        // dot.$$(function(){tween.toggle()})
-
-        return this}
-    ct.chalk=function(){
-        var height = 50,
-            that=this,
-            text
-
-        _.each(arguments, function(arg){
-
-            text = J.chalk(arg).Y(height).X(50 - that.X())
-            height+=40
-            that.A(text)
-
-        })
-
-
-        return text}
-    ct.pen = function self(arg){
-
-        var that=this
-
-
-        if(O(self.text)){
-            self.text.remove()
-        }
-
-        self.text = J.chalk(arg).Y(50).X(50 - that.X())
-
-        that.A(self.text)
-
-
-        return self.text}
-
-//alert
-    $Pt = cjs.Pt = function (x, y) {
-        alert('cjs.Pt $Pt')
-        if (U(x)) {
-            return new C$.Point}
-        if (O(x) && O(y)) {
-            return new C$.Point(x.x + y.mx() >> 1, x.y + y.my() >> 1)
-        }
-        if (O(x)) {
-            return new cjs.Point(
-                x.mx(),
-                x.my()
-            )
-        }
-        return new cjs.Point(x, y)
-    }
-    selected=function(bm){
-        alert('selected')
-        alert('selected')
-        SL(bm)
-        bm.$(function(){
-            cjs.Tween.removeAllTweens()
-            bitmap=bm
-            cjs.scaleShake(bm.dO)
-        })
-    }
-    bmp()
-    function bmp(){
-        SuperBitmap = SuperBitmapSync = bm = function (img, stage) {
-            alert('SuperBitmap')
-            var superBitmap = Do(new cjs.Bitmap(src(img)))
-
-            if (O(stage)) {
-                stage.a(superBitmap)
-            }
-
-            return superBitmap
-        }
-        SuperBitmapAsync = function (i, fn) {
-            alert('SuperBitmapAsync')
-//source obj can be:
-// Image|HTMLCanvasElement|HTMLVideoElement
-// |String URIto an image file to load and use.
-//If it is a URI, a new Image object will be constructed and assigned to the .image property.
-            i = i[0]
-            if (O(i) && S(i.d)) {
-                i = i.d
-            }
-            $.i(i, function (img) {
-                bm = $Bm(img)
-                if (F(fn)) {
-                    fn(bm)
-                }
-                if (S(fn)) {
-                    $w[fn] = bm
-                }
-            })
-
-            return i
-        }
-        cjs.BmSync = function (i, st) {
-            alert('BmSync')
-            var bm = $Bm(src(i[0]))
-
-            if (O(st)) {
-                st.A(bm)
-            }
-
-            return bm
-        }
-        cjs.Bm = $bitmapAsync = Bm = function (img, fn) {
-            alert('cjs.Bm $bitmanpAsync Bm')
-//source obj can be:
-// Image|HTMLCanvasElement|HTMLVideoElement
-// |String URIto an image file to load and use.
-//If it is a URI, a new Image object will be constructed and assigned to the .image property.
-            if (O(img) && S(img.d)) {
-                img = img.d
-            }
-            $.i(img, function (i) {
-                bm = $Bm(i)
-                if (F(fn)) {
-                    fn(bm)
-                }
-                if (S(fn)) {
-                    $w[fn] = bm
-                }
-            })
-            return img
-        }
-    }
-    $.colorPicker = $.ColorPicker = function () {
-        alert('$.colorPicker')
-        z()
-
-        colorPicker = $(' <input id="color" name="color" type="color">').appendTo($('body'))
-
-        colorPicker.change(function () {
-            $l(colorPicker.val())
-        })
-
-    }
-    cjs.toColor = toColor = tCl = function (n1, n2, n3, n4) {
-        alert('cjs.toColor')
-        return n2 ? "rgba(" + n1 + "," + n2 + "," + "" + n3 + "," + (n4 || 1) + ")"
-            :
-            $r('c', n1)
-    }
-    cjs.rgb=function(r,g,b,a){
-        alert('cjs.rgb')
-        var str
-        a = N(a)? a: 1
-        str = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')'
-        return str
-    }
-    TextAdder=function(stage){
-        alert('TextAdder')
-        var f= $.f().a().c('x').P(10).w(300).dg()
-
-        f.A(
-            $.ip().id('text'),
-            $.bt('for text',   function(){var  _text,theText,val = $l( $('#text').val()  )
-                $('#text').val('')
-                _t = $T(val,'w', 30, 100, 10)
-                t=  $Ct().A( _t )
-                t.dO = _t
-                SL(t)
-                st.A(t)
-                selected(t)
-            }))
-
-        return f
-    }
-    TextAdder2=function(stage){
-        alert('TextAdder2')
-        var form= $form().a().c('x').P(10).w(300).drg()
-
-        form(
-
-            $textInput().id('text'),
-
-            $.bt(  'for text',   function(){
-                var val = $l( $('#text').val()  )
-
-                $('#text').val('')
-
-                var theText= EaselText(val,'w', 30, 100, 10)
-                SL(theText)
-
-
-                stage.a( theText )
-
-
-            }))
-
-
-
-
-        return form }
-
-    //obPhysics()
-    function obPhysics() {
-//easel physics.. ugh
-        ob.move = function () {
-            return this.X(this.vx || 0, '+').Y(this.vy || 0, '+')
-        }
-        ob.accelerate = function () {
-            return this.vX(this.ax || 0, '+').vY(this.ay || 0, '+')
-        }
-        ob.jerk = function () {
-            return this.aX(this.jx || 0, '+').aY(this.jy || 0, '+')
-        }
-
-        ob.aX = function (a) {
-            var g = G(arguments);
-            a = g[0]
-
-            if (g.p) {
-                this.vx = this.vx + a;
-                return this
-            }
-
-            else if (g.n) {
-                if (N(a)) {
-                    this.vx = this.vx - a
-                }
-
-                else {
-                    this.vx = this.vx * -1
-                }
-                return this
-            }
-            else if (U(g[0])) {
-                return this.vx
-            }
-            this.vx = a;
-            return this
-        }
-        ob.aY = function (a) {
-            var g = G(arguments);
-            a = g[0]
-            if (g.p) {
-                this.vy = this.vy + a;
-                return this
-            }
-            else if (g.n) {
-                if (N(a)) {
-                    this.vy = this.vy - a
-                }
-                else {
-                    this.vy = this.vy * -1
-                }
-                return this
-            }
-            else if (U(g[0])) {
-                return this.vy
-            }
-
-            this.vy = a
-            return this
-        }
-        ob.jX = function (a) {
-            var g = G(arguments);
-            a = g[0]
-
-            if (g.p) {
-                this.vx = this.vx + a;
-                return this
-            }
-
-            else if (g.n) {
-                if (N(a)) {
-                    this.vx = this.vx - a
-                }
-
-                else {
-                    this.vx = this.vx * -1
-                }
-                return this
-            }
-            else if (U(g[0])) {
-                return this.vx
-            }
-            this.vx = a;
-            return this
-        }
-        ob.jY = function (a) {
-            var g = G(arguments);
-            a = g[0]
-            if (g.p) {
-                this.vy = this.vy + a;
-                return this
-            }
-            else if (g.n) {
-                if (N(a)) {
-                    this.vy = this.vy - a
-                }
-                else {
-                    this.vy = this.vy * -1
-                }
-                return this
-            }
-            else if (U(g[0])) {
-                return this.vy
-            }
-            this.vy = a
-            return this
-        }
-        ob.brake = function () {
-            this.vx = this.vy = 0
-        }
-        ob.toR = p.moveRight = function (num) {
-            num = num || 20
-            this.X(num, '+')
-            return this
-        }
-        ob.toL = p.moveLeft = function (num) {
-            num = num || 20
-            this.X(num, '-')
-            return this
-        }
-        ob.toU = p.moveDown = function (num) {
-            num = num || 20
-            this.Y(num, '-')
-            return this
-        }
-        ob.toD = p.moveDown = function (num) {
-            num = num || 20
-
-            this.Y(num, '+')
-            return this
-        }
-        ob.keyControls = function (num) {
-            var args = G(arguments),
-                ob = this
-
-            if (args.P) {
-                $.kD('left', function () {
-                    ob.toL(num)
-                })
-                $.kD('right', function () {
-                    ob.toR(num)
-                })
-            }
-
-            if (args.N) {
-                $.kD('up', function () {
-                    ob.toU(num)
-                })
-                $.kD('down', function () {
-                    ob.toD(num)
-                })
-            }
-        }
-        ob.shootBullet = function () {
-            shooter = this
-            st = shooter.st()
-            bu = cjs.cir(8, 'w').XY(shooter).a2(st)
-            bu.startMoving((shooter.vx || 1) * 1.5, (shooter.vy || 1) * 1.5)
-
-        }
-        ob.hitByBullet = ob.isPointInMyRectBounds = function () {
-            var ob = this, g = G(arguments),
-
-                bu = g[0],
-                didHit = M.pointInRectangle(bu.cX(), bu.cY(), {x: ob.cX(), y: ob.cY(), w: ob.W(), h: ob.H()})
-            if (g.n && didHit) {
-                ob.rm()
-            }
-            return didHit
-        }
-//chick for hits and remove if a hit
-        ob.killAllIAmHitting = function () {
-            var ob = this,
-                stage = this.getStage()
-
-            _.each(stage.children, function (obj) {
-
-                if (ob != obj) {
-
-                    obj.hitByBullet(ob, '-')
-
-                }
-            })
-
-        }
-        ob.makeMeAKiller = function () {
-            var ob = this
-            cjs.tick(function () {
-                ob.killAllIAmHitting()
-            })
-            return this
-        }
-        ob.in = ob.within = ob.inStage = function () {
-            var ob = this,
-                st = ob.st(),
-                g = G(arguments),
-                x = ob.x,
-                y = ob.y,
-                w = st.W() - 100,
-                h = st.H() - 100,
-
-                inn = x > 0 && x < w && y > 0 && y < h
-
-            if (g.n) {
-                if (!inn) {
-                    ob.rm()
-                }
-            }
-
-            return inn
-        }
+gx.fC = gx.fs = function (c, C, l) {
+    var gx = this
+    gx.f(oO('c', c || 'z'))
+    gx.s(oO('c', C || null))
+    gx.ss(N(l) ? l : 2)
+    return gx
+}
+h.col = h.fs = function () {
+    this.graphics.fs.apply(
+        this.graphics, arguments)
+    return this
+}
+gx.sC = function (s, w) {
+    var gx = this
+
+    w = N(w) ? w : 2
+
+    s = O(s) ? s : oO('c', s || null)
+
+    gx.s(s)
+
+    gx.ss(w)
+
+    return gx
+}
+h.sC = function () {
+    this.graphics.sC.apply(this.graphics, arguments)
+    return this
+}
+h.ss = function (a) {
+    var h = this, gx = h.graphics, g, o
+
+
+    if (S(a)) {
+        this.C(a)
+        return this.ss.apply(this, _.rest(arguments))
     }
 
 
-    sav = function (st, a) {
-        return function () {
-            alert('sav')
-            st.sv(a)
-        }
-    }
-    function maybe() {
-
-        cjs.HSL = function (a, b, c) {
-            if (U(a)) {
-                return HSL(M.rand() * 360, 100, 50)
-            }
-            return cjs.Graphics.getHSL(a, b, c)
-        }
-        eventDisp()
-        function eventDisp() {
-            p = cjs.EventDispatcher.prototype
-            p.init = function () {
-                this.initialize.apply(this, arguments)
-                return this
-            }
-        }
-
+    g = G(arguments)
+    o = {
+        l: g[0],
+        caps: g[1],
+        jts: g[2],
+        mit: g[3],
+        ignSc: false
     }
 
-
-    old=function(){
-        cjs.circle2 = function (r, z, x, y) {
-            gx = new cjs.Graphics()
-            if (!S(r)) {
-                return cjs.circle2('red', r, z, x)
-            }
-            z = _.tN(z, 32)
-            x = _.tN(x, 100)
-            y = _.tN(y, 100)
-            gx.ss(z / 8).f(r, 'black').dc(z)
-            return cjs.h(gx).XY(x, y)
-        }
-        cjs.circle3 = function (x, y, r, c, C) {
-
-            var h = cjs.shape()
-            if (O(x)) {
-                return cjs.circle3(x.x, x.y, x.r, x.c, x.C)
-            }
-
-            x = _.tN(x)
-            y = _.tN(y)
-            r = _.tN(r, 8)
-
-            h.cir(x, y, r, c || 'w', C || 'z')
-            SL(h)
-            return h
-        }
-        cjs.box = function (w, h, fc, sc) {
-
-            w = w || 200
-
-            h = h || w
-
-            var b = rct(
-                0 - w / 2, 0 - h / 2, w, h, fc, sc
-            )
-
-            b.wr = w / 2
-
-            b.hr = h / 2
-
-            b.wd = w
-
-            b.hd = h
+    o.l = N(o.l) ? o.l : 4
 
 
-            b.top = b.T = function (a) {
-                if (U(a)) {
-                    return b.y() - b.hr
-                }
-
-                b.y(a + b.hr)
-
-                return b
-            }
-
-            b.bottom = b.B = function (a) {
-
-                if (U(a)) {
-                    return b.y() + b.hr
-                }
-
-
-                b.y(a - b.hr)
-
-                return b
-            }
-
-            b.left = b.L = function (a) {
-
-                if (U(a)) {
-                    return b.x() - b.wr
-                }
-
-                b.x(a + b.wr)
-
-                return b
-            }
-
-            b.right = b.R = function (a) {
-
-                if (U(a)) {
-                    return b.x() + b.wr
-                }
-                b.x(a - b.wr);
-                return b
-            }
-
-            b.fall = function () {
-                b.t(function () {
-                    if (b.F) {
-                        b.y(40, '+')
-                    }  //****
-                    if (ballBox(b, r)) {
-                        b.F = 0
-                    }
-                })
-            }
-
-            return b
-        }
-        cjs.ballBox = function (bl, bx, buff) {
-            buff = buff || 100
-            var b = bl.bottom() >= bx.top() && bl.top() <= bx.top() + buff &&
-                bl.x() >= bx.left() && bl.x() <= bx.right()
-            if (b) {
-                bl.bottom(bx.top())
-            }
-            return b
-        }
-        cjs.ball = function (r, c, C) {//canon
-
-            var b = cjs.circle(0, 0, r, c, C)
-
-            b.d = r + r
-
-            b.T = function (a) {
-                if (U(a)) {
-                    return b.y() - b.r
-                }
-                b.y(a + b.r);
-                return b
-            }
-
-            b.B = function (a) {
-
-                if (U(a)) {
-                    return b.y() + b.r
-                }
-
-                b.y(a - b.r)
-
-                return b
-            }
-
-
-            b.L = function (a) {
-                if (U(a)) {
-                    return b.x() - b.r
-                }
-                b.x(a + b.r);
-                return b
-            }
-            b.R = function (a) {
-                if (U(a)) {
-                    return b.x() + b.r
-                }
-                b.x(a - b.r);
-                return b
-            }
-            b.F = 1
-            b.fall = function (r) {
-                b.t(function () {
-                    if (r) {
-                        if (ballBox(b, r)) {
-                            b.F = 0
-                        } else {
-                            b.F = 1
-                        }
-                    }
-                    if (b.F) {
-                        b.y(10, '+')
-                    }
-                })
-            }
-
-            return b
-        }
+    if (o.caps == 'r') {
+        o.caps = 'round'
     }
+    if (o.caps == 's') {
+        o.caps = 'square'
+    }
+    if (o.caps == 'b') {
+        o.caps = 'butt'
+    }
+
+    if (o.mit == 'r') {
+        o.mit = 'round'
+    }
+    if (o.mit == 'm') {
+        o.mit = 'miter'
+    }
+    if (o.mit == 'b') {
+        o.mit = 'bevel'
+    }
+
+    o.jts = o.jts || 0
+    if (U(o.mit)) {
+        o.mit = 100
+    }
+
+    if (g.n) {
+        o.ignSc = true
+    }
+
+    gx.ss(o.l, o.caps, o.jts, o.mit, o.ignSc)
+
+
+    return h
+}
+h.C = h.s = function (C, l) {
+    var h = this, gx = h.graphics
+    gx.s(oO('c', C))
+    if (N(l)) {h.l(l)}
+    return h
 
 }
-cjs.M = function (rot) {
-    alert('cjs.M')
-    var m = new cjs.Matrix2D()
-    if (N(rot)) {m.rotate(rot)}
-    return m}
-$Tc=function(a,f,c,x,y){alert('$Tc')
-    var t= $T(a,f,c,x,y)
-    t.tA('center')
-    return t
-}
-ct.art = function (x, y, c, C) {
-    alert('ct.art')
-    var g = G(arguments), ct = this, h
-    if (U(x)) {
-        alert('must at LEAST define x');
-        return
+h.C = h.s = function (a, b, c, d, e, f) {
+    var h = this, gx = h.graphics
+    if (N(a)) {
+        gx.s((a > 0 && a < 1) ? J.rgb(0, 0, 0, a) : J.rgb(a, b, c, d))
     }
-    if (!N(x)) {
-        alert('x not a number! but must be, lah');
-        return
+    else if (S(a)) {
+
+        gx.s(oO('c', a))
+
+
     }
 
-    y = N(g[1]) ? g[1] : x
-    c = S(g[2]) ? oO('c', g[2]) : null
-    C = S(g[2]) ? oO('c', g[3]) : c
-    h = cjs.h(x, y, c, C).a2(ct)
-    if (g.p) {
-        h.drag()
+    else {
+        gx.s(a, b, c, d, e)
     }
     return h
 }
-st.trDr = function () {alert('st.trDr')
-    var st = this
-    st._md = 0
-    st.MD(function () {
-        st._md = 1
-    })
-    st.MU(function () {
-        st._md = 0
-    })
-    return this
+h.c = h.f = function (c, C, l) {
+    var h = this, gx = h.graphics,
+        g = _.toArray(arguments), o
+
+    o = O(g[0]) ? g[0] :
+        g[0] == '*' ? {c: '*'} :
+            g[0] == '**' ? {c: '**'} :
+                g[0] == '*' ? {c: '***'} :
+                    U(g[0]) ? {c: 'z', C: 'w', l: 6} :
+                        N(g[1]) ? {c: g[0], l: g[1]} :
+                            N(g[0]) ? {l: g[0], C: g[1]} ://?
+                            {c: g[0], C: g[1], l: g[2]}
+
+
+    if (A(o.c)) {
+        if (N(o.c[1])) {
+            o.l = o.c[1];
+            o.c = o.c[0]
+        }
+        else if (N(o.c[0])) {
+            o.l = o.c[0];
+            o.C = o.c[1]
+        }
+        else {
+            o.l = o.c[2];
+            o.C = o.c[1];
+            o.c = o.c[0]
+        }
+    }
+    if (A(o.C)) {
+        o.l = o.C[1];
+        o.C = o.C[0]
+    }
+
+    if (o.c == 0) {
+        gx.f(null);
+        o.c = 'X'
+    }
+    if (o.C == 0) {
+        gx.s(null);
+        o.C = 'X'
+    }
+    if (o.c == 00) {
+        gx.f(null);
+        gx.s(null);
+        o.c = 'X';
+        o.C = 'X'
+    }
+    if (o.c == '*') {
+        o.c = $r()
+    }
+    if (o.C == '*') {
+        o.C = $r()
+    }
+    if (o.c == '**') {
+        o.c = $r();
+        o.C = $r()
+    }
+    if (o.c == '***') {
+        $l('***')
+
+        o.c = $r();
+        o.C = $r();
+        o.l = R(20)
+    }
+    if (S(o.c)) {
+        gx.f(oO('c', o.c))
+    }
+    if (S(o.C)) {
+        gx.s(oO('c', o.C))
+    }
+    if (N(o.l)) {
+        h.l(o.l)
+    }
+    if (o.lf) {
+        o.lf = O(o.lf) ? o.lf : {}
+        if (o.r) {
+            o.r = _.tN(o.r)//?
+            o.x = _.tN(o.x)
+            o.y = _.tN(o.y)
+            o.lf.x1 = N(o.lf.X1) ? o.lf.X1 : _.tN(o.lf.x1) + o.x - o.r
+            o.lf.y1 = N(o.lf.Y1) ? o.lf.Y1 : _.tN(o.lf.y1) + o.y - o.r
+            o.lf.x2 = N(o.lf.X2) ? o.lf.X2 : _.tN(o.lf.x2) + o.x - o.r
+            o.lf.y2 = N(o.lf.Y2) ? o.lf.Y2 : _.tN(o.lf.y2) + o.y + o.r
+        }
+        /*
+         $l('r: ' + o.r)
+         $l('x: ' + o.x)
+         $l('y: ' + o.y)
+         $l('x1: '+ o.lf.x1)
+         $l('y1: '+ o.lf.y1)
+         $l('x2: '+ o.lf.x2)
+         $l('y2: '+ o.lf.y2)
+
+         */
+        h.lf(o.lf)
+    }
+    if (o.rf) {
+        o.rf = O(o.rf) ? o.rf : {}
+
+        o.c = [2, 'z']
+        if (o.r) {
+            o.rf.x1 = N(o.rf.X1) ? o.rf.X1 : _.tN(o.rf.x1) + o.x
+            o.rf.y1 = N(o.rf.Y1) ? o.rf.Y1 : _.tN(o.rf.y1) + o.y
+
+            o.rf.x2 = N(o.rf.X2) ? o.rf.X2 : _.tN(o.rf.x2) + o.x + 20
+            o.rf.y2 = N(o.rf.Y2) ? o.rf.Y2 : _.tN(o.rf.y2) + o.y + 20
+
+            o.rf.r2 = N(o.rf.R2) ? o.rf.R2 : _.tN(o.rf.r2) + o.r
+        }
+
+        h.rf(o.rf)
+    }
+    if (o.ls) {
+        o.ls = O(o.ls) ? o.ls : {}
+        if (o.r) {
+            o.ls.x1 = _.tN(o.ls.x1) + o.x - o.r
+            o.ls.y1 = _.tN(o.ls.y1) + o.y - o.r
+            o.ls.x2 = _.tN(o.ls.x2) + o.x - o.r
+            o.ls.y2 = _.tN(o.ls.y2) + o.y + o.r
+        }
+        h.ls(o.ls)
+    }
+    if (o.rs) {
+        o.rs = O(o.rs) ? o.rs : {}
+        if (o.r) {
+            o.rs.x1 = _.tN(o.rs.x1) + o.x
+            o.rs.y1 = _.tN(o.rs.y1) + o.y
+            o.rs.x2 = _.tN(o.rs.x2) + o.x
+            o.rs.y2 = _.tN(o.rs.y2) + o.y
+            o.rs.r2 = _.tN(o.rs.r2) + o.r
+        }
+        h.rs(o.rs)
+    }
+
+
+    if (o.bs) {
+        h.bs(o.bs)
+    }
+
+    if (o.bf) {
+        h.bf(o.bf)
+    }
+
+    return h
+
 }
-st.du = function () {
-    alert('st.du')
-    return this.canvas.toDataURL()
-}
-st.snap = function (f) {
-    alert('st.snap')
-    var st = this
-    $.P('img', {d: st.toDataURL()})//, dats: o.x.dats
-    $.in(1, f)
-    return st
-}
-cjs.mXY = function (o, s) {
-    alert('cjs.mXY')
-    xy(o, s.mx(), s.my())
-    return o
-} //mxy
-cjs.me = function (fn) {
-    alert('cjs.me')
-    Q(['me'], function (q) {fn(q.getResult('me'))}) }
-ct.bData = function (data) {
-    alert('ct.bData')
-    return J.bm($.i().src($.parseJSON(data))).a2(this)
-}
-ct.bData = function (data) {
-    alert('ct.bData')
-    return J.bm($.i().src($.parseJSON(data))).a2(this)
+h.c = h.f = function (a, b, c, d, e) {
+    var h = this, gx = h.graphics
+
+    if (N(a)) {
+
+
+        gx.f((a > 0 && a < 1) ? J.rgb(0, 0, 0, a) : J.rgb(a, b, c, d))
+    }
+
+    else if (S(a)) {
+
+        gx.f(oO('c', a))
+
+    }
+
+    else {
+        gx.f(a, b, c, d, e)
+    }
+
+    return h
 }
 
-st.snap = function (f) {alert('st.snap')
-    var st = this
-    $.P('img', {d: st.toDataURL()})//, dats: o.x.dats
-    $.in(1, f)
-    return st
+
+
+h.bf = function (i, fn, c) {
+    var h = this, gx = h.graphics
+
+
+    if (S(i)) {
+
+        $.img(i, function (i) {
+            gx.bf(i[0])
+            if (F(fn)) {
+                fn(i[0])
+            }
+        })
+    }
+
+
+    else {
+
+        if (O(fn)) {
+            gx.bf(i, null, fn)
+        } else {
+            gx.bf(i, fn, c)
+        }
+    }
+
+
+    return h
 }
-st.trDr = function () {
-    alert('st.trDr')
-    var st = this
-    st._md = 0
-    st.MD(function () {
-        st._md = 1
+h.bs = function (i) {
+    var h = this;
+    h.graphics.bs(i);
+    return h
+}
+h.ef = function () {
+    var h = this, gx = h.graphics
+    gx.f()
+    return h
+}
+h.es = function () {
+    var h = this, gx = h.graphics
+    gx.es()
+    return h
+}
+
+h.bmCir = function (o) {
+    var h = this
+    o = o || {}
+    o.i = o.i || 'me'
+    o.circs = o.circs || []
+    $.img(o.i, function (i) {
+        i = i[0]
+        _.each(o.circs, function (c) {
+            h.bf(i)
+            h.dc(c)
+            h.ef()
+        })
     })
-    st.MU(function () {
-        st._md = 0
+    return h
+}
+h.bmV = function (o) {
+    var h = this
+    o = o || {}
+    o.i = o.i || 'me'
+
+    $.img(o.i, function (i) {
+        i = i[0]
+        _.e(o.v, function (v) {
+
+            h.bf(i)
+            h.lt(v)
+            h.ef().cp()
+
+        })
     })
-    return this
+
+    return h
 }
-st.du = function () {
-    alert('st.du')
-    return this.canvas.toDataURL()
+
+
+h.l = h.ss = function (l, b, c) {
+    var h = this, gx = h.graphics;
+    gx.ss(l || 1, b, c)
+    return h
 }
-ct.mc = function () {alert('ct.mc')
-    return cjs.mc.apply(null, arguments).a2(this)
+h.cC = h.cc = function () {return this.cacheCanvas}
+grad()
+line()
+curves()
+rec()
+pol()
+function grad() {
+    h.lg = function me() {
+        var h = this, gx = h.graphics, g = G(arguments), o
+        if (A(g[0])) {
+            return me.apply(null, g[0])
+        }
+
+        o = O(g[0]) ? g[0]
+            : _.extend({c1: g[0], c2: g[1]},
+            N(g[5]) ? {x1: g[2], y1: g[3], x2: g[4], y2: g[5]}
+                : N(g[4]) ? {y1: g[2], x2: g[3], y2: g[4]}
+                : N(g[3]) ? {x2: g[2], y2: g[3]} : {y2: g[2]})
+
+        o.c1 = oO('c', o.c1 || 'z');
+        o.c2 = oO('c', o.c2 || 'w')
+        o.s1 = _.tN(o.s1);
+        o.s2 = _.tN(o.s2, 1)
+        o.x1 = _.tN(o.x1);
+        o.y1 = _.tN(o.y1)
+        o.x2 = _.tN(o.x2);
+        o.y2 = N(o.y2) ? o.y2 : N(o.r) ? o.r * 2 : 100
+
+        return o
+    }
+    h.rg = function (o) {
+        var h = this, gx = h.graphics, g = G(arguments), o
+
+        if (A(g[0]) && A(g[1])) {
+            $l('AA')
+            h.graphics.rf(
+                [oO('c', g[0][0]), oO('c', g[0][1])], g[1], g[2], g[3], g[4], g[5], g[6], g[7])
+            return h
+        }
+
+
+        o = O(g[0]) ? g[0] :
+            S(g[1]) ? _.extend({c1: g[0], c2: g[1]},
+                N(g[7]) ? {x1: g[2], y1: g[3], r1: g[4], x2: g[5], y2: g[6], r2: g[7]}
+                    : N(g[5]) ? {x2: g[2], y2: g[3], r1: g[4], r2: g[5]}
+                    : N(g[4]) ? {x2: g[2], r1: g[3], r2: g[4]}
+                    : N(g[3]) ? {r1: g[2], r2: g[3]} : {r2: g[2]})
+
+                : S(g[0]) ? {c2: g[0]} : {}
+
+
+        b2d.grad(o)
+
+        o.x2 = _.tN(o.x2, o.x1)
+        o.y2 = _.tN(o.y2, o.y1)
+        o.r1 = _.tN(o.r1, 1);
+        o.r2 = _.tN(o.r2, 100)
+        return o
+    }
+    h.rf = function me() {
+        var h = this, gx = h.graphics, g = G(arguments), o
+
+        if (A(g[0])) {
+            return me.apply(h, g[0])
+        }
+
+
+        o = h.rg.apply(h, g)
+
+        gx.rf(
+            [o.c1, o.c2],
+            [o.s1, o.s2],
+            o.x1, o.y1, o.r1, o.x2, o.y2, o.r2)
+
+        return h
+
+
+    }
+    h.lf = function me() {
+        var h = this, gx = h.graphics, g = G(arguments), o
+
+        if (A(g[0])) {
+            return me.apply(h, g[0])
+        }
+
+        o = h.lg.apply(h, g)
+
+        gx.lf([o.c1, o.c2], [o.s1, o.s2], o.x1, o.y1, o.x2, o.y2)
+
+        return h
+    }
+    h.ls = function me() {
+        var h = this, gx = h.graphics, g = G(arguments), o
+        if (A(g[0])) {
+            return me.apply(h, g[0])
+        }
+        o = h.lg.apply(h, g)
+        gx.ls([o.c1, o.c2], [o.s1, o.s2], o.x1, o.y1, o.x2, o.y2)
+        return h
+    }
+    h.rs = function me() {
+        var h = this, gx = h.graphics, g = G(arguments), o
+        if (A(g[0])) {
+            return me.apply(h, g[0])
+        }
+        o = h.rg.apply(h, g)
+        gx.rs([o.c1, o.c2], [o.s1, o.s2], o.x1, o.y1, o.r1, o.x2, o.y2, o.r2)
+        return h
+    }
+
 }
-ct.st = function(){
-    alert('ct.st')
-    return this.getStage() }//ct.st = function () {return this.stage}
+function line(){
+    h.cp = function () {
+        this.graphics.cp();
+        return this
+    }
+    h.lt = function (x, y) {
+        var h = this, gx = h.graphics, v
+        if (A(x) && O(x[0])) {
+            return h.lt.apply(h, x)
+        }
+        if (N(x)) {
+            gx.lt(x, y);
+            return h
+        }
+        _.e(arguments, function (v) {
+            v = V(v)
+            h.lt(v.x, v.y)
+        })
+        return h
+    }
+    h.mt = function (x, y) {//h.pol=
+        var h = this,
+            gx = h.graphics, g = arguments, x = g[0], y = g[1], v
+        if (A(g[0]) && O(g[0][0])) {
+            _.e(g, function (v) {
+                h.mt.apply(h, v)
+            });
+            return h
+        }
+
+
+        if (N(x)) {
+            v = V(x, y);
+            gx.mt(v.x, v.y)
+        }
+
+        else {
+            v = V(_.f(g))
+            h.mt(v.x, v.y)
+            _.e(_.r(g), function (v) {
+                v = V(v)
+                h.lt(v.x, v.y)
+            })
+        }
+
+        return h
+    }
+    h.mt = function (a, b, c, d, e) {
+        var h = this, gx = h.graphics, v
+
+        if (O(a)) {
+            v = V(a)
+            gx.mt(v.x, v.y)
+
+        }
+        else {
+            gx.mt(a, b, c, d, e)
+        }
+
+        return h
+    }
+    h.dl = h.line = function () {
+
+        var g = G(arguments), o
+
+        o = N(g[0]) ? {x1: g[0], y1: g[1], x2: g[2], y2: g[3]} :
+
+        {x1: g[0].x, y1: g[0].y, x2: g[1].x, y2: g[1].y}
+
+        this.mt(o.x1, o.y1).lt(o.x2, o.y2)
+        return this
+    }
+    h.lt = function (a, b, c, d, e) {
+        var h = this, gx = h.graphics, v
+
+        if (O(a)) {
+            v = V(a)
+            gx.lt(v.x, v.y)
+
+        }
+        else {
+            gx.lt(a, b, c, d, e)
+        }
+
+        return h
+    }
+}
+function curves() {
+    h.rc = h.roundRectComplex = function () {
+        var h = this, gx = h.graphics
+        gx.drawRoundRectComplex.apply(gx, arguments)
+        return h
+    }
+
+    h.cir = h.circ = function (x, y, r, c, C, l) {//= h.circle
+        var h = this, gx = h.graphics,
+            g = G(arguments), o   //h.ef().es()
+
+        if (O(g[0]) && A(g[1])) {
+
+            _.e(g[1], function (c) {
+
+                h.cir(_.extend(c, g[0]))
+
+            })
+            return h
+        }
+
+        o = O(g[0]) ? g[0]
+            : N(g[2]) ? {x: g[0], y: g[1], r: g[2], c: g[3], C: g[4], l: g[5]}
+            : N(g[1]) ? {x: g[0], y: g[1], r: 50, c: g[2], C: g[3], l: g[4]}
+            : {x: 0, y: 0, r: g[0], c: g[1], C: g[2], l: g[3]}
+
+        o.x = _.tN(o.x);
+        o.y = _.tN(o.y);
+        o.r = _.tN(o.r, 50)
+        o.c = o.c || 'z';
+        o.C = o.C || 'w'
+        if (N(o.bf)) {
+            o.bm = 'me'
+        }
+
+        h.c(o)
+        if (o.bf) {
+            h.bf('me', function () {
+                h.dc(o)
+            })
+        } else {
+            h.dc(o)
+        }
+        return h
+    } //h.circle=function(o){var h=this; h.c(o).dc(o); return h}
+    h.dc = function (x, y, r) {
+        var h = this, gx = h.graphics,
+            g = G(arguments), o
+
+
+        if (A(g[0]) && O(g[1])) {
+            _.e(g, function (c) {
+                h.dc(c)
+            });
+            return h
+        }
+
+        if (A(g[0])) {
+            return h.dc.apply(h, g[0])
+        }
+
+        o = O(g[0]) ? g[0] :
+            N(g[2]) ? {x: g[0], y: g[1], r: g[2]} :
+                N(g[0]) ? {r: g[0]} : {}
+
+        o.x = _.tN(o.x)
+        o.y = _.tN(o.y)
+        o.r = _.tN(o.r, 100)
+
+        //h.mt(o.x, o.y).cp()
+
+        gx.dc(o.x, o.y, o.r)
+        h.C()
+        return h
+
+    }
+
+    h.dc = function (x, y, r) {
+        var h = this, gx = h.graphics
+
+
+        if (U(y)) {
+            gx.dc(0, 0, x)
+        }
+        else {
+            gx.dc(x, y, r)
+        }
+        return h
+    }
+    h.de = h.ell = function () {
+        var h = this,
+            gx = h.graphics,
+            g = G(arguments),
+            o = N(g[2]) ? {x: g[0], y: g[1], w: g[2], h: g[3]} :
+                N(g[0]) ? {w: g[0], h: g[1]} :
+                    O(g[0]) ? g[0] : {}
+        o.x = _.tN(o.x)
+        o.y = _.tN(o.y)
+        o.w = _.tN(o.w, 100)
+        o.h = _.tN(o.h, o.w)
+        gx.drawEllipse(o.x, o.y, o.w, o.h)
+        return h
+    }
+    h.de2 = function (x, y, W, H, r) {
+        var h = this
+        h.de(-W / 2 + x, -H / 2 + y, W, H, r)
+        return h
+    }
+    h.rr = function () {
+        var h = this,
+            gx = h.graphics,
+            g = G(arguments),
+
+            o = N(g[3]) ? {x: g[0], y: g[1], w: g[2], h: g[3], r: g[4]} :
+                N(g[1]) ? {w: g[0], r: g[1]} :
+                    N(g[0]) ? {w: g[0], h: g[1], r: g[2]} :
+                        O(g[0]) ? g[0] : {}
+
+
+        o.x = _.tN(o.x)
+        o.y = _.tN(o.y)
+        o.w = _.tN(o.w, 100)
+        o.h = _.tN(o.h, o.w)
+
+        gx.drawRoundRect(o.x, o.y, o.w, o.h, o.r)
+        return h
+    }
+    h.rr2 = function (x, y, W, H, r) {
+        var h = this
+        h.rr(-W / 2 + x, -H / 2 + y, W, H, r)
+        return h
+    }
+    h.bez = h.bt = function (x, y, r, startA, endA, aCW) {
+        var h = this, gx = h.graphics
+        h.bezierCurveTo(x, y, r, startA, endA, aCW)
+        return h
+    }
+    h.quad = h.qt = function (x, y, r, startA, endA, aCW) {
+        var h = this, gx = h.graphics
+        h.quadraticCurveTo(x, y, r, startA, endA, aCW)
+        return h
+    }
+    h.arc = function (x, y, r, startA, endA, aCW) {
+        var h = this, gx = h.graphics
+        /*
+         Draws an arc defined by the radius, startAngle and endAngle arguments, centered at the position (x, y).
+         For example, to draw a full circle with a radius of 20 centered at (100, 100):
+         arc(100, 100, 20, 0, Math.PI*2)
+         */
+
+        h.arc(x, y, r, startA, endA, aCW)
+
+        return h
+    }
+    h.arc2 = function (x, y, X, Y, r) {
+        var h = this, gx = h.graphics
+//Draws an arc with the specified control points and radius.
+        gx.arcTo(x, y, X, Y, r)
+        return h
+    }
+    h.qt = function (a, b, c, d, e, f) {
+        var h = this, gx = h.graphics
+
+        if (O(a)) {
+            a = V(a)
+            b = V(b)
+
+            gx.qt(a.x, a.y, b.x, b.y)
+        }
+
+
+        else {
+            gx.qt(a, b, c, d, e, f)
+        }
+        return h
+    }
+    h.cur = function (a, b, c, d, e, f, g, h) {
+
+        if (O(a)) {
+            return this.cur(a.x, a.y, b.x, b.y, c.x, c.y)
+        }
+        return this.mt(a, b).qt(c, d, e, f, g, h)
+    }
+
+}
+function rec() {
+
+    h.dr = function () {
+        var h = this,
+            gx = h.graphics,
+            g = G(arguments),
+            o = N(g[2]) ? {x: g[0], y: g[1], w: g[2], h: g[3]} :
+                N(g[0]) ? {w: g[0], h: g[1]} :
+                    O(g[0]) ? g[0] : {}
+
+
+        o.x = _.tN(o.x)
+        o.y = _.tN(o.y)
+        o.w = _.tN(o.w, 100)
+        o.h = _.tN(o.h, o.w)
+
+        gx.dr(o.x, o.y, o.w, o.h)
+        return h
+
+    }
+    h.dr2 = function (x, y, W, H) {
+        var h = this, g = G(arguments), o
+
+        if (O(g[0]) && O(g[1])) {
+            _.e(g, function (r) {
+                h.dr2(r)
+            })
+            return h
+        }
+
+        o = O(g[0]) ? g[0] :
+            U(g[2]) ? {w: g[0], h: g[1]} :
+            {x: g[0], y: g[1], w: g[2], h: g[3]}
+        o.x = _.tN(o.x)
+        o.y = _.tN(o.y)
+        o.w = _.tN(o.w, 50)
+        o.h = _.tN(o.h, o.w)
+        h.dr(-o.w / 2 + o.x, -o.h / 2 + o.y, o.w, o.h)
+        return h
+    }
+    h.rec = h.rect = function (c, C, x, y, w, H, l) {
+        var h = this, g = G(arguments)//h.rexx=
+        o = O(c) ? c :
+            S(C) ? {c: c, C: C, x: x, y: y, w: w, h: H, l: l} :
+                S(c) ? {c: c, x: C, y: x, w: y, h: w, l: H} :
+                {x: c, y: C, w: x, h: y, c: w, C: H}
+        h.c(o)
+        if (o.i) {
+            h.bmF(o.i, fun);
+            return
+        }
+        if (o.lf) {
+            h.lf({
+                c: o.c || 'z', C: o.C || 'w', s: 0, S: 1,
+                x: o.x - o.w / 2,
+                y: o.y - o.h / 2,
+                X: o.x - o.w / 2,
+                Y: o.y + o.h / 2
+            })
+        }
+        h.dr2(o)
+        return h
+        function fun() {
+            h.dr2(o)
+
+            //   h.mt(  [o.x-o.w/2, o.y+o.h/2],   [o.x-o.w/2, o.y-o.h/2],    [o.x+o.w/2, o.y-o.h/2],  [o.x+o.w/2, o.y+o.h/2])
+        }
+    }
+}
+function pol(){
+    gx.poly = function (verts, f, s, width) {
+        var that = this
+        //  _.each(arguments,function(vert){that.lt(vert[0],vert[1])});this.cp()
+        if (N(verts[0])) {
+
+            _.each(arguments, function (vert) {
+                that.lt(vert[0], vert[1])
+            });
+            this.cp()
+        }
+        else {
+            this.fs(f, s, width)
+            _.each(verts, function (vert) {
+                that.lt(vert[0], vert[1])
+            });
+            this.cp()
+        }
+        return this
+    }
+
+    h.poly = function (V, c, C, l) {
+
+//*** this is s.poly.. not h.poly !
+        var h = this, g = G(arguments),
+            o = A(g[0]) ? {v: g[0], c: g[1], C: g[2], l: g[3]}//array must come first b/c its an obj
+                : O(g[0]) ? g[0] : {}
+        //?
+        oDef(o);
+        h.ef().es() // ???
+        //?
+        h.c(o)
+        if (o.bf) {
+            h.bf('me', function () {
+                h.lt(o.v).cp()
+            })
+        }
+        else {
+            h.lt(o.v).cp()
+        }
+        return h
+    }
+
+    h.pStr = h.dp = h.polyStar = function (x, y, r, sides, ptSiz, ang) {
+        var h = this, gx = h.graphics,
+
+            g = G(arguments), o //,  x=g[0],  y=g[1], r=g[2],  sides=g[3], ptSiz=g[4], ang=g[5]
+
+        o = N(g[3]) ? {
+            x: g[0], y: g[1], r: g[2], s: g[3], p: g[4], a: g[5]
+        } :
+
+            N(g[0]) ? {r: g[0], s: g[1], p: g[2], a: g[3]} :
+
+                O(g[0]) ? g[0] : {}
+
+        o.a = _.tN(o.a)
+        o.x = _.tN(o.x)
+        o.y = _.tN(o.y)
+        o.p = cjs.cap(o.p, 0, .99)
+
+        gx.drawPolyStar(o.x, o.y, o.r, o.s, o.p, o.a)
+        return h
+    }
+    h.drawPolygons = function (paths, C, c) {
+        var h = this
+        h.C(C)
+        if (c) {
+            h.c(c)
+        }
+        _.each(paths, function (p) {
+            h.drawPolygon(p)
+        })
+        return h
+    }
+}
