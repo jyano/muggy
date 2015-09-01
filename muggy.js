@@ -1,53 +1,3 @@
-
-////////////////////////
-////////////////////////
-////////////////////////
-////////////////////////
-////////////////////////
-$(function(){
-
-    $.Gj('loggedIn', function(un){
-        Y._un = Y._userName = _username = $l(un)
-        function isGuest(un){return un == 'guest' || !un}
-        if( isGuest(un) ){ Y('GuestPage') } else { logInUser(un) }
-        function logInUser(un){
-            k.em('id', un);   k.em('jRm',  _username )
-            $.g('myMug', function(mug){
-                Y._userMug = _userMug  = mug
-                $l('going to home page..')
-                Y('HomePage')})}})
-
-})
-////////////////////////
-////////////////////////
-////////////////////////
-////////////////////////
-////////////////////////
-
-
-$.dCt = $.ctD = function () {
-    var g = G(arguments), //makes auto top-spacing (for navbar not to block)
-        d = $.dK('container')
-    if (!g.n) {
-        d.A($.br(4))
-    }
-    _.e(g, function (v) {
-        d.A(v)
-    })
-    return d
-}
-$.fm = $.format = function () {
-    $l('in fm')
-    section1 = s1 = $.sp()
-    section2 = s2 = $.sp()
-//    $.Ct($.row($.xs(3).A(section1),   $.xs(9).A(section2) ))
-
-};
-
-
-
-
-
 $.dragFrame = function (ob) {
     var outerDiv = $.d('r').drag().pad(20).A()
     ob = ob || $.d('y', 50, 50).mar(20)
@@ -66,165 +16,12 @@ $.dragFrame = function (ob) {
      return inD.A(ob)
      }
 
-    */
+     */
 }
-
-
-
 $.dragStage = function (x, y) {c = $.c('g', 400)
     s = $St(c[0])
     $.dragFrame(c).A()
     return s}
-
-$.iD= $.imgDiv=function(st){
-    alert('$.imgDiv')
-    d = $.d('y','+')
-    $.eGj('img',  function(i){d.A($.c(100, 100).fit(i.d)
-        .$(function () {
-            st.bm(i.d, function (bm) {
-                bm.sXY(.4).dg() } )
-        }))})
-}
-$.msg= $.messageDiv = function(t){
-    alert('$.msgDiv')
-    return $.d('p').col('z').K('msg').mar(10).pad(10).bor(0)
-        .fS(20).T(t||'msgText')
-
-}
-
-$.pop=function(message, o){
-
-    if( S(o) ){ return $.pop(o, { title: message } )    }
-
-    o = O(o)? o : {}
-    message = message || 'pop pop'
-    mB = $.modalBody().A( $.h2( message ) )
-    m =  $.modalFade().A($.modalDialog().A($.modalContent().A( mB)))
-
-    if(!o.hd){ m.modal() }
-
-    if(o.tt){mB.pp($.h1(o.titC).col(o.titC||'z'),
-        $.hr().C( o.headerC||'z'  ).css('height', 2))}
-
-    if(o.bt ){ mB.A( $.bt( o.bt )  )}
-
-    if(o.dg ){  m.dg() }
-
-    if(o.al ){ m.al( o.al ) }
-
-    //text color of the MESSAGE
-    if(o.col){  m.col( o.col)}
-    //color of background of modal itself
-    if(o.C){
-        //flash like crazy
-        if( o.C == '*' ){_.ev(.1, function(){ mB.C( $r() ) }) }
-        else { mB.C( o.C ) }
-    }
-    //this color takes over the whole screen!
-    //this is the background color of the hiding body
-    if(o.c) {  m.C( o.c)  }
-    return m
-
-}
-$.floatIp=function(t, fn){
-    alert('$.floatIp')
-    var g=G(arguments),f
-    f=$.f().K('text-center').C('o').fS(20).dg().minW(200 )
-        .A(
-        $.sm(t), $.ip())
-
-    if( F(fn) ){ f.sm(fn) }
-    return f
-
-}
-
-$.ipB= $.inputBox=function(ob){
-
-   alert('$.ipB')
-    ob = ob||{}
-
-    var d,ip, fn      = ob.func, url   = ob.url || '/',
-        tt   = ob.boxTitle,
-        inputType  = ob.inputType||'text',
-        defaults   = ob.defaults||{},
-        t = ob.btT || 'submit', taI
-
-    d = $.d().WH('auto').pad(10)
-
-    if(tt){ d.A(   $.h1(tt)   )  }
-
-    if(inputType == 'text'){
-
-        d.A( ip = $.ip().K('form-control')).A(
-            $.bt(t, function(){$.post(url, _.df( dataValue(ip), defaults), fn)
-            })
-        )
-    }
-
-    if(inputType == 'textArea') {d.A(taI= $.ta().K('form-control'),  $.bt(t, function () {$.post(url, _.df(dataValue(theTextAreaInput),defaults), fn)}))}
-    if(inputType == 'textAndTextArea') {
-        d.A(
-            ip=  $.ip().K('form-control'),
-            taI= $.ta().K('form-control'),
-            $.bt(t, function () {$.post(url, _.df(dataValue(ip,taI), defaults), fn)}))}
-    return d} //pass in container(div?).. can empty it
-//pass in each arg as a 'msg', spacing them out with br's
-//could be feed i was looking for, except if it gets
-// an obj it passes in its 'n' pop???
-//fetches JSON, and takes the 'n.pop' from list and passes those
-//in as messages?
-// on dblclick of .msg,// post its text to newMessage and run gMsgs?
-
-cjs.Container.prototype.mug = function(){
-    var ct = this, g = G(arguments), o
-    o = g.N_ ? {sc: g.f, fn: g.s} : {fn: g.f}
-    o.sc = N(o.sc) ? o.sc : 1
-    o.fn = o.fn || function () {
-    }
-    $.g('myMug', function (m) {
-        if (!m) {
-            alert('!mug')
-        }
-        ct.bm(m, o.sc, o.fn, g.p ? '+' : null)
-    })
-    return ct
-}
-$.user=function(u){
-    alert('$.user')
-    $.wStatus  = function(user, fn){
-        $.g('sts1', {u: user},
-            function(sts){ fn(sts.c) }) } //with first status?
-    var userA = $.a('', function () {
-        window.location = '/wap/user/' + u.username
-    }).K('thumbnail')
-    userA.A(
-        $.i(u.mug || defaultMug),
-        $.h4(u.username),
-        $.h5('status: ' + u.status),
-        $.bt('X', function () {}),
-        $.bt('be me', function () {})
-    )
-    return userA
-}
-$.userCard  =function(){alert('$.userCard')
-    z()
-    return $.R(
-        $.Cl(2).K('text-center').A( $.i('me').WH(70,70), $.h5('hi') ),
-        $.Cl(3).A( $.h4('pics'), $.h5('place to upload')) ).A()
-
-}
-
-$.chBt = function (un, ms) {
-    return $.bt('chat',
-        function () {
-            $l('mse: ' + ms.V() + ' toWho: ' + un + ', from: ' + _username)
-            k.em('IM', mo = {message: ms.V(), toWho: un, from: _username})
-        })
-}
-$mug=  function(un, fn){
-    //make default un YOU (_username)
-    $.g('/mugByUsername/'+un,  function(mug){if(mug){fn(mug)}})}
-
 $.wd=  $.w=$.win=function(a, size,  id){
     var g=G(arguments),
         t,  lBt,mBt,xBt, o, wd,w
@@ -261,302 +58,86 @@ $.wd=  $.w=$.win=function(a, size,  id){
     return wd
 
 }
-$.chat = function (n, c, id) {
-    var wd
-    n = n || 'chatbox' //default chatRm
-    if ($CHATS[n]) {
-        $l('already in this room');
-        return
-    } //singleton!
-    k.em('jRm', n) //join the room (sign up to receive messages.. and i guess to also send them)
-    _.ev(.5, function () {
-        k.em('rmUd', n)
-    }) //repeatedly request updates for yourself (so you have a users list)
-    $.chatEl = function (n, id, c) {
-        var wd = $.w('chatroom: ' + n).id(id).css({'min-width': 600, 'min-height': 400}).C(c || $r())
-        wd.messages = $.d().id('cbi').C('u').ov('auto')
-        wd.input = $.ip().K('form-control')
+$.fm = $.format = function () {
+    $l('in fm')
+    section1 = s1 = $.sp()
+    section2 = s2 = $.sp()
+//    $.Ct($.row($.xs(3).A(section1),   $.xs(9).A(section2) ))
 
-        wd.usersDiv = $.d().A($.i('me').A())
-        wd.mainPanel = $.Cl(8, wd.messages, wd.input,
-            $.bt('send', function () {
-                k.em('ChatRmMs', {rm: n, ms: wd.input.V(), un: '_username'})
-            }) ,
-            $.bt('pop', function () {k.emit('p', ip.V(), n)}),
-            $.bt('pic', function () {$.pop('pic select')})
-        )
-        wd.usersPanel = $.Cl(4, $.h3('users:'), wd.usersDiv)
-        wd.A($.R().A(wd.mainPanel, wd.usersPanel))
-        return wd
-    }
-    wd = $.chatEl(n, id || 'cbo', c || 'o')
-    $CHATS[n] = {
-        wd: wd,
-        updateUsersDiv: function (users) {
-            wd.usersDiv.E()
-            _.e(users, function (un) {
-                wd.usersDiv.A($.h5(un).$(function () {
-                    $.popUser(un)
-                }))
-            })
-        },
-        toggle: function () {
-            this.wd.toggle();
-            return wd
-        },
-        write: function (m) {
-            wd.messages.A($.h5(m).col('w'))
-        },
-        writeBlack: function (m) {
-            wd.messages.A($.h5(m).col('x'))
-        }
-    }
-}
-$.ChatBt = function (n) {
-    return $.bt(n, function () {
-        $.chat(n)
-    }).mar(40)
-}
-$.iMsg = function (msgOb) {
-    //this is triggered within a chatroom when someone clicks on a user and 'chats' them up
-//will need to update other parts to also activate this (instant messages from other parts of the site)
-//k.on('say to someone', function(id, msg){k.broadcast.to(id).emit('my message', msg)})
-
-    var ip = $.ip(), iMsg = $.w()(
-        $.h3('instant message from ' + msgOb.from),
-        $.h4('message: ' + msgOb.message), ip,
-        $.bt('reply', function () {
-            k.emit('IM', {
-                message: ip.V(), toWho: msgOb.from, from: _username
-            })
-        }))
-    Y.IMS[msgOb.from] = iMsg
-    return iMsg
-}
-editD()
-function editD(){
-    $.eD= $.editDiv=function(words){//$.dE
-        canMove=true
-        changeLocation=true
-        inputMove=true
-        mouse = 'up'
-
-        ta =  $.ta().mar(4)
-        sp=    $.sp().C('z')
-        fn=    function () { sp.T( ta.v() ) }
-        d=  $.dA('+').C('n', 'y').pad(8)
-        d.zIndex(0)
-
-        xBt=  $.bt('', function(){d.rm()}).WH(4).C('red')
-
-
-        d.md(function(){inputMove = false; mouse='div' })
-        d.mu(function(){mouse='up'})
-        d.md(function(){
-            $.editDiv.TOP++
-            $(this).zIndex( $.editDiv.TOP  )
+};
+k = io.connect(); k.em = k.emit
+function sockAlpha(){
+    k.o = function (ob) {
+        var sock = this
+        _.e(ob, function (v, k) {
+            sock.on(k, v)
         })
-        ta.md(function(e){
-            $.editDiv.TOP++
-            $(this).parent().zIndex(  $.editDiv.TOP  )
-            location={top: d.Y(), left: d.X()}
-            inputMove = true
-            mouse='input'
-            e.stopPropagation()})
-
-        ta.mm(function(e){if(inputMove){e.stopPropagation(); d.XY(location.left, location.top)}})
-
-        if(U(words)) {return d.A( xBt, $.br(), sp.hd(), ta,
-
-            $.d('y',16, 12).tA('c').mar('0 auto').$(function(){
-                $(this).pa().free()
-            })
-
-        ).$$(function(e){e.stopPropagation()
-                sp.T(ip.v())
-                xBt.gg();ip.gg(); sp.gg()
-            })
+    }
+    k.test = 1
+    K.l = function (t) {
+        this.em('l', t)
+    }
+    k.on('res', function (d) {
+        _r = res = d
+    })
+    k.on('alert', alert)
+    k.on('l', $l);
+    k.on('log', $l)
+    k.on('dir', function (d) {
+        $l('SERVER: %j', d)
+    })
+    k.on('pop', $.pop)
+    k.on('a', function (a) {
+        alert(a)
+    })
+    k.on('d', function (d) {
+        $l('SERVER: %j', d)
+    })
+    k.on('dpop', function (d, n) {
+        dud(d, n)
+    })
+    k.on('dudPop', function (d, n) {
+        dud(d, n)
+    })
+    k.on('notice', function (d) {
+        $l('SERVER NOTICE: %s', d);
+    })
+    k.on('p', function (e) {
+        $.pop(e)
+    })
+    k.on('IM', function (msgOb) {
+        var iMsg = Y.IMS[msgOb.from]
+        if (iMsg) {
+            iMsg.A($.h4(msgOb.message))
         }
-
         else {
-            ip.v(words)
-            sp.T( ta.v() )
-
-
-            return d.$$(function(e){e.stopPropagation()
-                sp.T( ta.v() )
-                xBt.gg();
-                ip.gg(); sp.gg()
-            }).A( xBt, $.br(), sp, ip.hd() )
-
+            $.iMsg(msgOb)
         }
-    }; $.editDiv.TOP=0
-
-    TXEDITDIV=function(){z()
-        $.dE()
-        $.editDiv()
-        $.editDiv()
-        $.editDiv()
-        //$.editDiv2().A()
+    })
+    k.IM = function (toWho, ms) {
+        $l('toWho: ' + toWho + ', ms: ' + ms)
+        k.em('IM', {m: ms, t: toWho, f: _username})
     }
-    $.dE2=  $.editDiv2=function(a){
-        alert('$.editDiv2')
-        var d= $.editDiv(a), range= $.range()
-        range.md(function(e){e.stopPropagation()})
-
-        range.on('input', function(){
-            d.fi( $('span')).fS( $(this).v()  )
-            d.fi( $('textarea')).fS( $(this).v()  )
-        })
-        d.pp( range  )
-        return d
+    k.on('popbox', function (o) {
+        $.pop(o);
+        $('popbox').m()
+    })
+    k.on('v', function (d) {
+        VAR = d
+    })
+    k.on('newImgAck', function (d) {
+        $.c().fit(d.u)
+    })
+    k.on('im', function (i) {
+        $.c().fit(i)
+    })
+    k.emP = k.sop = function (m, u) {
+        k.em('p', m, u)
     }
+    k.emEm = function (a, b) {
+        k.em('em', a, b)
+    } //connect to the k //..need to change this on the deployment server!!!
 }
-picApps()
-function picApps(){
-    $.fn.dots = function () {
-        var el=this
-
-        el.copy()
-
-        el.DOTS = []
-        el.dats = []
-
-        el.$(function (x, y) {
-            x = parseInt(x)
-            y = parseInt(y)
-            el.cir(x, y)
-            el.DOTS.push([x, y])
-            el.dats.push(x);  el.dats.push(y) //vestige from phaser physics?
-            el.line(el.DOTS)
-        })
-
-        el.$$(function (X, Y) {
-            var du
-            //el.C('X')
-            el.off('click')
-            el.closePath()  //el.paste() // el.copy()  //el.save()
-            el.clear() //du = el.toDataURL()
-            el.clip()
-            el.paste() //el.fit(du)
-        })
-        return el
-    }
-    $.fn.snap = function (fn) {
-        $.po('/img', {
-            d: this.canvas.toDataURL(),
-            dats: this.dats //vestige from phaser physics?
-        }, fn)
-    }
-    $.cut = function(m) {z();  m=m|| 'me'
-        $('body').A(
-            $.bt('save sprite', function () {
-                c.snap(CUTOUTS)//; EDIT()
-            }), $.br(2),
-            $.bt('start cut', function () {c.dots() }), $.br(2),
-            $.bt('restart cut', function () {$.cut(m)}),  $.br(2),
-            c= $.c('r', 500, 500).A().fit(m  ))
-    } // $.bt('file uploads', function () {window.location = '/wap/uploads'}),
-    $.pic = function(pic){
-        return $.i(pic._id + pic.ext).WH(120, 120)
-            .$(function(){
-                $.cut(pic._id + pic.ext) }) }
-    $.picDiv = function (top) {$l('in picDiv')
-        return $.dA('b', '+').WH('auto').XY(200, top).K('pic')
-            .pad(25)}
-}
-
-sock()
-function sock() {
-    k = io.connect()
-    k.em = k.emit
-
-
-    function alpha() {
-        k.o = function (ob) {
-            var sock = this
-            _.e(ob, function (v, k) {
-                sock.on(k, v)
-            })
-        }
-        k.test = 1
-        K.l = function (t) {
-            this.em('l', t)
-        }
-
-//
-
-        k.on('res', function (d) {
-            _r = res = d
-        })
-        k.on('alert', alert)
-        k.on('l', $l);
-        k.on('log', $l)
-        k.on('dir', function (d) {
-            $l('SERVER: %j', d)
-        })
-        k.on('pop', $.pop)
-        k.on('a', function (a) {
-            alert(a)
-        })
-        k.on('d', function (d) {
-            $l('SERVER: %j', d)
-        })
-        k.on('dpop', function (d, n) {
-            dud(d, n)
-        })
-        k.on('dudPop', function (d, n) {
-            dud(d, n)
-        })
-        k.on('notice', function (d) {
-            $l('SERVER NOTICE: %s', d);
-        })
-        k.on('p', function (e) {
-            $.pop(e)
-        })
-        k.on('IM', function (msgOb) {
-            var iMsg = Y.IMS[msgOb.from]
-            if (iMsg) {
-                iMsg.A($.h4(msgOb.message))
-            }
-            else {
-                $.iMsg(msgOb)
-            }
-        })
-        k.IM = function (toWho, ms) {
-            $l('toWho: ' + toWho + ', ms: ' + ms)
-            k.em('IM', {m: ms, t: toWho, f: _username})
-        }
-        k.on('popbox', function (o) {
-            $.pop(o);
-            $('popbox').m()
-        })
-        k.on('v', function (d) {
-            VAR = d
-        })
-        k.on('newImgAck', function (d) {
-            $.c().fit(d.u)
-        })
-        k.on('im', function (i) {
-            $.c().fit(i)
-        })
-    }
-
-
-    function alpha(){
-
-        k.emP = k.sop = function (m, u) {
-            k.em('p', m, u)
-        }
-        k.emEm = function (a, b) {
-            k.em('em', a, b)
-        } //connect to the k //..need to change this on the deployment server!!!
-
-    }
-}
-
-
-//yano
 Y = function self(page){
 
     self.render(page)
@@ -577,9 +158,8 @@ $run=Y.run = function(app){$l('Y.run')
     }
 }
 $to=Y.to=  Y.load =  function(a){
-    $l('y.to y.load')
-    window.location = '/wap/' + a
-}
+    alert('y.to y.load')
+    window.location = '/wap/' + a}
 $GuestPage= Y.GuestPage = function(){
 
     z('r')
@@ -653,7 +233,6 @@ $HomePage = Y.HomePage =  function(){
     $.Gj('loggedIn', function(uN){$('#uname').text( _username  = $l(uN))})
 }
 $logOut= Y.logOut = function(){$.Gj('logOut', function(){ Y('GuestPage') })}
-$clr= Y.clr=  function(){z(); Y.nav()}
 $nav= Y.nav=   function(){
 
 
@@ -686,133 +265,505 @@ $nav= Y.nav=   function(){
     $.Ct().A($.nb().A($.nbH('wappy', '/wap/tween'), navbarCollapse))
 
 }//=Y.n
-$uPop= Y.uPop=function(i,  size){
-    alert('uPop')
-    i= (O(i) && F(i.u)) ? i.u() : i
+$.fn.dots = function () {
+    var el=this
 
-    size=size||300
+    el.copy()
 
-    return $.c().WH(size, size).fit(i)
+    el.DOTS = []
+    el.dats = []
+
+    el.$(function (x, y) {
+        x = parseInt(x)
+        y = parseInt(y)
+        el.cir(x, y)
+        el.DOTS.push([x, y])
+        el.dats.push(x);  el.dats.push(y) //vestige from phaser physics?
+        el.line(el.DOTS)
+    })
+
+    el.$$(function (X, Y) {
+        var du
+        //el.C('X')
+        el.off('click')
+        el.closePath()  //el.paste() // el.copy()  //el.save()
+        el.clear() //du = el.toDataURL()
+        el.clip()
+        el.paste() //el.fit(du)
+    })
+    return el
 }
-$dUD=Y.dUD=function(d,n){
-    alert('Y.dUD')
-    $.P('getImageById', {data: d},  function(u){upop(u,n)})} //sk-send du of your (first) can-el
-$dU=Y.dU=function(){
-    alert('Y.dU')
-    var u
-
-    c =$.c().fit('me')
-
-    u=c.toDataURL()
-
-    k.emit('du',u);
-
-    return u
+$.fn.snap = function (fn) {
+    $.po('/img', {
+        d: this.canvas.toDataURL(),
+        dats: this.dats //vestige from phaser physics?
+    }, fn)
 }
-$IMS=Y.IMS={}
-$chan=Y.chan=  function(chan, fn){
+$.cut = function(m) {z();  m=m|| 'me'
+    $('body').A(
+        $.bt('save sprite', function () {
+            c.snap(CUTOUTS)//; EDIT()
+        }), $.br(2),
+        $.bt('start cut', function () {c.dots() }), $.br(2),
+        $.bt('restart cut', function () {$.cut(m)}),  $.br(2),
+        c= $.c('r', 500, 500).A().fit(m  ))
+} // $.bt('file uploads', function () {window.location = '/wap/uploads'}),
+$.pic = function(pic){
+    return $.i(pic._id + pic.ext).WH(120, 120)
+        .$(function(){
+            $.cut(pic._id + pic.ext) }) }
+$.picDiv = function (top) {$l('in picDiv')
+    return $.dA('b', '+').WH('auto').XY(200, top).K('pic')
+        .pad(25)}
+$mug=  function(un, fn){
+    //make default un YOU (_username)
+    $.g('/mugByUsername/'+un,  function(mug){if(mug){fn(mug)}})}
+cjs.Container.prototype.mug = function(){
+    var ct = this, g = G(arguments), o
+    o = g.N_ ? {sc: g.f, fn: g.s} : {fn: g.f}
+    o.sc = N(o.sc) ? o.sc : 1
+    o.fn = o.fn || function () {
+    }
+    $.g('myMug', function (m) {
+        if (!m) {
+            alert('!mug')
+        }
+        ct.bm(m, o.sc, o.fn, g.p ? '+' : null)
+    })
+    return ct
+}
+$.user=function(u){
 
-    alert('Y.chan')
-    chan= io.connect('http://localhost/'+ chan)
+    $.wStatus  = function(user, fn){
+        $.g('sts1', {u: user},
+            function(sts){ fn(sts.c) }) } //with first status?
+    var userA = $.a('', function () {
+        window.location = '/wap/user/' + u.username
+    }).K('thumbnail')
+    userA.A(
+        $.i(u.mug || defaultMug),
+        $.h4(u.username),
+        $.h5('status: ' + u.status),
+        $.bt('X', function () {}),
+        $.bt('be me', function () {})
+    )
+    return userA
+}
+$.chat = function (n, c, id) {
+    var wd
+    n = n || 'chatbox' //default chatRm
+    if ($CHATS[n]) {
+        $l('already in this room');
+        return
+    } //singleton!
+    k.em('jRm', n) //join the room (sign up to receive messages.. and i guess to also send them)
+    _.ev(.5, function () {
+        k.em('rmUd', n)
+    }) //repeatedly request updates for yourself (so you have a users list)
+    $.chatEl = function (n, id, c) {
+        var wd = $.w('chatroom: ' + n).id(id).css({'min-width': 600, 'min-height': 400}).C(c || $r())
+        wd.messages = $.d().id('cbi').C('u').ov('auto')
+        wd.input = $.ip().K('form-control')
 
-    if(fn){
+        wd.usersDiv = $.d().A($.i('me').A())
+        wd.mainPanel = $.Cl(8, wd.messages, wd.input,
+            $.bt('send', function () {
+                k.em('ChatRmMs', {rm: n, ms: wd.input.V(), un: '_username'})
+            }) ,
+            $.bt('pop', function () {k.emit('p', ip.V(), n)}),
+            $.bt('pic', function () {$.pop('pic select')})
+        )
+        wd.usersPanel = $.Cl(4, $.h3('users:'), wd.usersDiv)
+        wd.A($.R().A(wd.mainPanel, wd.usersPanel))
+        return wd
+    }
+    wd = $.chatEl(n, id || 'cbo', c || 'o')
+    $CHATS[n] = {
+        wd: wd,
+        updateUsersDiv: function (users) {
+            wd.usersDiv.E()
+            _.e(users, function (un) {
+                wd.usersDiv.A($.h5(un).$(function () {
+                    $.popUser(un)
+                }))
+            })
+        },
+        toggle: function () {
+            this.wd.toggle();
+            return wd
+        },
+        write: function (m) {
+            wd.messages.A($.h5(m).col('w'))
+        },
+        writeBlack: function (m) {
+            wd.messages.A($.h5(m).col('x'))
+        }
+    }
+}
+$.ChatBt = function (n) {
+    return $.bt(n, function () {
+        $.chat(n)
+    }).mar(40)
+}
+////////////////////////
+////////////////////////
+////////////////////////
+////////////////////////
+////////////////////////
+$(function(){
 
-        chan.on('connect',fn)
+    $.Gj('loggedIn', function(un){
+        Y._un = Y._userName = _username = $l(un)
+        function isGuest(un){return un == 'guest' || !un}
+        if( isGuest(un) ){ Y('GuestPage') } else { logInUser(un) }
+        function logInUser(un){
+            k.em('id', un);   k.em('jRm',  _username )
+            $.g('myMug', function(mug){
+                Y._userMug = _userMug  = mug
+                $l('going to home page..')
+                Y('HomePage')})}})
+
+})
+////////////////////////
+////////////////////////
+////////////////////////
+////////////////////////
+////////////////////////
+function later() {
+    $clr= Y.clr=  function(){z(); Y.nav()}
+
+    $uPop= Y.uPop=function(i,  size){
+        alert('uPop')
+        i= (O(i) && F(i.u)) ? i.u() : i
+
+        size=size||300
+
+        return $.c().WH(size, size).fit(i)
+    }
+    $dUD=Y.dUD=function(d,n){
+        alert('Y.dUD')
+        $.P('getImageById', {data: d},  function(u){upop(u,n)})} //sk-send du of your (first) can-el
+    $dU=Y.dU=function(){
+        alert('Y.dU')
+        var u
+
+        c =$.c().fit('me')
+
+        u=c.toDataURL()
+
+        k.emit('du',u);
+
+        return u
+    }
+    $IMS=Y.IMS={}
+    $chan=Y.chan=  function(chan, fn){
+
+        alert('Y.chan')
+        chan= io.connect('http://localhost/'+ chan)
+
+        if(fn){
+
+            chan.on('connect',fn)
+        }
+
+        return chan
+    }
+    $popUser=Y.popUser = Y.uPop=function (un) {
+        if(un){
+            $.P('getMugByUsername', {username: un}, function (mug) { //$l('clicked ' + username + ' - ' + mug)
+                $.w($.d().A( $.br(), $.hr(),
+                    $.h3('User: ' + un), $.br(),
+                    $.c(300).fit(mug),
+                    d= $.d(),
+                    msg = $.ta().C('w', 'z'),
+                    $.btMail(msg, un),
+                    $.btCh(un, msg),
+                    $.bt('fullPf', function () {Y.loc( '/wap/profiles/' + un )})))
+                $.sts(un, d)
+                $.pf(un, d)
+            })
+        }
+        else {$('.pop').$(function(){k.em( 'pop', {t: $('.pt').v, b: $('.pb').v})})}
     }
 
-    return chan
-}
-$popUser=Y.popUser = Y.uPop=function (un) {
-    if(un){
-        $.P('getMugByUsername', {username: un}, function (mug) { //$l('clicked ' + username + ' - ' + mug)
-            $.w($.d().A( $.br(), $.hr(),
-                $.h3('User: ' + un), $.br(),
-                $.c(300).fit(mug),
-                d= $.d(),
-                msg = $.ta().C('w', 'z'),
-                $.btMail(msg, un),
-                $.btCh(un, msg),
-                $.bt('fullPf', function () {Y.loc( '/wap/profiles/' + un )})))
-            $.sts(un, d)
-            $.pf(un, d)
+    $.dCt = $.ctD = function () {
+        var g = G(arguments), //makes auto top-spacing (for navbar not to block)
+            d = $.dK('container')
+        if (!g.n) {
+            d.A($.br(4))
+        }
+        _.e(g, function (v) {
+            d.A(v)
+        })
+        return d
+    }
+
+    $.userCard = function () {
+        alert('$.userCard')
+        z()
+        return $.R(
+            $.Cl(2).K('text-center').A($.i('me').WH(70, 70), $.h5('hi')),
+            $.Cl(3).A($.h4('pics'), $.h5('place to upload'))).A()
+
+    }
+    $.iD = $.imgDiv = function (st) {
+        alert('$.imgDiv')
+        d = $.d('y', '+')
+        $.eGj('img', function (i) {
+            d.A($.c(100, 100).fit(i.d)
+                .$(function () {
+                    st.bm(i.d, function (bm) {
+                        bm.sXY(.4).dg()
+                    })
+                }))
         })
     }
-    else {$('.pop').$(function(){k.em( 'pop', {t: $('.pt').v, b: $('.pb').v})})}
-}
+    $.msg = $.messageDiv = function (t) {
+        alert('$.msgDiv')
+        return $.d('p').col('z').K('msg').mar(10).pad(10).bor(0)
+            .fS(20).T(t || 'msgText')
 
-function network(){
-    friends()
-    posts()
-    profile()
-    status()
-    mail()
-    function friends() {
-        $.btBR = $buddyRequestButton = function (user) {
-            return $.bt('buddy-request', function () {
-                $.P('sRq', {to: user.u})
-            })
-        }
     }
-    function posts() {
-        $.btPo = function () {
-            return $.bt('see posts', function () {
-            })
+    $.pop = function (message, o) {
+
+        if (S(o)) {
+            return $.pop(o, {title: message})
         }
+
+        o = O(o) ? o : {}
+        message = message || 'pop pop'
+        mB = $.modalBody().A($.h2(message))
+        m = $.modalFade().A($.modalDialog().A($.modalContent().A(mB)))
+
+        if (!o.hd) {
+            m.modal()
+        }
+
+        if (o.tt) {
+            mB.pp($.h1(o.titC).col(o.titC || 'z'),
+                $.hr().C(o.headerC || 'z').css('height', 2))
+        }
+
+        if (o.bt) {
+            mB.A($.bt(o.bt))
+        }
+
+        if (o.dg) {
+            m.dg()
+        }
+
+        if (o.al) {
+            m.al(o.al)
+        }
+
+        //text color of the MESSAGE
+        if (o.col) {
+            m.col(o.col)
+        }
+        //color of background of modal itself
+        if (o.C) {
+            //flash like crazy
+            if (o.C == '*') {
+                _.ev(.1, function () {
+                    mB.C($r())
+                })
+            }
+            else {
+                mB.C(o.C)
+            }
+        }
+        //this color takes over the whole screen!
+        //this is the background color of the hiding body
+        if (o.c) {
+            m.C(o.c)
+        }
+        return m
+
     }
-    function profile() {
-        $.pf = $.profile = function (username, div) {
+    $.floatIp = function (t, fn) {
+        alert('$.floatIp')
+        var g = G(arguments), f
+        f = $.f().K('text-center').C('o').fS(20).dg().minW(200)
+            .A(
+            $.sm(t), $.ip())
 
-//=makeProfile = prof
+        if (F(fn)) {
+            f.sm(fn)
+        }
+        return f
+
+    }
+    $.ipB = $.inputBox = function (ob) {
+
+        alert('$.ipB')
+        ob = ob || {}
+
+        var d, ip, fn = ob.func, url = ob.url || '/',
+            tt = ob.boxTitle,
+            inputType = ob.inputType || 'text',
+            defaults = ob.defaults || {},
+            t = ob.btT || 'submit', taI
+
+        d = $.d().WH('auto').pad(10)
+
+        if (tt) {
+            d.A($.h1(tt))
+        }
+
+        if (inputType == 'text') {
+
+            d.A(ip = $.ip().K('form-control')).A(
+                $.bt(t, function () {
+                    $.post(url, _.df(dataValue(ip), defaults), fn)
+                })
+            )
+        }
+
+        if (inputType == 'textArea') {
+            d.A(taI = $.ta().K('form-control'), $.bt(t, function () {
+                $.post(url, _.df(dataValue(theTextAreaInput), defaults), fn)
+            }))
+        }
+        if (inputType == 'textAndTextArea') {
+            d.A(
+                ip = $.ip().K('form-control'),
+                taI = $.ta().K('form-control'),
+                $.bt(t, function () {
+                    $.post(url, _.df(dataValue(ip, taI), defaults), fn)
+                }))
+        }
+        return d
+    } //pass in container(div?).. can empty it
+//pass in each arg as a 'msg', spacing them out with br's
+//could be feed i was looking for, except if it gets
+// an obj it passes in its 'n' pop???
+//fetches JSON, and takes the 'n.pop' from list and passes those
+//in as messages?
+// on dblclick of .msg,// post its text to newMessage and run gMsgs?
+
+    $.chBt = function (un, ms) {
+        return $.bt('chat',
+            function () {
+                $l('mse: ' + ms.V() + ' toWho: ' + un + ', from: ' + _username)
+                k.em('IM', mo = {message: ms.V(), toWho: un, from: _username})
+            })
+    }
+    $.iMsg = function (msgOb) {
+        //this is triggered within a chatroom when someone clicks on a user and 'chats' them up
+//will need to update other parts to also activate this (instant messages from other parts of the site)
+//k.on('say to someone', function(id, msg){k.broadcast.to(id).emit('my message', msg)})
+
+        var ip = $.ip(), iMsg = $.w()(
+            $.h3('instant message from ' + msgOb.from),
+            $.h4('message: ' + msgOb.message), ip,
+            $.bt('reply', function () {
+                k.emit('IM', {
+                    message: ip.V(), toWho: msgOb.from, from: _username
+                })
+            }))
+        Y.IMS[msgOb.from] = iMsg
+        return iMsg
+    }
+    editD()
+    function editD() {
+        $.eD = $.editDiv = function (words) {//$.dE
+            canMove = true
+            changeLocation = true
+            inputMove = true
+            mouse = 'up'
+
+            ta = $.ta().mar(4)
+            sp = $.sp().C('z')
+            fn = function () {
+                sp.T(ta.v())
+            }
+            d = $.dA('+').C('n', 'y').pad(8)
+            d.zIndex(0)
+
+            xBt = $.bt('', function () {
+                d.rm()
+            }).WH(4).C('red')
 
 
-            // if(profile.aboutMe){div.A(answer('aboutMe', profile.aboutMe)) } if(profile.iEnjoy){div.A(answer('iEnjoy', profile.iEnjoy)) } if(profile.iSeek){div.A(answer('iSeek', profile.iSeek) )}
+            d.md(function () {
+                inputMove = false;
+                mouse = 'div'
+            })
+            d.mu(function () {
+                mouse = 'up'
+            })
+            d.md(function () {
+                $.editDiv.TOP++
+                $(this).zIndex($.editDiv.TOP)
+            })
+            ta.md(function (e) {
+                $.editDiv.TOP++
+                $(this).parent().zIndex($.editDiv.TOP)
+                location = {top: d.Y(), left: d.X()}
+                inputMove = true
+                mouse = 'input'
+                e.stopPropagation()
+            })
 
-            answer = function (question, answer) {
-                return $.d().A(
-                    $.h3(question),
-                    $.h4(answer)
-                )
+            ta.mm(function (e) {
+                if (inputMove) {
+                    e.stopPropagation();
+                    d.XY(location.left, location.top)
+                }
+            })
+
+            if (U(words)) {
+                return d.A(xBt, $.br(), sp.hd(), ta,
+
+                    $.d('y', 16, 12).tA('c').mar('0 auto').$(function () {
+                        $(this).pa().free()
+                    })
+                ).$$(function (e) {
+                        e.stopPropagation()
+                        sp.T(ip.v())
+                        xBt.gg();
+                        ip.gg();
+                        sp.gg()
+                    })
             }
 
-            username = username || 'a'
-            $.g('profile/' + username, function (d) {
+            else {
+                ip.v(words)
+                sp.T(ta.v())
 
-                data = {
-                    aboutMe: d.aboutMe,
-                    iEnjoy: d.iEnjoy,
-                    iSeek: d.iSeek
-                }
 
-                if (O(d)) {
-                    div = div || $.dA('b', 300, 300).A().dg()
-                    div.A(
-                        $.h4('about me'),
-                        $.h5(d.aboutMe),
-                        $.h4('i enjoy'),
-                        $.h5(d.iEnjoy),
-                        $.h4('i seek'),
-                        $.h5(d.iSeek)
-                    )
-                }
-            })
+                return d.$$(function (e) {
+                    e.stopPropagation()
+                    sp.T(ta.v())
+                    xBt.gg();
+                    ip.gg();
+                    sp.gg()
+                }).A(xBt, $.br(), sp, ip.hd())
+
+            }
+        };
+        $.editDiv.TOP = 0
+        TXEDITDIV = function () {
+            z()
+            $.dE()
+            $.editDiv()
+            $.editDiv()
+            $.editDiv()
+            //$.editDiv2().A()
         }
-    }
-    function status() {
-
-
-        $.sts = $.status = showStatus = stat = function (user, div) {
-            $.wStatus(user, function (sts) {
-                $.d().A($.h3('STATUS: ' + sts))
+        $.dE2 = $.editDiv2 = function (a) {
+            alert('$.editDiv2')
+            var d = $.editDiv(a), range = $.range()
+            range.md(function (e) {
+                e.stopPropagation()
             })
-        }
-    }
-    function mail() {
-        $.btMail = function (ms, user) {
-            return $.bt('mail',
-                function () {
-                    $.P('sMsg',
-                        {m: ms.V(), to: user.u})
-                })
+
+            range.on('input', function () {
+                d.fi($('span')).fS($(this).v())
+                d.fi($('textarea')).fS($(this).v())
+            })
+            d.pp(range)
+            return d
         }
     }
 }
