@@ -1,60 +1,3 @@
-$.fn.dots = function () {
-    var el=this
-
-    el.copy()
-
-    el.DOTS = []
-    el.dats = []
-
-    el.$(function (x, y) {
-        x = parseInt(x)
-        y = parseInt(y)
-        el.cir(x, y)
-        el.DOTS.push([x, y])
-        el.dats.push(x);  el.dats.push(y) //vestige from phaser physics?
-        el.line(el.DOTS)
-    })
-
-    el.$$(function (X, Y) {
-        var du
-        //el.C('X')
-        el.off('click')
-        el.closePath()  //el.paste() // el.copy()  //el.save()
-        el.clear() //du = el.toDataURL()
-        el.clip()
-        el.paste() //el.fit(du)
-    })
-    return el
-}
-$.fn.snap = function (fn) {
-    $.po('/img', {
-        d: this.canvas.toDataURL(),
-        dats: this.dats //vestige from phaser physics?
-    }, fn)
-}
-
-
-$.cut = function(m) {z();  m=m|| 'me'
-    $('body').A(
-        $.bt('save sprite', function () {
-            c.snap(CUTOUTS)//; EDIT()
-        }), $.br(2),
-        $.bt('start cut', function () {c.dots() }), $.br(2),
-        $.bt('restart cut', function () {$.cut(m)}),  $.br(2),
-        c= $.c('r', 500, 500).A().fit(m  ))
-} // $.bt('file uploads', function () {window.location = '/wap/uploads'}),
-
-
-$.picDiv = function (top) {$l('in picDiv')
-    return $.dA('b', '+').WH('auto').XY(200, top).K('pic')
-        .pad(25)}
-
-$.pic = function(pic){
-    return $.i(pic._id + pic.ext).WH(120, 120)
-        .$(function(){
-            $.cut(pic._id + pic.ext) }) }
-
-
 UPLOAD=function(){
     f =  $.f().attr({
         method:'post',
@@ -98,7 +41,6 @@ UPLOADS=function(){
 
      })*/
 }
-
 EDIT = function () {
 
     st = $St('z', 400)
@@ -251,7 +193,6 @@ AVATAR = function () {
     })
     //d2( st )
 }
-
 PAINT = function () {
     _paintColor = 'blue'
     _paintSize = 10
@@ -301,7 +242,6 @@ EDITOR = function () {
     })
     TextAdder2(st)
 }
-
 CUTOUTS=function(){
     $.bX=$.btX=function(){var g=G(arguments), o={url: g.f, data: g.s}
         return $.bt('X', function (){var bt=this
@@ -319,4 +259,454 @@ CUTOUTS=function(){
         $.dA('b',100, 100, '+').left(y).top(200).K('pic').A(i,  $.btX('/img', img) )
         y += 220
     })
+}
+TWEEN=function(a){
+
+
+    st=$St(500,500)
+
+
+
+
+    st.mug(function(bm){
+
+        b = bm
+
+        TR(bm)
+
+
+        $Tw(
+
+            [ bm, 'l' ],
+
+            { x:0, sxy:.7, r:0 },
+
+            [ {x:300,sxy:2.3,r:0}, 1000 ],
+
+            [ {x:0,sxy:.7,r:-30,a:.5}, 3000 ]
+        )
+
+
+    })
+
+
+
+
+    st.mug(function(bm){
+
+        bm.TR()
+        $Tw([bm,'l'],
+            {x:0,sxy:.7,r:-2},
+            [{x:300,sxy:2.3,r:0,a:.2,kx:60},3000],
+            [{x:320,a:1,sxy:2,r:-1},1000],
+            [{rx:100},1000],
+            [{ry:100},1000],
+            [{r:50,x:1400,y:300},3000],
+            [{r:200,x:1000,y:200,sxy:1},3000],
+            [{r:100,x:300, ky:-100},1000],
+            [{rx:30,ry:30, r:150,x:500 },2000],
+            [{rx:20,ry:50,r:100,x:500,kx:300 },2000],
+            [{kxy:0,x:320,y:0,rxy:0,sxy:2,r:-1},3000])
+
+
+
+    })
+
+
+
+
+}
+BOD=function(){z()
+    s = $St(800, 800).A(
+        b1=Bod1(),
+        b2=Bod2().XY(300),
+        cyc=Cycle( 500) ,
+        f = Flame( 200)
+    )
+
+
+    function Cycle(x,y,rt){
+
+
+        ct= $Ct().mug(function(mug){mug.sXY(.4)
+            ct.bm('uni', function(b){
+                b.sX(-.8).XY(-20,200).rXY(240,80)
+                b.n('uni')
+                J.TR(mug, ct)
+                J.RT(b, ct)
+            })})
+
+        if(N(x)){ct.X(x)}
+        if(N(y)){ct.Y(y)}
+        if(N(rt)){ct.rt(rt)}
+        return ct
+    }
+    function Flame(x,y){var c
+        c= $Ct().dg()
+        c.bm('flame', function(b){
+            tweens.shakeY(b)
+            c.mug(function(b){
+                b.rC()
+                tweens.shakeX( tweens.rott(b) )
+                c.bm('flame', tweens.shakeX)
+            })
+
+            c.$$(function(){
+                c.bm('flame', function(b){tweens.prod1(b.sXY(.2))})
+                c.bm('flame', function(b){tweens.prod2(b.sXY(.2))})
+            })
+        })
+        if(N(x)){c.X(x)}
+        if(N(y)){c.Y(y)}
+        return c}
+    function Bod1(){
+
+        var  outerCont = $Ct().dg()
+
+        var  innerCont= $Ct()
+
+
+        outerCont.A( innerCont )
+
+        outerCont.mug(
+
+            function(m){
+                m.sXY(.4)
+
+                cjs.bindSlide(m, outerCont)
+
+
+                outerCont.bm('arm', function(b){
+                    b.name = 'arm'
+                    b.sX(-.8).XY(140,100).rXY(200,80)
+                    cjs.bindRotate(b)
+                    b.$$(function(){  tweens.rpunch(b)  })
+                })
+
+
+                innerCont.XY(40, 120).rXY(40, 100)
+                innerCont.bm('uparm', function(b){
+                    b.sX(.8).XY(80,180).rXY(200, 80)
+                    cjs.bindRotate(b, innerCont)
+                })
+                innerCont.bm('forearm',  function(b){
+                    b.name='lf'
+                    b.XY(-100,140).sX(.8).rXY(20,120)
+                    cjs.bindRotate(b)
+                    innerCont.$$(  function(){tweens.lpunch(b)})
+                })})
+
+        return b=outerCont
+
+
+
+    }
+    function Bod2(x,y){
+
+        var c1=$Ct(), cL=$Ct()
+
+        c1.mug(function(m){   SL(m.sXY(.4), c1) })
+
+        c1.bm('arm',function(b){  b.sX(-.8).X(140).Y(100).rX(200).rY(80)
+            RT(b); b.$$( function(){tweens.rpunch(b)})})
+
+        cL.bm('uparm', function(b){
+            RT(b, cL)
+            b.sX(.8).XY(80,180).rXY(200,80)
+            cL.$$(function(){tweens.lpunch(cL)})
+            cL.XY(140,100).rXY(100, 100)})
+        cL.bm('forearm', function(b){ b.name = ('lf')
+            b.sX(.8).XY(-100, 140).rXY(20,120)
+            RT(b)})
+        return c1.A(cL)
+    }
+
+}
+SUIT=function(st){
+    alert('mugCont')
+    qu= new cjs.LoadQueue().complete(onMug).manifest([{id:"mug", src:"/myMug" }  ])
+    cont= cjs.container()
+    cont.flame=function(){
+        cont.desuit()
+        cont.A(
+
+            cont.suit = cjs.container().bm('flame', function(flame){  })
+        )
+    }
+    cont.uni=function(){
+        cont.desuit()
+        cont.A(
+
+            cont.suit= cjs.container().bm('uni', function(uni){
+                uni.x(200).y(200)
+                cont.mug.sxy(.2).x(300)
+
+            }))}
+    cont.guy=function(){cont.desuit()
+        cont.A(
+
+            cont.suit= cjs.container().bm('guy', function(guy){
+
+                guy.spin()
+                cont.spin()
+
+            })
+        )}
+    cont.desuit=function(){
+
+        cont.mug.sXY(1).XY(200)
+        if(cont.suit){
+            cont.suit.remove()
+            cont.suit=null
+        }
+    }
+    function onMug(){
+        mug = qu.getResult("mug")
+        // cont.bData( mug )//.rgc('+')
+        cont.A( cont.mug = cjs.bm(mug))
+    }
+    return cont
+}
+SPACE = function () {
+    St().bgI('/space.jpg').mug(function (m) {
+        m.sXY(.2).dg().RT().SL()
+    })
+}
+SOLAR = function () {
+    z();
+    st = $St(1000, 500).bgI('/space.jpg')
+
+    st.bm('guy', function (bm) {
+        guy = bm
+        bm.dg()
+        bm.vXY(_.random(10) + 1, _.random(10) + 1).XY(_.random(800), _.random(600))
+        bm.startMoving()
+        bm.warp()
+        st.bm('sun', 0.2, function (bm) {
+            sun = bm
+            bm.dg()
+
+            bm.startMoving(4, 10)
+            bm.warp()
+            _.ev(.1, function () {
+                if (cjs.bulletHit(sun, guy)) {
+                    sun.sXY(sun.scaleX + .1, sun.scaleY + .1)
+                    sun.vx += .2;
+                    sun.vy += .2
+                }
+            })
+        })
+    })
+
+    st.mug(0.4, function (bm) {
+        bm.X(400).dg().bounce(0)
+        bm.startMoving(10, 10)
+    })
+
+
+}
+HIT = function () {
+    St()
+
+    st.mug(function (mug) {
+        mug.dg()
+
+        st.bm('flame', function (flame) {
+            b = flame
+            b.dg()
+
+            b.sXY(.1)
+                .rXY(flame.getBounds().width / 2, 500).XY(400, 400)
+
+            //st.$$(  function(e){flame.x= e.rawX;  flame.y= e.rawY  })
+            st.MD(function (e) {
+                localCoords = mug.globalToLocal(e.rawX, e.rawY)
+                hit = mug.hitTest(localCoords.x, localCoords.y)
+                if ($l(hit)) {
+                    $l('hit');
+                    st.bgC('red')
+                } //;$l( e.X+ ' '+ e.Y )
+                else {
+                    $l('no hit');
+                    st.bgC('yellow')
+                }
+            })
+
+            st.MM(function (e) {
+                localCoords = mug.globalToLocal(b.x, b.y)
+                hit = mug.hitTest(localCoords.x, localCoords.y)
+                if (hit) {  //$l('HIT: '+ e.rawX+ ', '+ e.rawY);
+                    st.bgC('red')
+                }
+                else {
+                    $l('NO HIT');
+                    st.bgC('yellow')
+                }
+            })
+        })
+    })
+}
+UNIVERSE = function () {
+
+    $addGuy = function (un) {
+        $mug(un, function (bm) {
+            bm = new cjs.Bitmap(bm)
+            uni.A(bm);
+            $GUYS.push({
+
+                un: un,
+
+                bm: bm.rC().XY(600).sXY(.4)
+            }) // bitmap.o('$$', function(bm){   bm.XX(); k.emit('X', _username) })
+        })
+    }
+
+
+    $getGuy = function (un) {
+
+        var targetGuy = false //  finds a guy({un, bm}) in $GUYS array from a un ( rets false if he aint there) //alpha: can accept ob received on guyUpdates ({un, x, y})//can pass the string or also an ob with 'un' property
+        if (O(un)) {
+            un = un.un
+        }
+
+        _.e($GUYS, function (guy) {
+            if (un == guy.un) {
+                targetGuy = guy
+            }
+        })
+        return targetGuy
+    }
+
+    $getGuyNotMe = function (un) {
+        var guy = $getGuy(un)
+        if (guy && guy.un != _username) {
+            return guy
+        }
+    }
+
+    $Bub = function (t, x, y) {
+        var g = G(arguments), ct = $Ct()
+        text = g[0] || 'hi!';
+        x = g[1] || yourBm.x;
+        y = g[2] || yourBm.y
+
+        uni.A(ct);
+        ct.cir('w', 120, x - 250, y - 250, 50).cir('b', 30, x - 120, y - 120, 30).cir('g', 20, x - 80, y - 80).text(t, "20px Arial", "blue", x - 300, y - 300)
+        $Tw(ct, [{a: 0, sxy: .1, x: x - 250, y: y - 250}, 20000])
+        _.in(10, function () {
+            ct.rm()
+        })
+        if (g.p) {
+            k.emit('bub', {
+                t: t,
+                x: x,
+                y: y,
+                u: _username
+            })
+        }
+        return ct
+    }
+
+
+    z();
+    n = 0;
+    $GUYS = []
+
+    k.on('bub', function (bub) {
+        var guy;
+        if (guy = $getGuy(bub.u)) {
+            $Bub(bub.t, bub.x, bub.y)
+        }
+    })
+
+    k.on('updateGuy', function (user) {
+        var guy
+        if (user && (guy = $getGuyNotMe(user.un))) {
+            guy.bm.XY(user.x, user.y)
+        }
+    })
+    k.on('inviteAccepted', function (invite) {
+        if (_username == invite.from) {
+            $addGuy(invite.toWho)
+        }
+    })
+
+
+    k.on('newInvite', function (d) {
+        var popD, pop, title, ya, na;
+        if (_username != d.toWho) {
+            return
+        }
+        title = $.h1('chat with ' + d.from + '?')
+        ya = $.bt('ya', function () {
+            pop.modal('hide')
+            $addGuy(d.from)
+            k.emit('acceptInvite', {from: d.from, toWho: _username})
+        })
+        na = $.bt('na', function () {
+            pop.modal('hide')
+        })
+        popD = $.d()
+        pop = $.pop(popD)
+        $mug(d.from, function (mug) {
+            popD.A($.i(mug).WH(200, 200), title, ya, na)
+        })
+    })
+
+
+    uni = $St(1000, 800);
+
+    uni.bgI(
+        R(2) ? '/beach.jpg' :
+            R(4) ? '/space.jpg' :
+                '/chicks.png'
+    )
+
+    uni.mug(function (b) {
+        if (O(b)) {
+            yourBm = b.dg().rC().XY(600).sXY(.4)
+        }
+        $GUYS.push({un: _username, bm: yourBm})
+        b.$$(function () {
+            b.rm();
+            k.emit('X', _username)
+        })
+        page = $.d('b', 1000, 'auto').A($.br(3))
+        page.A(chatMessageInputTextBox = $.ip('...', 'tx').id('textinput'),
+            chatSendButton = $.bt('send', function () {
+                $Bub($('#textinput').V(), '+')
+            }))
+        $.eG('users', function (user) {
+            if (user.mug) {
+                var mugInviteBt = $.i(user.mug).WH(100)
+                mugInviteBt.$(function () {
+                    k.em('sendInvite', {from: _username, toWho: user.un})
+                });
+                page.A(mugInviteBt)
+            }
+        })
+        _.ev(.1, function () {
+            k.em('myUpdate', {un: _username, x: yourBm.x, y: yourBm.y})
+        })
+    })
+}
+CHAT = function () {
+
+    $CHATS = {}
+    k.on('ChatRmMs', function (d) {
+        if ($CHATS[d.rm]) {
+            $CHATS[d.rm].write(d.un + ': ' + d.ms)
+        }
+    })
+    k.on('rmUd', function (d) {
+        if ($CHATS[d.rm]) {
+            $CHATS[d.rm].updateUsersDiv(d.users)
+        }
+    })
+    chatMenu$ = $.d('g', 200, 200, '+').dg().left(400).WH('auto').pad(10)
+    chatMenu$.A($.ChatBt('general'), $.ChatBt('fun'), $.ChatBt('sexy'),
+        inputMs = $.ip().K('form-control'),
+        $.bt('private room', function () {
+            $.chat(inputMs.v())
+        }).mar(40))
 }

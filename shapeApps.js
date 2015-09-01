@@ -133,222 +133,7 @@ GRID = function () {
         return h
     }
 }
-SPACE = function () {
-    St().bgI('/space.jpg').mug(function (m) {
-        m.sXY(.2).dg().RT().SL()
-    })
-}
-BOXES = function () {
-    St()
 
-    $.Ct().A(
-        $.R().A(
-            $.d('y').pad(20).A(
-                $.h1('controls'),
-                $.bt('fall', function () {
-                    ball.fall(box)
-                }),
-                $.bt('fall+', function () {
-                    _.ev(1, newBall)
-                })
-            )))
-
-    $.kD('r', function () {
-        box.X(10, '+')
-    })
-    $.kD('l', function () {
-        box.X(10, '-')
-    })
-
-    st.A(box = Box().XY(300, 450))
-    st.A(ball = Ball(40, 'r', 'o').XY(300, 100))
-    newBall = function () {
-        var ball = Ball(40, 'r', 'o').XY(_r(600), 100)
-        st.A(ball)
-        ball.fall(box)
-    }
-}
-SHIP = function () {
-    St()
-
-    angleInDegrees = function self(y, x) {
-
-        if (O(y)) {
-            return self(y.vy, y.vx)
-        }
-
-        var d = tDeg(M.atan(y / x))
-
-        if (x < 0) {
-            d = M.abs(d) + 90;
-            if (y < 0) {
-                d = M.abs(d) + 90
-            }
-        }
-
-        return d
-    }
-
-
-    ship = function (st) {
-        h = t = $H().XY(100).rY(20).vX(1).vY(1)
-        h.f('o').s('z').mt(0, 0).lt(0, 40).lt(80, 20).lt(0, 0)
-        $.kD('d', function () {
-            t.rt(6, '+')
-        })
-        $.kD('u', function () {
-            t.rt(6, '-')
-        })
-        if (st) {
-            st.A(h)
-            st.MD(function (e) {
-                t.vX((e.rawX - t.x) / 100, '+')
-                t.vY((e.rawY - t.y) / 100, '+')
-                if (t.vx > 10) {
-                    t.vX(10)
-                }
-                if (t.vy > 10) {
-                    t.vY(10)
-                }
-            })
-        }
-        _.ev(.05, function () {
-            h.X(t.vx, '+').Y(h.vy, '+')
-            h.rotation = angleInDegrees(t)
-
-        })
-        return t
-    }
-
-
-    PL = 1;
-    aA = []
-    div = $.d('y').pad(10)
-
-    div.A(
-        $.h1('controls'),
-
-        b1 = $.bt('start', function () {
-            PL = 1;
-            b1.hd();
-            b2.sh()
-        }),
-
-        b2 = $.bt('stop', function () {
-            PL = 0;
-            b2.hd();
-            b1.sh()
-        }).hd(),
-        $.bt('sgun', function () {
-            sgun(guy)
-        }))
-    boot = $.boot()
-    boot.A(div, st.canvas)
-    guy = ship(st)
-    // kD('s',function(){ $l('bang')})
-
-    _.t(100, function () {
-        var a = ast();
-        a.a();
-        a.p()
-    })
-    st.t(function () {
-        if (PL) {
-            _.e(aA, function (a) {
-                a.u()
-            })
-        }
-    })
-
-    sgun(guy)
-}
-SOLAR = function () {
-    z();
-    st = $St(1000, 500).bgI('/space.jpg')
-
-    st.bm('guy', function (bm) {
-        guy = bm
-        bm.dg()
-        bm.vXY(_.random(10) + 1, _.random(10) + 1).XY(_.random(800), _.random(600))
-        bm.startMoving()
-        bm.warp()
-        st.bm('sun', 0.2, function (bm) {
-            sun = bm
-            bm.dg()
-
-            bm.startMoving(4, 10)
-            bm.warp()
-            _.ev(.1, function () {
-                if (cjs.bulletHit(sun, guy)) {
-                    sun.sXY(sun.scaleX + .1, sun.scaleY + .1)
-                    sun.vx += .2;
-                    sun.vy += .2
-                }
-            })
-        })
-    })
-
-    st.mug(0.4, function (bm) {
-        bm.X(400).dg().bounce(0)
-        bm.startMoving(10, 10)
-    })
-
-
-}
-SHOOTY = function () {
-    St()
-    $.ghost = function () {
-        return $.c('X', 500, 500).fit('me').al(.1)
-    } // how cool.. it 'steals' the drag because its on top but looks like its below
-
-    st.mug(function (m) {
-        m.XY(100, 100).WH(150)
-        SL(m)
-        //key(m, '-')// ugun(mug)
-    })
-    c = $.ghost().XY(10, 10).A().dg()
-}
-HIT = function () {
-    St()
-
-    st.mug(function (mug) {
-        mug.dg()
-
-        st.bm('flame', function (flame) {
-            b = flame
-            b.dg()
-
-            b.sXY(.1)
-                .rXY(flame.getBounds().width / 2, 500).XY(400, 400)
-
-            //st.$$(  function(e){flame.x= e.rawX;  flame.y= e.rawY  })
-            st.MD(function (e) {
-                localCoords = mug.globalToLocal(e.rawX, e.rawY)
-                hit = mug.hitTest(localCoords.x, localCoords.y)
-                if ($l(hit)) {
-                    $l('hit');
-                    st.bgC('red')
-                } //;$l( e.X+ ' '+ e.Y )
-                else {
-                    $l('no hit');
-                    st.bgC('yellow')
-                }
-            })
-
-            st.MM(function (e) {
-                localCoords = mug.globalToLocal(b.x, b.y)
-                hit = mug.hitTest(localCoords.x, localCoords.y)
-                if (hit) {  //$l('HIT: '+ e.rawX+ ', '+ e.rawY);
-                    st.bgC('red')
-                }
-                else {
-                    $l('NO HIT');
-                    st.bgC('yellow')
-                }
-            })
-        })
-    })
-}
 TANGLE=function(){z()
 
     a = $.dA('r',50,50).XY(50).A().pad(10)
@@ -1524,7 +1309,19 @@ function toSpaz() {
         //h2 =cjs.shape(500,100).a2(s);h2.graphics.beginRadialGradientFill(["red","yellow"],  [0, 1],100, 100, 0, 100, 100, 50).dc(50,50, 100)
     }
 }
+SHOOTY = function () {
+    St()
+    $.ghost = function () {
+        return $.c('X', 500, 500).fit('me').al(.1)
+    } // how cool.. it 'steals' the drag because its on top but looks like its below
 
+    st.mug(function (m) {
+        m.XY(100, 100).WH(150)
+        SL(m)
+        //key(m, '-')// ugun(mug)
+    })
+    c = $.ghost().XY(10, 10).A().dg()
+}
 CVTX = function () {
     return $.d().A($.c(960, 400).id("testCanvas"))
 }
@@ -1862,4 +1659,129 @@ function matrix(){
 
 
     }
+}
+
+BOXES = function () {
+    St()
+
+    $.Ct().A(
+        $.R().A(
+            $.d('y').pad(20).A(
+                $.h1('controls'),
+                $.bt('fall', function () {
+                    ball.fall(box)
+                }),
+                $.bt('fall+', function () {
+                    _.ev(1, newBall)
+                })
+            )))
+
+    $.kD('r', function () {
+        box.X(10, '+')
+    })
+    $.kD('l', function () {
+        box.X(10, '-')
+    })
+
+    st.A(box = Box().XY(300, 450))
+    st.A(ball = Ball(40, 'r', 'o').XY(300, 100))
+    newBall = function () {
+        var ball = Ball(40, 'r', 'o').XY(_r(600), 100)
+        st.A(ball)
+        ball.fall(box)
+    }
+}
+SHIP = function () {
+    St()
+
+    angleInDegrees = function self(y, x) {
+
+        if (O(y)) {
+            return self(y.vy, y.vx)
+        }
+
+        var d = tDeg(M.atan(y / x))
+
+        if (x < 0) {
+            d = M.abs(d) + 90;
+            if (y < 0) {
+                d = M.abs(d) + 90
+            }
+        }
+
+        return d
+    }
+
+
+    ship = function (st) {
+        h = t = $H().XY(100).rY(20).vX(1).vY(1)
+        h.f('o').s('z').mt(0, 0).lt(0, 40).lt(80, 20).lt(0, 0)
+        $.kD('d', function () {
+            t.rt(6, '+')
+        })
+        $.kD('u', function () {
+            t.rt(6, '-')
+        })
+        if (st) {
+            st.A(h)
+            st.MD(function (e) {
+                t.vX((e.rawX - t.x) / 100, '+')
+                t.vY((e.rawY - t.y) / 100, '+')
+                if (t.vx > 10) {
+                    t.vX(10)
+                }
+                if (t.vy > 10) {
+                    t.vY(10)
+                }
+            })
+        }
+        _.ev(.05, function () {
+            h.X(t.vx, '+').Y(h.vy, '+')
+            h.rotation = angleInDegrees(t)
+
+        })
+        return t
+    }
+
+
+    PL = 1;
+    aA = []
+    div = $.d('y').pad(10)
+
+    div.A(
+        $.h1('controls'),
+
+        b1 = $.bt('start', function () {
+            PL = 1;
+            b1.hd();
+            b2.sh()
+        }),
+
+        b2 = $.bt('stop', function () {
+            PL = 0;
+            b2.hd();
+            b1.sh()
+        }).hd(),
+        $.bt('sgun', function () {
+            sgun(guy)
+        }))
+    boot = $.boot()
+    boot.A(div, st.canvas)
+    guy = ship(st)
+    // kD('s',function(){ $l('bang')})
+
+    _.t(100, function () {
+        var a = ast();
+        a.a();
+        a.p()
+    })
+    st.t(function () {
+        if (PL) {
+            _.e(aA, function (a) {
+                a.u()
+            })
+        }
+    })
+
+    sgun(guy)
 }
