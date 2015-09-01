@@ -1,18 +1,343 @@
 st = cjs.Stage.prototype
 ct = cjs.Container.prototype
+q = cjs.LoadQueue.prototype
+t = cjs.Text.prototype
+st = cjs.Stage.prototype
+h =  cjs.Shape.prototype
+ct = cjs.Container.prototype
+i = cjs.DisplayObject.prototype
+
+
+i.shad = function (color, x, y, blur) {
+    var shadow = cjs.shad(color, x, y, blur)
+    this.shadow = shadow
+    return this
+}
+i.getTransform = function () {
+    alert('i.getTransform')
+    var ob = this
+    return [
+        ob.x, ob.y, ob.scaleX, ob.scaleY,
+        ob.rotation, ob.skewX, ob.skewY,
+        ob.regX, ob.regY
+    ]
+}
+i.cC = i.cc = function () {
+    return this.cacheCanvas
+}
+i.ca = function () {
+    var ob = this,
+        st = ob.St(),
+        g = G(arguments), o, op, i
+
+    if (O(ob.image && !g.n && !g.p)) {
+        ob.cache( $(ob.image)[0] )
+    }
+    if (ob.cacheCanvas && !g.p && (U(g[0]) || S(g[0]) || g.n)) {
+        op = g[0];
+        ob.updateCache(op);
+        return ob
+    }
+    o = O(g[0]) ? {i: g[0], x: g[1], y: [2]} : N(g[2]) ? {x: g[0], y: g[1], w: g[2], h: g[3]} : N(g[1]) ? {
+        w: g[0],
+        h: g[1]
+    } : {}
+    if (O(o.i)) {
+        o.i = o.i.image ? o.i.image : $(o.i)[0];
+        if (!g.n) {
+            if (ob.image) {
+                ob = ob.image
+            }
+            ob = $(ob)[0]
+            ob.cache(0, 0, ob.width, ob.height)
+        }
+    }
+    o.x = N(o.x) ? o.x : 0;
+    o.y = N(o.y) ? o.y : 0
+    o.w = N(o.w) ? o.w : O(o.i) ? o.i.width : N(o.h) ? o.h : st ? st.W() : 0
+    o.h = N(o.h) ? o.h : O(o.i) ? o.i.height : st ? st.H() : 0
+    ob.cache(o.x, o.y, o.w, o.h)
+    return ob
+}
+i.RT = function(){var i=this; RT(i);return i}
+ct.ct = function (x, y) {
+    var ct = this, g = G(arguments), x = g[0], y = g[1]
+    nCt = $Ct().a2(ct)
+    if (N(g[0])) {
+        nCt.XY(g[0], g[1])
+    }
+    if (F(g[0])) {
+        g[0](nCt, ct)
+    }
+    if (g.p) {
+        nCt.SL()
+    }
+    return nCt
+}
+ct.h =   function (x, y, c, C, l, opt) {var ct = this,
+        h = cjs.h(x, y, c, C, l, opt).a2(ct)
+    return h.drag()
+}
+
+
+$St = function (a, b, c, d, e) {
+    var g = G(arguments), st
+    st = A(g[0]) ? new cjs.Stage(g[0][0]) :
+        O(g[0]) ? new cjs.Stage($(g[0])[0]) :
+            new cjs.Stage($.c(g[0], g[1], g[2], g[3], g[4]) [0])
+    st.c = st.can = $(st.canvas)
+    if (g.p) {
+        st.can.dg()
+    }
+    if (!g.n) {
+
+        st.can.A()
+    }
+    return st.t()
+}
+$H = function (a, b, c) {return new cjs.Shape(a, b, c)}
+$h = cjs.h = cjs.shape = cjs.shp = function (x, y, c, C, l) {
+    var g = G(arguments),
+        x = g[0],
+        y = g[1],
+        c = g[2],
+        C = g[3],
+        l = g[4],
+        h
+
+    if (cjs.iH(x)) {
+        return new cjs.Shape(x.graphics)
+    }
+
+    h = new cjs.Shape()
+
+    if (S(x)) {
+        h.c(x, y, c)
+    }
+
+    else {
+
+        if (N(x)) {
+            h.X(x)
+        }
+        if (N(y)) {
+            h.Y(y)
+        }
+
+        if (S(c)) {
+            h.c(c, C, l)
+        }
+
+
+        else if (N(c)) {
+            h.l(c)
+        }
+    }
+    //if(g.N){h.drag()}
+    return h
+}
+h.ss = h.l = function (a) {var h = this, gx = h.graphics, g, o
+    if (S(a)) {
+        this.C(a)
+        return this.ss.apply(this, _.rest(arguments))
+    }
+    g = G(arguments)
+    o = {
+        l: g[0],
+        caps: g[1],
+        jts: g[2],
+        mit: g[3],
+        ignSc: false
+    }
+    o.l = N(o.l) ? o.l : 4
+    if (o.caps == 'r') {
+        o.caps = 'round'
+    }
+    if (o.caps == 's') {
+        o.caps = 'square'
+    }
+    if (o.caps == 'b') {
+        o.caps = 'butt'
+    }
+    if (o.mit == 'r') {
+        o.mit = 'round'
+    }
+    if (o.mit == 'm') {
+        o.mit = 'miter'
+    }
+    if (o.mit == 'b') {
+        o.mit = 'bevel'
+    }
+    o.jts = o.jts || 0
+    if (U(o.mit)) {
+        o.mit = 100
+    }
+    if (g.n) {
+        o.ignSc = true
+    }
+    gx.ss(o.l, o.caps, o.jts, o.mit, o.ignSc)
+    return h
+
+    old=function(){
+        h.l = h.ss = function (l, b, c) {var h = this, gx = h.graphics;
+            gx.ss(l || 1, b, c)
+            return h
+        }
+    }
+}
+h.bf = function (i, fn, c) {
+    var h = this, gx = h.graphics
+
+
+    if (S(i)) {
+
+        $.img(i, function (i) {
+            gx.bf(i[0])
+            if (F(fn)) {
+                fn(i[0])
+            }
+        })
+    }
+
+
+    else {
+
+        if (O(fn)) {
+            gx.bf(i, null, fn)
+        } else {
+            gx.bf(i, fn, c)
+        }
+    }
+
+
+    return h
+}
+h.dl = h.line = function () {
+    var g = G(arguments), o
+    o = N(g[0]) ? {x1: g[0], y1: g[1], x2: g[2], y2: g[3]} :
+    {x1: g[0].x, y1: g[0].y, x2: g[1].x, y2: g[1].y}
+    this.mt(o.x1, o.y1).lt(o.x2, o.y2)
+    return this
+}
+
+
+$df =  {
+    bsDF:  function (o) {
+        o = o || {}
+        o.x = N(o.x, 0);
+        o.y = N(o.y, 0);
+        o.rt = N(o.rt, 0);
+        o.al = N(o.al, 1)
+        return o
+    },
+    xyr:  function (o) {
+        o.x = N(o.x, 0)
+        o.y = N(o.y, 0)
+        o.r = N(o.r, 0)
+        return o
+    },
+    im:  function (o) {o.i = o.i || 'me'; o.al = N(o.al, 1)},
+    sc:  function (o) {
+        o.sc = N(o.sc, ( cjs.iH(o.i) ? 1 : .4 ));
+        if (!A(o.sc)) {
+            o.sc = [o.sc, o.sc]
+        }
+        ;
+        return o
+    },
+    b: function () {
+        var g = G(arguments), o
+        o = g.A ? {hs: g.f} : g.f || {}
+        o.hs = o.hs || []
+        o.i = o.i || 'me'
+        return o
+    },
+    h: function (o) {
+        o = o || {}
+        if (U(o.v)) {
+            o.v = [[-100, 50], [0, -50], [100, 0]]
+        }
+        //o.v= _.m(o.v, function(v){v=V(v);return [v.x,v.y]})
+        o.c = o.c || 'p'
+        o.x = _.tN(o.x)
+        o.y = _.tN(o.y)
+        o.a = _.tN(o.a)
+        o.r = N(o.r, 40)
+        o.w = N(o.w, 50)
+        o.h = N(o.h, o.w || 100)
+        o.d = N(o.d, 0.5)
+        o.b = N(o.b, 0.5)
+        o.f = N(o.f, 0.5)
+        o.s = D(o.s) ? o.s : 0
+        o.o = N(o.o, 1)
+        o.q = D(q) ? o.q : true
+        return o
+    },
+    rec : function (o) {
+        o.al = N(o.al, 1)
+        o.c = o.c || 'z'
+        o.C = o.C || 'w'
+        o.x = N(o.x, 0)
+        o.y = N(o.y, 0)
+        o.a = N(o.a, 0)
+        o.w = N(o.w, 50)
+        o.h = N(o.h, 50)
+        return o
+    },
+    cov : function (x, y, c, C, l, l2) {
+
+        alert('b2d.cov')
+        var g = G(arguments), x = g[0], y = g[1], c = g[2], C = g[3], l = g[4], l2 = g[5],
+
+            o = N(c) ? {x: x, y: y, a: c, c: C, C: l, l: l2}
+                : N(x) ? {x: x, y: y, c: c, C: C, l: l}
+                : x,
+            h = new cjs.Shape()
+
+        df.oDef(o)
+
+        h.XY(o.x, o.y).rot(o.a).c(o.c, o.C, o.l)
+
+        if (o.d) {
+            h.drag()
+        }
+
+        return h
+    },
+    oDef : function (o) {
+        o = o || {}
+        o.x = N(o.x, 0)
+        o.y = N(o.y, 0)
+        o.a = N(o.a, 0)
+        o.w = N(o.w, 50)
+        o.h = N(o.h, 50)
+        o.r = N(o.r, 50)
+        o.c = o.c || 'z'
+        o.C = o.C || 'w'
+        return o
+    },
+    grad : function (o) {
+
+        o = o || {}
+        o.c1 = oO('c', o.c1 || 'z')
+        o.c2 = oO('c', o.c2 || 'w')
+        o.s1 = N(o.s1)
+        o.s2 = N(o.s2, 1)
+        o.x1 = N(o.x1)
+        o.y1 = N(o.y1)
+        return o
+    }
+}
+
+
+
 ct.poly = function () {
     var ct = this // ?
     var h = ct.shape()
     h.poly.apply(h, arguments)
     return h
 }
-ct.bgI = ct.bg = function (i) {
-    var ct = this;
-    ct.bm(i, function (b) {
-        ct.setChildIndex(b, 0)
-    });
-    return ct
-}
+
 ct.C = ct.bgC = function (c) {
     $(this.canvas).C(c);
     return this
@@ -49,6 +374,7 @@ h.bf= function(){var h=this, gx=h.graphics, g=G(arguments), tf
     //h.ef()
     return h
 }
+
 ct.rec = function (c, W, H, x, y, a) {
     var ct = this, ct2, h,
         o = O(c) ? c :
@@ -90,26 +416,8 @@ ct.rec = function (c, W, H, x, y, a) {
     return ct2
 }
 
-ct.T = ct.Tx = ct.text = function (t, f, c, x, y) {
-    var ct = this, o, cX
 
 
-    st = this.getStage()
-    cX = st.cen().x
-
-    o = (N(x) && U(y)) ? {y: x, x: cX} :
-        U(x) ? {x: cX, y: 100} :
-        {t: t, f: f, c: c, x: x, y: y}
-
-    var t = cjs.T(o.t, o.f, o.c, o.x, o.y)
-
-    ct.A(t)
-
-    return t
-}
-ct.cen = function () {
-    return V(this.W() / 2, this.H() / 2)
-}
 ct.bm = function () {
 
     var ct = this, g = G(arguments), o, bmp
@@ -118,7 +426,6 @@ ct.bm = function () {
     {i: g.f, sc: g.s, fn: g.t} :
     {i: g.f, fn: g.s}
     o.sc = N(o.sc) ? o.sc : 1
-
 
     if (_.iDU(o.i)) {
         o.i = $.i(o.i)
@@ -215,15 +522,6 @@ ct.clr = function () {
 }
 
 
-ct.cir = function (x, y, r, c, C, l, opt) {
-   alert('cir')
-    return this.h(x, y, c, C, l, opt).dc(r)
-}
-
-ct.circ = function (c, r, x, y) {
-    var ct = this
-    return cjs.cir(c, r, x, y).a2(ct)
-}
 
 
 st.hW = function () {
@@ -232,10 +530,7 @@ st.hW = function () {
 st.hH = function () {
     return this.H() / 2
 }
-st.ab = st.abs = function (x, y) {
-    this.can.abs(x, y);
-    return this
-}
+
 st.Bm = function (i) {
     return $Bm(i).a2(this)
 }
@@ -249,10 +544,7 @@ st.mO = function () {
     }
     return st
 }
-st.eMO = function (data) {
-    this.enableMouseOver(data);
-    return this
-}
+
 st.m = function (ob) {
     //uses Point
     var st = this
@@ -363,24 +655,18 @@ cjs.shad = function (color, x, y, blur) {
     var shad = new cjs.Shadow(oO('c', color), x, y, blur)
     return shad
 }// = cjs.shadow
-cjs.T = cjs.text = function (text, font, color, x, y) {
-
+cjs.T = cjs.Tx = function (text, font, color, x, y) {
     x = N(x) ? x : 600
     y = N(y) ? y : 100
-
 //var g=G(arguments); if(g.N){text.bl( 'alphabetic' )}   //if(g.p){ TR(text) }
-
     if (N(font)) {
         font = font + 'px Arial'
     }
     font = font || '50px Arial'
     color = color || 'y'
-
     textOb = new createjs.Text(text, font, oO('c', color))
     textOb.regX = textOb.W() / 2
     textOb.XY(x, y)
-
-
     return textOb
 }
 
@@ -401,7 +687,7 @@ cjs.loadQueue = cjs.lq = function (mf, func) {
     }
     return q
 }
-q = cjs.LoadQueue.prototype
+
 
 q.fileload = function (func) {
     this.addEventListener("fileload", func)
@@ -468,28 +754,34 @@ Q = function (imgs, func) {var q = cjs.lq()
 
 }
 
+ct.cir = function (c, r, x, y) {
+    var ct = this
+    return cjs.cir(c, r, x, y)
+        .a2(ct)
+    //ct.cir = function (x, y, r, c, C, l, opt) {return this.h(x, y, c, C, l, opt).dc(r)}
+}
 
-//shape
-cjs.circ = cjs.circle = function (r, c) {
-    if (!N(r)) {
-        c = r;
-        r = 8
+
+
+cjs.cir=  function (c, r, x, y) {
+    if (!S(c)) {y = x;x = r;r = c;c = 'y'}
+    y = N(y,0)
+    x = N(x,0)
+    r =  N(r, 50)
+
+    return $h().c(c).dc(x, y, r)
+
+    old=function(){
+        //shape
+        cjs.cir =  function (r, c) {
+            if (!N(r)) {c = r;r = 8}
+            c = oO('c', c || 'z')
+            return cjs.h().c(c).dc(r)
+        }
     }
-    c = oO('c', c || 'z')
-    return cjs.h().c(c).dc(r)
 }
-cjs.cir = function (c, r, x, y) {
-    if (!S(c)) {
-        y = x;
-        x = r;
-        r = c;
-        c = 'y'
-    }
-    y = _.tN(y)
-    x = _.tN(x)
-    r = _.tN(r, 50)
-    return cjs.h().c(c).dc(x, y, r)
-}
+
+
 cjs.diamond = function self(width, height, fc, sc) {
 
     fc = fc || 'green'
@@ -518,40 +810,17 @@ oDef = function (o) {
     o.h = N(o.h, 50)
     return o
 }
-h.z = h.clr = function () {
-    this.graphics.clear();
-    return this
-}
-gx.fC = gx.fs = function (c, C, l) {
-    var gx = this
-    gx.f(oO('c', c || 'z'))
-    gx.s(oO('c', C || null))
-    gx.ss(N(l) ? l : 2)
-    return gx
-}
+
 h.col = h.fs = function () {
     this.graphics.fs.apply(
         this.graphics, arguments)
     return this
 }
-gx.sC = function (s, w) {
-    var gx = this
 
-    w = N(w) ? w : 2
-
-    s = O(s) ? s : oO('c', s || null)
-
-    gx.s(s)
-
-    gx.ss(w)
-
-    return gx
-}
 h.sC = function () {
     this.graphics.sC.apply(this.graphics, arguments)
     return this
 }
-
 
 h.C = h.s = function (C, l) {
     var h = this, gx = h.graphics
@@ -780,13 +1049,7 @@ h.bmV = function (o) {
 
     return h
 }
-
-h.rc = h.roundRectComplex = function () {
-    var h = this, gx = h.graphics
-    gx.drawRoundRectComplex.apply(gx, arguments)
-    return h
-}
-h.cir = h.circ = function (x, y, r, c, C, l) {//= h.circle
+h.cir =  function (x, y, r, c, C, l) {//= h.circle
     var h = this, gx = h.graphics,
         g = G(arguments), o   //h.ef().es()
 
@@ -824,37 +1087,7 @@ h.cir = h.circ = function (x, y, r, c, C, l) {//= h.circle
     }
     return h
 } //h.circle=function(o){var h=this; h.c(o).dc(o); return h}
-h.dc = function (x, y, r) {
-    var h = this, gx = h.graphics,
-        g = G(arguments), o
 
-
-    if (A(g[0]) && O(g[1])) {
-        _.e(g, function (c) {
-            h.dc(c)
-        });
-        return h
-    }
-
-    if (A(g[0])) {
-        return h.dc.apply(h, g[0])
-    }
-
-    o = O(g[0]) ? g[0] :
-        N(g[2]) ? {x: g[0], y: g[1], r: g[2]} :
-            N(g[0]) ? {r: g[0]} : {}
-
-    o.x = _.tN(o.x)
-    o.y = _.tN(o.y)
-    o.r = _.tN(o.r, 100)
-
-    //h.mt(o.x, o.y).cp()
-
-    gx.dc(o.x, o.y, o.r)
-    h.C()
-    return h
-
-}
 h.dc = function (x, y, r) {
     var h = this, gx = h.graphics
 
@@ -867,84 +1100,37 @@ h.dc = function (x, y, r) {
     }
     return h
 }
-h.de = h.ell = function () {
-    var h = this,
-        gx = h.graphics,
-        g = G(arguments),
-        o = N(g[2]) ? {x: g[0], y: g[1], w: g[2], h: g[3]} :
-            N(g[0]) ? {w: g[0], h: g[1]} :
-                O(g[0]) ? g[0] : {}
+
+h.dc = function (x, y, r) {
+    var h = this, gx = h.graphics,
+        g = G(arguments), o
+    if (A(g[0]) && O(g[1])) {
+        _.e(g, function (c) {
+            h.dc(c)
+        });
+        return h
+    }
+    if (A(g[0])) {
+        return h.dc.apply(h, g[0])
+    }
+    o = O(g[0]) ? g[0] :
+        N(g[2]) ? {x: g[0], y: g[1], r: g[2]} :
+            N(g[0]) ? {r: g[0]} : {}
     o.x = _.tN(o.x)
     o.y = _.tN(o.y)
-    o.w = _.tN(o.w, 100)
-    o.h = _.tN(o.h, o.w)
-    gx.drawEllipse(o.x, o.y, o.w, o.h)
+    o.r = _.tN(o.r, 100)
+    //h.mt(o.x, o.y).cp()
+    gx.dc(o.x, o.y, o.r)
+    h.C()
     return h
-}
-h.de2 = function (x, y, W, H, r) {
-    var h = this
-    h.de(-W / 2 + x, -H / 2 + y, W, H, r)
-    return h
-}
-h.rr = function () {
-    var h = this,
-        gx = h.graphics,
-        g = G(arguments),
 
-        o = N(g[3]) ? {x: g[0], y: g[1], w: g[2], h: g[3], r: g[4]} :
-            N(g[1]) ? {w: g[0], r: g[1]} :
-                N(g[0]) ? {w: g[0], h: g[1], r: g[2]} :
-                    O(g[0]) ? g[0] : {}
+}
 
-
-    o.x = _.tN(o.x)
-    o.y = _.tN(o.y)
-    o.w = _.tN(o.w, 100)
-    o.h = _.tN(o.h, o.w)
-
-    gx.drawRoundRect(o.x, o.y, o.w, o.h, o.r)
-    return h
-}
-h.rr2 = function (x, y, W, H, r) {
-    var h = this
-    h.rr(-W / 2 + x, -H / 2 + y, W, H, r)
-    return h
-}
-h.bez = h.bt = function (x, y, r, startA, endA, aCW) {
-    var h = this, gx = h.graphics
-    h.bezierCurveTo(x, y, r, startA, endA, aCW)
-    return h
-}
-h.quad = h.qt = function (x, y, r, startA, endA, aCW) {
-    var h = this, gx = h.graphics
-    h.quadraticCurveTo(x, y, r, startA, endA, aCW)
-    return h
-}
-h.arc = function (x, y, r, startA, endA, aCW) {
-    var h = this, gx = h.graphics
-    /*
-     Draws an arc defined by the radius, startAngle and endAngle arguments, centered at the position (x, y).
-     For example, to draw a full circle with a radius of 20 centered at (100, 100):
-     arc(100, 100, 20, 0, Math.PI*2)
-     */
-
-    h.arc(x, y, r, startA, endA, aCW)
-
-    return h
-}
-h.arc2 = function (x, y, X, Y, r) {
-    var h = this, gx = h.graphics
-//Draws an arc with the specified control points and radius.
-    gx.arcTo(x, y, X, Y, r)
-    return h
-}
 h.qt = function (a, b, c, d, e, f) {
     var h = this, gx = h.graphics
-
     if (O(a)) {
         a = V(a)
         b = V(b)
-
         gx.qt(a.x, a.y, b.x, b.y)
     }
 
@@ -952,6 +1138,11 @@ h.qt = function (a, b, c, d, e, f) {
     else {
         gx.qt(a, b, c, d, e, f)
     }
+    return h
+}
+h.quad = h.qt = function (x, y, r, startA, endA, aCW) {
+    var h = this, gx = h.graphics
+    h.quadraticCurveTo(x, y, r, startA, endA, aCW)
     return h
 }
 h.cur = function (a, b, c, d, e, f, g, h) {
@@ -1103,7 +1294,7 @@ h.drawPolygons = function (paths, C, c) {
 
 text()
 function text() {
-    t = cjs.Text.prototype
+
     t.lineH = t.lH = function (lH) {
 
 
@@ -1202,16 +1393,9 @@ function text() {
         return this
     }
 }
-st.du = function () {
-    alert('st.du')
-    return this.canvas.toDataURL()
-}
-ct.mc = function () {
-    return cjs.mc.apply(null, arguments)
-        .a2(this)
-}
-st.trDr = function () {
 
+
+st.trDr = function (){
     var st = this
     st._md = 0
     st.MD(function () {
@@ -1222,34 +1406,10 @@ st.trDr = function () {
     })
     return this
 }
-ct.st = function(){
-    alert('ct.st')
-    return this.getStage() }//ct.st = function () {return this.stage}
-
-cjs.niceText=function(text,x,y){
+ cjs.niceText=function(text,x,y){
 
     var t= cjs.text(text, 'yellow', '40px Arial')
 
     if(N(x)){t.XY(x,y)}
     return t.drag()
-}
-
-i.in = i.within = i.inStage = function () {
-    var ob = this,
-        st = ob.st(),
-        g = G(arguments),
-        x = ob.x,
-        y = ob.y,
-        w = st.W() - 100,
-        h = st.H() - 100,
-
-        inn = x > 0 && x < w && y > 0 && y < h
-
-    if (g.n) {
-        if (!inn) {
-            ob.rm()
-        }
-    }
-
-    return inn
 }

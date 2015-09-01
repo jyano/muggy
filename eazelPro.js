@@ -2196,7 +2196,6 @@ cjs.M=function(a){
     return m
 }
 
-cjs.Gx= cjs.gx=   function(a){return new cjs.Graphics(a)}
 
 
 cjs.rulers=function(){
@@ -2204,7 +2203,6 @@ cjs.rulers=function(){
     $.d('r',100,300).al(.3).dg()
 }
 
-cjs.iH=  function(h){ return O(h) && h.graphics }
 
 
 
@@ -4935,31 +4933,6 @@ imgOb=function(){
                 i.toD(num)
             })
         }
-    }
-
-
-    i.warpX = function (lo, hi, cush) {
-        var i = this, wrp = M.wrp(lo, hi, cush)
-        cjs.t(function () {
-            i.x = wrp(i.x)
-        })
-        return i
-    }
-
-    i.warpY = function (lo, hi, cush) {
-        var i = this, wrp = M.wrp(lo, hi, cush)
-        cjs.t(function () {
-            i.y = wrp(i.y)
-        })
-        return i
-    }
-
-
-    i.warp = function (n) {
-        var i = this, s = i.S(), n = n || 0
-        i.warpX(0, s.W(), n)
-        i.warpY(0, s.H(), n)
-        return i
     }
 
 

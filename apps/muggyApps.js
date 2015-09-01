@@ -722,9 +722,26 @@ UNIVERSE = function () {
         text = g[0] || 'hi!';
         x = g[1] || yourBm.x;
         y = g[2] || yourBm.y
-
         uni.A(ct);
-        ct.cir('w', 120, x - 250, y - 250, 50).cir('b', 30, x - 120, y - 120, 30).cir('g', 20, x - 80, y - 80).text(t, "20px Arial", "blue", x - 300, y - 300)
+        ct.cir('w', 120, x - 250, y - 250, 50)
+        ct.cir('b', 30, x - 120, y - 120, 30)
+        ct.cir('g', 20, x - 80, y - 80)
+
+       ct.text = function (t, f, c, x, y) {
+            var ct = this, o, cX, st = this.getStage()
+
+            cX = st.cen().x
+
+            o = (N(x) && U(y)) ? {y: x, x: cX} :
+                U(x) ? {x: cX, y: 100} : {t: t, f: f, c: c, x: x, y: y}
+
+            var t = cjs.T(o.t, o.f, o.c, o.x, o.y)
+            ct.A(t)
+            return t
+        }
+        ct.text(t, "20px Arial", "blue", x - 300, y - 300)
+
+
         $Tw(ct, [{a: 0, sxy: .1, x: x - 250, y: y - 250}, 20000])
         _.in(10, function () {
             ct.rm()
@@ -739,7 +756,6 @@ UNIVERSE = function () {
         }
         return ct
     }
-
 
     z();
     n = 0;
