@@ -48,7 +48,7 @@ mongoStore = new(connectMongo(express))({db:'brain'})
 e = E = $a = express()
 $a.set('port', process.env.PORT||4000)
 $a.set('view engine' ,'jade');
-$a.set( 'views' , __dirname + '/../views/' )  //$l('env: ' + $a.get('env') )//$a.use( express.logger('dev') ) //if(a.get('env')=="development"){a.use(express.errorHandler())}
+$a.set( 'views' , __dirname + '/../' )  //$l('env: ' + $a.get('env') )//$a.use( express.logger('dev') ) //if(a.get('env')=="development"){a.use(express.errorHandler())}
 $a.use(express.bodyParser({
     uploadDir:__dirname+"/public/uploads",
     keepExtensions:true
@@ -58,6 +58,7 @@ $a.use(express.session({
     store: mongoStore,
     secret: 'xyz'
 })); //$a.use( express.favicon() )
+
 
 //middleware
 mw= $w = middleware = require('./middleware');

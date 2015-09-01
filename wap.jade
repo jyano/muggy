@@ -10,19 +10,9 @@ mixin S(scripts)
 mixin j(js)
     script.
         #{js}
-
-
 mixin v(varName, val)
     script.
         #{varName} = "#{val}"
-
-
-
-
-
-
-// separator
-
 mixin bff
     br
     br
@@ -73,9 +63,61 @@ mixin tn(i)
             a.btn.btn-mini(href='/set/#{i}') set
             img(src="/"+i)
             br
-
 mixin tnT(i)
     .col-xs-2
         a.thumbnail(href='/transform/#{i}')
             img(src='/'+i)
         br
+
+!!! 5
+html(lang="en")
+    head
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script.
+          _app = wappyApp = '#{app}'
+          _pam = wappyPam = '#{pam}'
+          console.log('wap.jade')
+        +css('bs')
+
+        +S(["us",'string', 'both','bothUnder','bothMath','bothTime','bothString'])
+
+        +S(['jq','bootstrap' ])
+
+        +S(['objects', 'qq', 'jqfn', 'jqfnMore', 'jqEvent'])
+        +S(['html', 'boot', 'bootTab', 'bootLay'])
+        +S(['css','context','can','jqUIbasics', 'jqAnim','frontExtension'])
+        +S(["socket.io/socket.io", 'socket'])
+
+        +S([ 'cjs', 'spriteSheets', 'defaultMug'])
+        +S([ 'image', 'create',  'easel', 'shape', 'tween', 'anim',  'muggy' ])
+        +S(['muggyApps',  'shapeApps', 'animApps', 'filtApps' ])
+
+    body
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
