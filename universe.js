@@ -20,7 +20,7 @@ $addGuy=function(un){
 
     })
 }
-$getGuyFromMe= $getGuy=function(un){
+ $getGuy=function(un){
 //get a guy from your OWN array ($GUYS)
 
 
@@ -38,36 +38,29 @@ $getGuyFromMe= $getGuy=function(un){
     return targetGuy || false
 }
 
+
+
+
 $sendMyUpdate=  function(){
+
     $myLoc=  function(){
         if( window['yourBm']){if(_test){$l(yourBm.x + ', ' + yourBm.y)}
             return {
-                un: _username, x: yourBm.x, y: yourBm.y }}} //relies on 'you'.. actually just makes a similar object
+                un: _username, x: yourBm.x, y: yourBm.y
+            }}
+    }  
 
     k.em('myUpdate', $myLoc())
 }
 
 
-$updateGuyForMe=  function(userOb){var gut
-
-    if(!userOb){
-        $l('!userOb');
-        return
-    }
-
+$updateGuyForMe=  function(userOb){var guy
+    if(!userOb){return}
     guy = $getGuy(userOb.un)
-
     if(guy){
+        if(guy.un == _username){return}
+        if(guy.bm){ guy.bm.XY( userOb.x, userOb.y )}
 
-        if(guy.un == _username){
-            //$l('guy==_username');
-            return
-        }
-        if(!guy.bm){
-            alert('guy has !bm');return }
-
-
-        guy.bm.XY( userOb.x, userOb.y )
     }
 
 
@@ -90,16 +83,12 @@ $mug=  function(un, fn){
             fn(mug)
         }
     })
-} //= $mugByUn=  Y.mugByUn // withMug ?
-
+}
 
 $GUYS=  []
 $Bub = function (t, x, y) {
-
-    var g = G(arguments), ct = $Ct() //if( !window['uni'] ){alert('the universe is missing!');return}
-
+    var g = G(arguments), ct = $Ct()
     text = g[0] || 'hi!'
-    //so if you don't pass in coords, it relies on 'you'
     x = g[1] || yourBm.x
     y = g[2] || yourBm.y
     uni.A(ct)
@@ -107,36 +96,21 @@ $Bub = function (t, x, y) {
         .cir('b', 30, x - 120, y - 120, 30)
         .cir('g', 20, x - 80, y - 80)
         .text(t, "20px Arial", "blue", x - 300, y - 300)
-
     $Tw(ct, [{a: 0, sxy: .1, x: x - 250, y: y - 250}, 20000])
-    _.in(10, function () {
-        ct.rm()
-    })
-    //broadcast out your speech bubble
-    if (g.p) {
-        $l('emitig.....')
-
-        k.emit('bub', {t: t, x: x, y: y, u: _username})
-    }
-
+    _.in(10, function () {ct.rm()})
+    if (g.p) {k.emit('bub', {t: t, x: x, y: y, u: _username})}
     return ct
 }
 
+// *** fix gx.cir and h.cir !!!! ***
 k.on('bub', function(bub){var guy
-    $('body').C('w')
-
-    $l('buuuuuuuuuuub: ')
-    $d(bub)
 
 
     if( guy = $getGuy(bub.u) ){
 
-        $l('got guy')
-
       $Bub(bub.t, bub.x, bub.y)
     }
 
-    else {$l('not got guy')}
 })
 
 
@@ -149,7 +123,7 @@ k.on('updateGuy', function(guy){
 
 $invite = function (toWho) {
 
-    $l('$invite: ' + toWho)
+
 
     k.em('sendInvite', {
         from: _username,
@@ -160,15 +134,8 @@ $invite = function (toWho) {
 
 k.on('inviteAccepted', function (invite) {
 
-    $l('toWho: '+invite.toWho)
-    $l('un: '+ _username)
-        if (_username == invite.toWho) {
 
-            $('body').C('w')
-            //alert('invite accepted by '+invite.from)
-            $l("invite aaaaaaceeeptedddddd")
-            $d(invite)
-            $addGuy(invite.from)
+        if (_username == invite.toWho) {$addGuy(invite.from)
 
         }
 
@@ -176,14 +143,10 @@ k.on('inviteAccepted', function (invite) {
     })
 
 
-//if it was YOUR invitation that was accepted
-// here u should really just be able to 'addUser'
 k.on('someSentYouAnInvite', function (invite){
     $l('someSentYouAnInvite: ')
     $d(invite)
-    // alert('invite toWho: '+ invite.toWho)
     if (_username == invite.toWho) {
-        // alert('new invitation')
         $mug(invite.from, function (mug) {
             popIv = $.pop($.d().A(
                 $.i(mug).WH(200, 200),
@@ -191,24 +154,7 @@ k.on('someSentYouAnInvite', function (invite){
                 $.bt('ya', function () {
                     popIv.modal('hide')
                     $addGuy(invite.from)
-
-
-
-
-
-                    //so u are just adding them in?
-                    // ah the function also supposedly takes into account the app not even being open
-                    // i could nix that for now
-                    // $l('$accept: ' + toWho)
-                    //  $l(_username + ' accepts from ' + toWho)
-                    k.emit('acceptInvite', {
-                        from: _username,
-                        toWho: invite.from
-
-
-                    })
-                    //this will have the server broadcast.emit 'accept'
-
+                    k.emit('acceptInvite', {from: _username, toWho: invite.from})
                 }),
 
 
@@ -221,7 +167,7 @@ k.on('someSentYouAnInvite', function (invite){
 
 
         })
-    }// else {         alert('nottt match')}
+    }
 
 
 })
@@ -233,11 +179,11 @@ UNIVERSE=function(){z()
 
     uni = $St(1000, 800)
     uni.bgI('/beach.jpg')
-    uni.mug(function(b){if(O(b)){yourBm=    b.dg().rC().XY(600).sXY(.4)}  //add you to the screen
+    uni.mug(function(b){if(O(b)){yourBm=    b.dg().rC().XY(600).sXY(.4)}
 
 
        $GUYS.push({
-            //add you to your own array
+
             un :_username,
             bm : yourBm
         }) //b.$$( function(){ b.rm(); k.emit('X', _username)})
@@ -250,26 +196,15 @@ UNIVERSE=function(){z()
         )
         n=0
 
-
         $.eG('users', function(user){
-            var mug
-            window['u'+String(n++)]=user; $l(user.un)
             if(user.mug ){
-                page.A(mug=  $.i(user.mug).WH(100).$(function(){
-                    $invite( user.un )
-                }))
+                var mugInviteBt=$.i(user.mug).WH(100)
+                mugInviteBt.$(function(){$invite( user.un )})
+                page.A(mugInviteBt)
             }
         })
 
          _.ev(.1, $sendMyUpdate)
-
-        //  userHolder = $.d('z').a2( $.R().A() ); $l('users:')
-        // fetchMugByMugId( user,  function(userMug){
-        // theRow.A( $.thumbnail( $.span(user.u), userMug).WH(200).click(  function(){ inviteToUniverse(user.u)   }) )}) //RECIEVE speech bubble
-
-
-
-
 
     })
 
