@@ -40,6 +40,7 @@ module.exports=function(io, ssK){
     }
 
     KK.on('connection',  function(k){
+
         k.on('id', function(un){
         //k.em('l',  $l(k.id))  //server logs, client logs
 
@@ -50,10 +51,10 @@ module.exports=function(io, ssK){
             //all users should emit this initially
             // to list its username with its id
 
-        }),
+        })
 
 
-            k.on('jRm', function(rm){$l('joining room: ' + rm  )
+        k.on('jRm', function(rm){$l('joining room: ' + rm  )
                 k.join( rm )
 
                 k.emit( 'rmUd',  {rm: rm, US:   _.m(
@@ -62,7 +63,6 @@ module.exports=function(io, ssK){
                         return US[un]})
 
                 })})
-
         k.on('rmUd', function(rm ){
             // $l('on rmUd')
 
@@ -76,7 +76,6 @@ module.exports=function(io, ssK){
 
             )
         })
-
         k.on('ChatRmMs', function (ms){
             $l('chatRmMs: '); console.dir(ms)
             KK.in(ms.rm).emit('ChatRmMs', ms)
@@ -88,7 +87,8 @@ module.exports=function(io, ssK){
         })
 
         k.on('sendInvite', function(invite){
-            k.broadcast.emit('someSentYouAnInvite', invite)
+
+            k.broadcast.emit('newInvite', invite)
         })
 
         k.on('acceptInvite', function(invite){

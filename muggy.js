@@ -45,24 +45,6 @@ $.chBt = function (un, ms) {
             k.em('IM', mo = {message: ms.V(), toWho: un, from: _username})
         })
 }
-$.iMsg = function (msgOb) {
-    //this is triggered within a chatroom when someone clicks on a user and 'chats' them up
-//will need to update other parts to also activate this (instant messages from other parts of the site)
-//k.on('say to someone', function(id, msg){k.broadcast.to(id).emit('my message', msg)})
-
-    var ip = $.ip(), iMsg = $.w()(
-        $.h3('instant message from ' + msgOb.from),
-        $.h4('message: ' + msgOb.message), ip,
-        $.bt('reply', function () {
-            k.emit('IM', {
-                message: ip.V(), toWho: msgOb.from, from: _username
-            })
-        }))
-    Y.IMS[msgOb.from] = iMsg
-    return iMsg
-}
-
-
 
 
 function network(){
@@ -142,6 +124,10 @@ function network(){
     }
 }
 
+$mug=  function(un, fn){
+    //make default un YOU (_username)
+    $.g('/mugByUsername/'+un,  function(mug){if(mug){fn(mug)}})}
+
 $.wd=  $.w=$.win=function(a, size,  id){
     var g=G(arguments),
         t,  lBt,mBt,xBt, o, wd,w
@@ -179,6 +165,75 @@ $.wd=  $.w=$.win=function(a, size,  id){
 
 }
 
-$mug=  function(un, fn){
-    //make default un YOU (_username)
-    $.g('/mugByUsername/'+un,  function(mug){if(mug){fn(mug)}})}
+$.chat = function (n, c, id) {
+    var wd
+    n = n || 'chatbox' //default chatRm
+    if ($CHATS[n]) {
+        $l('already in this room');
+        return
+    } //singleton!
+    k.em('jRm', n) //join the room (sign up to receive messages.. and i guess to also send them)
+    _.ev(.5, function () {
+        k.em('rmUd', n)
+    }) //repeatedly request updates for yourself (so you have a users list)
+    $.chatEl = function (n, id, c) {
+        var wd = $.w('chatroom: ' + n).id(id).css({'min-width': 600, 'min-height': 400}).C(c || $r())
+        wd.messages = $.d().id('cbi').C('u').ov('auto')
+        wd.input = $.ip().K('form-control')
+
+        wd.usersDiv = $.d().A($.i('me').A())
+        wd.mainPanel = $.Cl(8, wd.messages, wd.input,
+            $.bt('send', function () {
+                k.em('ChatRmMs', {rm: n, ms: wd.input.V(), un: '_username'})
+            }) ,
+            $.bt('pop', function () {k.emit('p', ip.V(), n)}),
+            $.bt('pic', function () {$.pop('pic select')})
+        )
+        wd.usersPanel = $.Cl(4, $.h3('users:'), wd.usersDiv)
+        wd.A($.R().A(wd.mainPanel, wd.usersPanel))
+        return wd
+    }
+    wd = $.chatEl(n, id || 'cbo', c || 'o')
+    $CHATS[n] = {
+        wd: wd,
+        updateUsersDiv: function (users) {
+            wd.usersDiv.E()
+            _.e(users, function (un) {
+                wd.usersDiv.A($.h5(un).$(function () {
+                    $.popUser(un)
+                }))
+            })
+        },
+        toggle: function () {
+            this.wd.toggle();
+            return wd
+        },
+        write: function (m) {
+            wd.messages.A($.h5(m).col('w'))
+        },
+        writeBlack: function (m) {
+            wd.messages.A($.h5(m).col('x'))
+        }
+    }
+}
+$.ChatBt = function (n) {
+    return $.bt(n, function () {
+        $.chat(n)
+    }).mar(40)
+}
+$.iMsg = function (msgOb) {
+    //this is triggered within a chatroom when someone clicks on a user and 'chats' them up
+//will need to update other parts to also activate this (instant messages from other parts of the site)
+//k.on('say to someone', function(id, msg){k.broadcast.to(id).emit('my message', msg)})
+
+    var ip = $.ip(), iMsg = $.w()(
+        $.h3('instant message from ' + msgOb.from),
+        $.h4('message: ' + msgOb.message), ip,
+        $.bt('reply', function () {
+            k.emit('IM', {
+                message: ip.V(), toWho: msgOb.from, from: _username
+            })
+        }))
+    Y.IMS[msgOb.from] = iMsg
+    return iMsg
+}
