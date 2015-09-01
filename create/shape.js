@@ -1,3 +1,4 @@
+// *** fix gx.cir and h.cir !!!! *** (to match with gen and spaz)
 h.poly = function (V, c, C, l) {
 
 //*** this is s.poly.. not h.poly !
