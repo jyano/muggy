@@ -323,7 +323,7 @@
 
                 $.dd('make',['upload', 'uploads', 'cutouts', 'edit', 'avatar']),
                 $.dd('draw',['paint', 'filters','sprite', 'pack', 'showcase']),
-                $.dd('play',['bod',  'tween', 'space', 'hit','solar']),
+                $.dd('play',['bod',    'tween', 'space', 'hit','solar']),
 
                 $.dd('talk',[  'chat', 'universe', 'post']),
                 $.dd('social',['users', 'profiles', 'posts' ])
