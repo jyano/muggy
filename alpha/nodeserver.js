@@ -7,7 +7,8 @@
      {id:'1',firstName:'afsd','lastName':'afsd',
          email:'asfd',phoneNumber:'322'},
      {id:'2',firstName:'bfsd','lastName':'bfsd',
-         email:'basfd',phoneNumber:'b322'}]
+         email:'basfd',phoneNumber:'b322'}
+ ]
 
  http.createServer(function(req,res){console.log('nodeserver ' + req.method + ' ' + req.url)
      if(req.url==='/' && req.method==='GET'){
