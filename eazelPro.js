@@ -9,7 +9,7 @@ tictactoe=[
 
 sh1=[[10,0],[19,19],[10,9],[9,9],[0,19],[9,0]]
 sh2=[[[10,0],[19,19],[10,9],[9,9],[0,19],[9,0]],[[8,13],[12, 13]],[[9,14],[9,18]],[[10,14],[10,18]]]
-
+cv = el = $.fn
 cv.fitEx=function(){
     this.ln([0,0],
         [this.W(),this.H()],
@@ -56,8 +56,9 @@ FAN=function(){
 
 }
 
-RUB=function(){ z()
-    can = $.c('y', 1000, 800).A()
+RUBB=function(){ z()
+
+ var   can = $.c('y', 1000, 800).A()
     can.$$( function(){ can.fit('me') } )
     can.fit('me')
     guidewires = false
@@ -102,7 +103,7 @@ canEl=function(){
     c.u = function(){return this.toDataURL()}
     c.x = function(){return this.getContext('2d')}
 
-};canEl()
+}
 
 paths=function(){
 
@@ -1121,14 +1122,12 @@ TXC=function(){$.C()
 
 }
 
-shadow=function() {
-
-    cv.shdC = function (c) {
-        if (U(c)) {return this.ctx().shadowColor}
+  cv.shdC = function (c) {
+        if (U(c)) {
+            return this.ctx().shadowColor}
         this.ctx().shadowColor = oO('c', c)
         return this
     }
-
     cv.shdBl =   function (bl) {
         if (U(bl)) {return this.ctx().shadowBlur}
         this.ctx().shadowBlur = bl
@@ -1153,8 +1152,7 @@ shadow=function() {
         cv.shdBl(n)
         return cv
     }
-
-    SHAD = function () {$.C()
+    SHADD = function () {$.C()
         c.dr('me', 100, 100)
         c.shdC('b').shdBl(100).shdX(200).shdY(100)
         c.dr('me', 200, 200)
@@ -1168,7 +1166,6 @@ shadow=function() {
         c.dr('guy', 400, 200)
     }
 
-};shadow()
 
 CAN=function(){
 
@@ -3609,7 +3606,7 @@ filters=function(){
     cjs.blurFilter = function(x,y,c){return new cjs.BlurFilter(x,y,c)}
 //T$ = cjs.Ticker  //dep
     ColorFilter = clF=function(a,b,c,d,e,f,g){return new createjs.ColorFilter(a,b,c,d,e,f,g)}
-    ColorMatrixFilter = clMF=function(m){return new createjs.ColorMatrixFilter(m)}
+    ColorMatrixFilter = clMF= function(m){return new createjs.ColorMatrixFilter(m)}
     ColorMatrix = CM=function(){
         var c=new createjs.ColorMatrix()
         c.b=c.adjustBrightness

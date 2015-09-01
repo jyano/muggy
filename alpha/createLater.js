@@ -336,25 +336,7 @@ function later(){
             })
             return this
         }
-        ob.in = ob.within = ob.inStage = function () {
-            var ob = this,
-                st = ob.st(),
-                g = G(arguments),
-                x = ob.x,
-                y = ob.y,
-                w = st.W() - 100,
-                h = st.H() - 100,
 
-                inn = x > 0 && x < w && y > 0 && y < h
-
-            if (g.n) {
-                if (!inn) {
-                    ob.rm()
-                }
-            }
-
-            return inn
-        }
     }
 
 
@@ -1051,11 +1033,3 @@ h.drawPolygonYesNo = function (V, c, C, l) {
 
     return h
 } // h.cir=  function(r,x,y,c,C){var h = this, gx = h.graphics; return N(x) ?  h.c(c,C).dc(x,y,r) : h.c(x,y).dc(r)  }
-
-cjs.niceText=function(text,x,y){
-
-    var t= cjs.text(text, 'yellow', '40px Arial')
-
-    if(N(x)){t.XY(x,y)}
-    return t.drag()
-}

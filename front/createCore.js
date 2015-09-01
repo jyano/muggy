@@ -821,8 +821,8 @@ function dispOb(){
 
     }
     i.u = function () {this.update();return this}
-    i.n = function (name) {
-        alert('i.n')
+    i.n= function (name) {
+
         if (U(name)) {
             return this.name
         }
@@ -979,4 +979,96 @@ i.rgc=    function(){
     return (g[0]===0)?
         i.rXY(0,0,(g.p?'+': null))
         : i.rXY(x,y,(g.p?'+': null))
+}
+
+cjs.rgb=function(r,g,b,a){
+
+    var str
+    a = N(a)? a: 1
+    str = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')'
+    return str
+}
+i.shad = function (color, x, y, blur) {
+    var shadow = cjs.shad(color, x, y, blur)
+    this.shadow = shadow
+    return this
+}
+i.bd= i.bounds=function(a,b,c,d){var i=this
+    this.nominalBounds = new cjs.Rectangle(a,b,c,d)
+    return this
+}////?????:
+i.toFront = function () {alert('i.toFront')
+    numChildren = this.parent.children.length
+    this.P().setChildIndex(this, numChildren - 1)
+    return this
+}
+i.RT = function(){var i=this; RT(i);return i}
+i.belowStg = function () {alert('i.belowStg')
+    return this.y > this.stg().H()
+} //=ob.blSt
+i.tf = function (pam) {alert('i.tf')
+    if (O(pam) && F(pam.getTransform)) {
+        pam = pam.getTransform()
+    }
+    if (A(pam)) {
+        this.setTransform.apply(this, pam)
+        return this
+    }
+    this.setTransform.apply(this, G(arguments))
+    return this
+}
+i.getTransform = function () {
+    alert('i.getTransform')
+    var ob = this
+    return [
+        ob.x, ob.y, ob.scaleX, ob.scaleY,
+        ob.rotation, ob.skewX, ob.skewY,
+        ob.regX, ob.regY
+    ]
+}
+i.bindBody = function (body) {
+    alert('i.bindBody')
+    var ob = this,
+        b = body
+    cjs.tick(function () {
+        b.XY(ob.X(), ob.Y()).rt(ob.rt())
+    })
+    return ob
+}
+i.cC = i.cc = function () {
+    return this.cacheCanvas
+}
+i.ca = function () {
+    var ob = this,
+        st = ob.St(),
+        g = G(arguments), o, op, i
+
+    if (O(ob.image && !g.n && !g.p)) {
+        ob.cache( $(ob.image)[0] )
+    }
+    if (ob.cacheCanvas && !g.p && (U(g[0]) || S(g[0]) || g.n)) {
+        op = g[0];
+        ob.updateCache(op);
+        return ob
+    }
+    o = O(g[0]) ? {i: g[0], x: g[1], y: [2]} : N(g[2]) ? {x: g[0], y: g[1], w: g[2], h: g[3]} : N(g[1]) ? {
+        w: g[0],
+        h: g[1]
+    } : {}
+    if (O(o.i)) {
+        o.i = o.i.image ? o.i.image : $(o.i)[0];
+        if (!g.n) {
+            if (ob.image) {
+                ob = ob.image
+            }
+            ob = $(ob)[0]
+            ob.cache(0, 0, ob.width, ob.height)
+        }
+    }
+    o.x = N(o.x) ? o.x : 0;
+    o.y = N(o.y) ? o.y : 0
+    o.w = N(o.w) ? o.w : O(o.i) ? o.i.width : N(o.h) ? o.h : st ? st.W() : 0
+    o.h = N(o.h) ? o.h : O(o.i) ? o.i.height : st ? st.H() : 0
+    ob.cache(o.x, o.y, o.w, o.h)
+    return ob
 }

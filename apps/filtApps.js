@@ -1,10 +1,6 @@
-cjs.rgb=function(r,g,b,a){
-    alert('cjs.rgb')
-    var str
-    a = N(a)? a: 1
-    str = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')'
-    return str
-}
+cjs.testCanvas = function () {
+          return $.d().A($.c(960, 400).id("testCanvas"))
+       }
 i=cjs.DisplayObject.prototype
 i.fl = function () {
     var ob = this, g = G(arguments), i
@@ -118,7 +114,6 @@ BLUR =  function(){
         })
     })
 }
-
 
 MASK =  function(){  wMb(function(b){
 
@@ -250,6 +245,7 @@ BLURFILT3=function(){z()
 
         })}
 ALPHAMASKREVEALWORKS=function(){z(); cjs.testCanvas()
+    var isDrawing
     cjs.sharedCode()
     //var stage,isDrawing,drawingCanvas,oldPt,oldMidPt,displayCanvas, image,bitmap, maskFilter, cursor, text,blur
     examples.showDistractor()
@@ -260,7 +256,6 @@ ALPHAMASKREVEALWORKS=function(){z(); cjs.testCanvas()
     t=text = new cjs.Text("Loading...", "20px Arial", "#FFF")
     t.set({x: st.canvas.width / 2, y: st.canvas.height - 40});
     t.textAlign = "center"
-
     function handleComplete() {
         examples.hideDistractor()
         cjs.Touch.enable(stage);
@@ -284,7 +279,6 @@ ALPHAMASKREVEALWORKS=function(){z(); cjs.testCanvas()
 
         stage.addChild(cursor);
     }
-
     function handleMouseDown(event) {
         oldPt = new cjs.Point(stage.mouseX, stage.mouseY);
         oldMidPt = oldPt;
@@ -337,7 +331,12 @@ ALPHAMASKREVEALWORKS=function(){z(); cjs.testCanvas()
         stage.update();
     }
 }
-ALPHAMASKREVEAL1=function(){z(); var isDrawing
+
+
+
+ALPHAMASKREVEAL1=function(){z();
+
+    var isDrawing = false
 
     cjs.testCanvas()
     cjs.sharedCode()
@@ -384,14 +383,13 @@ ALPHAMASKREVEAL1=function(){z(); var isDrawing
         oldMidPt = oldPt;
         isDrawing = true;
     }
+
     function handleMouseMove() { var midPoint
         cu.x = st.mouseX;
         cu.y = st.mouseY;
-        if (!isDrawing) {st.u(); return}
-
+        if (!isDrawing) {
+            st.u(); return}
         midPoint = new cjs.Point(oldPt.x + st.mouseX >> 1, oldPt.y + st.mouseY >> 1);
-
-
         gx= drawingCanvas.graphics
         gx.ss(40, "round", "round")
         gx.s("rgba(0,0,0,0.2)")
@@ -1152,5 +1150,5 @@ function cool(){
         st.MU(function(){pt = 0})
         st.MM(function(){if(pt){h.line(pt, pt=st.m())}})
     }
-
 }
+cool()

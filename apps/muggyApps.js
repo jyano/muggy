@@ -342,8 +342,8 @@ BOD=function(){z()
             ct.bm('uni', function(b){
                 b.sX(-.8).XY(-20,200).rXY(240,80)
                 b.n('uni')
-                J.TR(mug, ct)
-                J.RT(b, ct)
+                cjs.TR(mug, ct)
+                cjs.RT(b, ct)
             })})
 
         if(N(x)){ct.X(x)}
@@ -434,8 +434,10 @@ BOD=function(){z()
 }
 SUIT=function(st){
     alert('mugCont')
-    qu= new cjs.LoadQueue().complete(onMug).manifest([{id:"mug", src:"/myMug" }  ])
-    cont= cjs.container()
+    qu= new cjs.LoadQueue().complete(onMug)
+        .manifest([{id:"mug", src:"/myMug" }  ])
+
+    cont= $Ct()
     cont.flame=function(){
         cont.desuit()
         cont.A(
@@ -463,7 +465,6 @@ SUIT=function(st){
             })
         )}
     cont.desuit=function(){
-
         cont.mug.sXY(1).XY(200)
         if(cont.suit){
             cont.suit.remove()
@@ -473,18 +474,62 @@ SUIT=function(st){
     function onMug(){
         mug = qu.getResult("mug")
         // cont.bData( mug )//.rgc('+')
-        cont.A( cont.mug = cjs.bm(mug))
+        cont.A( cont.mug = $Bm(mug))
     }
     return cont
 }
+
 SPACE = function () {
     St().bgI('/space.jpg').mug(function (m) {
         m.sXY(.2).dg().RT().SL()
     })
 }
 SOLAR = function () {
-    i =  cjs.DisplayObject.prototype
 
+    i =  cjs.DisplayObject.prototype
+    i.warpX = function (low, high, cush) {
+        var ob = this,
+            warp = M.warp(low, high, cush)
+        cjs.tick(function () {
+            ob.x = warp(ob.x)
+        })
+
+        return ob
+    }//wrx
+    i.warpY = function (low, high, cush) {
+        var ob = this,
+            warp = Math.warp(low, high, cush)
+        cjs.tick(function () {
+            ob.y = warp(ob.y)
+        })
+        return this
+    }//wry
+    i.warp = function (n) {
+        n = n || 0
+        var stage = this.getStage()
+        this.warpX(0, stage.W(), n)
+        this.warpY(0, stage.H(), n)
+        return this
+    }//wr
+
+
+    i.go = i.startMoving = function (x, y) {
+
+        if (x) {
+            this.vX(x)
+        }
+        if (y) {
+            this.vY(y)
+        }
+        var ob = this
+        T.on('tick', function () {
+            ob.X(ob.X() + (ob.vx || 0))
+            ob.Y(ob.Y() + (ob.vy || 0))
+        })
+        return this
+
+
+    }
     cjs.bulletHit = function (bu, inWhat) { //used in solar
         var res
 
@@ -499,7 +544,7 @@ SOLAR = function () {
     i.bounce = function (n) {
         n = N(n) ? n : 0
         var ob = this, st = this.st(), h = st.H(), w = st.W()
-        J.tick(
+        cjs.tick(
             function () {
                 var x = ob.x, y = ob.y
                 if (x > w - ob.W() - n || x < (n )) {

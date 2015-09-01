@@ -57,9 +57,9 @@ BOWL = function () {
     nRng = 3// number of rings
 //when set to three, it seems like middle ring is 3 less than outer, and inner ring is 1
 
-    circle = cjs.circle(plX, plY, plR, 'yellow')
+    circ = cjs.circ(plX, plY, plR, 'yellow')
 
-    container.A(circle) // cr = Hx().c(plR,'y').xy(plX,plY)
+    container.A(circ) // cr = Hx().c(plR,'y').xy(plX,plY)
 
 
     rngSp = plr / (nRng - 1)
@@ -97,7 +97,7 @@ BOWL = function () {
                 y = plX + (rngR * M.sin((ang * a) * M.PI / 180)) - 350
             }
             aA.push(ast(x, y, 10, 5, 0.95))
-            ct.A(J.cir(10, 'z').XY(x, y))
+            ct.A(cjs.cir(10, 'z').XY(x, y))
 
 
         })
@@ -256,11 +256,11 @@ ISO=function(levNum){
 
     tileCoin=function(){
 
-        return cjs.circle(15,'yellow', 'black')
+        return cjs.circ(15,'yellow', 'black')
 
     }
 
-    tileBad=function(){ return cjs.circle(15,'green', 'orange')}
+    tileBad=function(){ return cjs.circ(15,'green', 'orange')}
 
     tilePlayer=function(bm){
         player = bm
@@ -442,14 +442,14 @@ ISO=function(levNum){
 CONNECT=function(){  St() //m$$('location=location')
 
     // st= $St('p', 1000)
-    pink = J.circle(300, 'pink', 'purple').XY(520, 500)//.rXY(100)
+    pink = cjs.circ(300, 'pink', 'purple').XY(520, 500)//.rXY(100)
     st.A(pink)
     ct = $Ct()
     st.A(ct)
-    green = cjs.circle( 200,'green','purple').XY(320,300)//.rXY(100)
-    yellow = cjs.circle( 100,'yellow','purple').XY(250)
-    red= cjs.circle( 40,'red','purple').XY(200,100)
-    orange = cjs.circle( 20,'orange','purple').XY(300)
+    green = cjs.circ( 200,'green','purple').XY(320,300)//.rXY(100)
+    yellow = cjs.circ( 100,'yellow','purple').XY(250)
+    red= cjs.circ( 40,'red','purple').XY(200,100)
+    orange = cjs.circ( 20,'orange','purple').XY(300)
     ct.A(green, yellow, red, orange )
     LS(yellow, ct)
     SL(green)
@@ -1267,23 +1267,7 @@ function works() {
         i.move = function () {
             return this.X(this.vx || 0, '+').Y(this.vy || 0, '+')
         }
-        i.p = i.go = i.startMoving = function (x, y) {
 
-            if (x) {
-                this.vX(x)
-            }
-            if (y) {
-                this.vY(y)
-            }
-            var ob = this
-            T.on('tick', function () {
-                ob.X(ob.X() + (ob.vx || 0))
-                ob.Y(ob.Y() + (ob.vy || 0))
-            })
-            return this
-
-
-        }
         $St().bm('me', function (b) {
 
             b.go(10, 10)
@@ -1943,7 +1927,6 @@ GROW = function () {
     })
 
 }
-
 //err
 HPOLY = function () {
     St()

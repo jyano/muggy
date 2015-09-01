@@ -213,19 +213,19 @@ ct.clr = function () {
     });
     return ct
 }
-ct.cir = function (x, y, r, c) {
-    this.A(cjs.cir(x, y, r, c));
-    return this
-}
+
+
 ct.cir = function (x, y, r, c, C, l, opt) {
-    var ct = this
-    return ct.h(x, y, c, C, l, opt).dc(r)
+   alert('cir')
+    return this.h(x, y, c, C, l, opt).dc(r)
 }
+
 ct.circ = function (c, r, x, y) {
     var ct = this
-
     return cjs.cir(c, r, x, y).a2(ct)
 }
+
+
 st.hW = function () {
     return this.W() / 2
 }
@@ -1101,7 +1101,6 @@ h.drawPolygons = function (paths, C, c) {
     return h
 }
 
-
 text()
 function text() {
     t = cjs.Text.prototype
@@ -1203,7 +1202,6 @@ function text() {
         return this
     }
 }
-
 st.du = function () {
     alert('st.du')
     return this.canvas.toDataURL()
@@ -1212,7 +1210,6 @@ ct.mc = function () {
     return cjs.mc.apply(null, arguments)
         .a2(this)
 }
-
 st.trDr = function () {
 
     var st = this
@@ -1225,7 +1222,34 @@ st.trDr = function () {
     })
     return this
 }
-
 ct.st = function(){
     alert('ct.st')
     return this.getStage() }//ct.st = function () {return this.stage}
+
+cjs.niceText=function(text,x,y){
+
+    var t= cjs.text(text, 'yellow', '40px Arial')
+
+    if(N(x)){t.XY(x,y)}
+    return t.drag()
+}
+
+i.in = i.within = i.inStage = function () {
+    var ob = this,
+        st = ob.st(),
+        g = G(arguments),
+        x = ob.x,
+        y = ob.y,
+        w = st.W() - 100,
+        h = st.H() - 100,
+
+        inn = x > 0 && x < w && y > 0 && y < h
+
+    if (g.n) {
+        if (!inn) {
+            ob.rm()
+        }
+    }
+
+    return inn
+}
