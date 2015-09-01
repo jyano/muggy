@@ -1,4 +1,9 @@
 J = cjs
+T = T$ = cjs.Ticker
+cjs.t = cjs.tick = function (fn) {
+    fn();
+    J.Ticker.on('tick', fn)
+}
 cjs.loadQueue = cjs.lq = function (mf, func) {
 
     var q = new cjs.LoadQueue(true)
@@ -96,32 +101,9 @@ Q = function (imgs, func) {
     })
 
 }
-cjs.me = function (fn) { Q(['me'], function (q) {fn(q.getResult('me'))}) }
 
-T = T$ = cjs.Ticker
-cjs.t = cjs.tick = function (fn) {
-    fn();
-    J.Ticker.on('tick', fn)
-}
+
 $Ct=function(){return new cjs.Container()}
-cjs.iDO=  function(ob){ return O(ob)  &&  F(ob.getStage) } //cjs.iDO= function (a) {return O(a) && O(a.parent)}//=iDo
-cjs.mXY = function (o, s) {
-
-    xy(o, s.mx(), s.my())
-
-    return o
-} //mxy
-cjs.shad = function (color, x, y, blur) {
-    if (color == '-') {
-        return new cjs.Shadow(null, 0, 0, 0)
-    }
-    color = S(color) ? color : 'a'
-    blur = N(blur) ? blur : 10
-    x = N(x) ? x : 0
-    y = N(y) ? y : 0
-    var shad = new cjs.Shadow(oO('c', color), x, y, blur)
-    return shad
-}// = cjs.shadow
 $Bm = function (i) {
     if (O(i)) {
 
@@ -153,8 +135,32 @@ $Bm = function (i) {
 
     }
 }
-$Ct = function () {
-    return new J.Container()
+$T=function(a,f,c,x,y){
+    var t
+
+    if(N(f)){
+        f  = String(f) + "px Arial"
+
+
+    }
+    if(S(c)){c=oO('c', c)}
+
+    t= new cjs.Text(a,f,c)
+
+    if(O(x)){
+
+        if(F(x.cen)){
+            x= x.cen()
+        }
+        y= x.y
+        x= x.x
+    }
+
+    if(N(x)){t.X(x)}
+    if(N(y)){t.Y(y)}
+
+
+    return t
 }
 $St = function (a, b, c, d, e) {
     var g = G(arguments), st
@@ -181,6 +187,19 @@ St = function () {
     }
     return s
 }
+
+cjs.iDO=  function(ob){ return O(ob)  &&  F(ob.getStage) } //cjs.iDO= function (a) {return O(a) && O(a.parent)}//=iDo
+cjs.shad = function (color, x, y, blur) {
+    if (color == '-') {
+        return new cjs.Shadow(null, 0, 0, 0)
+    }
+    color = S(color) ? color : 'a'
+    blur = N(blur) ? blur : 10
+    x = N(x) ? x : 0
+    y = N(y) ? y : 0
+    var shad = new cjs.Shadow(oO('c', color), x, y, blur)
+    return shad
+}// = cjs.shadow
 cjs.isText=function(t){
     if(O(t)){
         return (  t.textBaseline   )
@@ -209,33 +228,6 @@ cjs.niceText=function(text,x,y){
 
     if(N(x)){t.XY(x,y)}
     return t.drag()
-}
-$T=function(a,f,c,x,y){
-    var t
-
-    if(N(f)){
-        f  = String(f) + "px Arial"
-
-
-    }
-    if(S(c)){c=oO('c', c)}
-
-    t= new cjs.Text(a,f,c)
-
-    if(O(x)){
-
-        if(F(x.cen)){
-            x= x.cen()
-        }
-        y= x.y
-        x= x.x
-    }
-
-    if(N(x)){t.X(x)}
-    if(N(y)){t.Y(y)}
-
-
-    return t
 }
 
 h =  cjs.Shape.prototype
@@ -654,39 +646,8 @@ ob.wr= ob.warp=function(n){n=n||0
     this.warpY(0, stage.H(), n)
     return this}
 ob.u=function(){this.update();return this}
-ct.st = function(){
-    return this.getStage()
-}
-ct.bData = function (data) {
-    return J.bm($.i().src($.parseJSON(data))).a2(this)
-}
-ct.clr = function () {
-    var ct = this, arr = [];
-    ct.ch(function (ch) {
-        ch.rm()
-    });
-    return ct
-}
-ct.cir = function (x, y, r, c) {
-    this.A(J.cir(x, y, r, c));
-    return this
-}
-ct.clr = function () {
-    var ct = this, arr = [];
-    ct.ch(function (ch) {
-        ch.rm()
-    });
-    return ct
-}
-ct.cir = function (x, y, r, c) {
-    this.A(J.cir(x, y, r, c));
-    return this
-}
-ct.cen = function () {
-    return V(this.W() / 2, this.H() / 2)
-}
-ct.ct = function (x, y) {
-    var ct = this, g = G(arguments), x = g[0], y = g[1]
+
+ct.ct = function (x, y) {var ct = this, g = G(arguments), x = g[0], y = g[1]
     nCt = $Ct().a2(ct)
     if (N(g[0])) {
         nCt.XY(g[0], g[1])
@@ -706,36 +667,11 @@ ct.poly = function () {
     h.poly.apply(h, arguments)
     return h
 }
-ct.art = function (x, y, c, C) {
-    var g = G(arguments), ct = this, h
-    if (U(x)) {
-        alert('must at LEAST define x');
-        return
-    }
-    if (!N(x)) {
-        alert('x not a number! but must be, lah');
-        return
-    }
-
-    y = N(g[1]) ? g[1] : x
-    c = S(g[2]) ? oO('c', g[2]) : null
-    C = S(g[2]) ? oO('c', g[3]) : c
-    h = cjs.h(x, y, c, C).a2(ct)
-    if (g.p) {
-        h.drag()
-    }
-    return h
-}
-ct.mc = function () {
-    return J.mc.apply(null, arguments).a2(this)
-}
 ct.t = ct.tick = function () {
     T.on('tick', this);
     return this
 }
-ct.A = function () {
-    var ct = this, g = G(arguments), $b = $('body')
-
+ct.A = function () {var ct = this, g = G(arguments), $b = $('body')
     if (U(g[0]) && ct.st()) {
         $b.A(
             ct.st().canvas
@@ -774,16 +710,6 @@ ct.ch = ct.e = ct.each = function (func) {
     )
     return this
 }
-ct.xCh = ct.removeAll = function () {
-    this.e(function (ch) {
-        ch.rm()
-    });
-    return this
-}
-ct.auCl = ct.noAutoClear = function () {
-    this.autoClear = false
-    return this
-}
 ct.h = ct.shape = function (x, y, c, C, l, opt) {
     var ct = this,
 
@@ -791,15 +717,6 @@ ct.h = ct.shape = function (x, y, c, C, l, opt) {
         h = cjs.h(x, y, c, C, l, opt).a2(ct)
 
     return h.drag()
-}
-ct.cir = function (x, y, r, c, C, l, opt) {
-    var ct = this
-    return ct.h(x, y, c, C, l, opt).dc(r)
-}
-ct.circ = function (c, r, x, y) {
-    var ct = this
-
-    return cjs.cir(c, r, x, y).a2(ct)
 }
 ct.rec = function (c, W, H, x, y, a) {
     var ct = this, ct2, h,
@@ -841,9 +758,6 @@ ct.rec = function (c, W, H, x, y, a) {
     }
     return ct2
 }
-ct.bData = function (data) {
-    return J.bm($.i().src($.parseJSON(data))).a2(this)
-}
 ct.T= ct.Tx = ct.text = function (t, f, c, x, y) {var ct = this, o, cX
 
 
@@ -862,20 +776,6 @@ ct.T= ct.Tx = ct.text = function (t, f, c, x, y) {var ct = this, o, cX
 }
 ct.cen = function () {
     return V(this.W() / 2, this.H() / 2)
-}
-ct.ct = function (x, y) {
-    var ct = this, g = G(arguments), x = g[0], y = g[1]
-    nCt = $Ct().a2(ct)
-    if (N(g[0])) {
-        nCt.XY(g[0], g[1])
-    }
-    if (F(g[0])) {
-        g[0](nCt, ct)
-    }
-    if (g.p) {
-        nCt.SL()
-    }
-    return nCt
 }
 ct.bm= function () {
 
@@ -955,54 +855,6 @@ ct.bm= function () {
 
     }
 }
-ct.mc = function () {
-    return J.mc.apply(null, arguments).a2(this)
-}
-ct.t = ct.tick = function () {
-    T.on('tick', this);
-    return this
-}
-ct.A = function () {
-    var ct = this, g = G(arguments), $b = $('body')
-
-    if (U(g[0]) && ct.st()) {
-        $b.A(
-            ct.st().canvas
-        )
-    }
-    else if (N(g[0])) {
-        $b.A(ct.st().canvas).abs(g[0], g[1])
-    }
-    else {
-        _.e(g, function (g) {
-            ct.addChild(g)
-        })
-    }
-    return ct
-}
-ct.bgI = ct.bg = function (i) {
-    var ct = this;
-    ct.bm(i, function (b) {
-        ct.setChildIndex(b, 0)
-    });
-    return ct
-}
-ct.C = ct.bgC = function (c) {
-    $(this.canvas).C(c);
-    return this
-}
-ct.ch = ct.e = ct.each = function (func) {
-    var children = []
-    _.e(this.children, function (child) {
-        children.push(child)
-    })
-    _.e(children,
-        function (child) {
-            func(child)
-        }
-    )
-    return this
-}
 ct.xCh = ct.removeAll = function () {
     this.e(function (ch) {
         ch.rm()
@@ -1013,84 +865,29 @@ ct.auCl = ct.noAutoClear = function () {
     this.autoClear = false
     return this
 }
-ct.st = function () {
-    return this.stage
+ ct.clr = function () {
+    var ct = this, arr = [];
+    ct.ch(function (ch) {
+        ch.rm()
+    });
+    return ct
 }
-st.snap = function (f) {
-    var st = this
-    $.P('img', {d: st.toDataURL()})//, dats: o.x.dats
-    $.in(1, f)
-    return st
-}
-st.W = function (a) {
-    if (U(a)) {
-        return this.canvas.width
-    }
-    this.canvas.width = a;
+ct.cir = function (x, y, r, c) {
+    this.A(cjs.cir(x, y, r, c));
     return this
 }
-st.H = function (a) {
-    if (U(a)) {
-        return this.canvas.height
-    }
-    this.canvas.height = a;
-    return this
+ct.cir = function (x, y, r, c, C, l, opt) {
+    var ct = this
+    return ct.h(x, y, c, C, l, opt).dc(r)
 }
-st.WH = function (w, h) {
-    var st = this;
-    if (U(w)) {
-        return V(st.W(), st.H())
-    }
-    if (N(w)) {
-        st.W(w)
-    }
-    if (N(h)) {
-        st.H(h)
-    }
-    ;
-    return st
+ct.circ = function (c, r, x, y) {
+    var ct = this
+
+    return cjs.cir(c, r, x, y).a2(ct)
 }
-st.hW = function () {
-    return this.W() / 2
-}
-st.hH = function () {
-    return this.H() / 2
-}
-st.ab = st.abs = function (x, y) {
-    this.can.abs(x, y);
-    return this
-}
-st.Bm = function (i) {
-    return $Bm(i).a2(this)
-}
-st.N = st.next = function (next) {
-    if (U(next)) {
-        return this.nextStage
-    }
-    ;
-    this.nextStage = next;
-    return this
-}
-st.trDr = function () {
-    var st = this
-    st._md = 0
-    st.MD(function () {
-        st._md = 1
-    })
-    st.MU(function () {
-        st._md = 0
-    })
-    return this
-}
-st.du = function () {
-    return this.canvas.toDataURL()
-}
-st.snap = function (f) {
-    var st = this
-    $.P('img', {d: st.toDataURL()})//, dats: o.x.dats
-    $.in(1, f)
-    return st
-}
+
+
+
 st.W = function (a) {
     if (U(a)) {
         return this.canvas.width
@@ -1141,20 +938,6 @@ st.N = st.next = function (next) {
     ;
     this.nextStage = next;
     return this
-}
-st.trDr = function () {
-    var st = this
-    st._md = 0
-    st.MD(function () {
-        st._md = 1
-    })
-    st.MU(function () {
-        st._md = 0
-    })
-    return this
-}
-st.du = function () {
-    return this.canvas.toDataURL()
 }
 st.MD=function(fn){ return this.on( 'stagemousedown' ,fn)}
 st.MM=function(fn){return this.on( 'stagemousemove' ,fn)}
@@ -1168,8 +951,8 @@ st.m=function(ob){var st=this
     if(U(ob)){return J.Pt(st.mouseX, st.mouseY)}
     if(O(ob)){if(ob.d){st.MD(ob.d)}; if(ob.u){st.MU(ob.u)}; if(ob.m){st.MM(ob.m)}}
     return st}
-st.mx=st.mX=function(){return this.m().x}
-st.my=st.mY=function(){return this.m().y}
+st.mx= st.mX=function(){return this.m().x}
+st.my= st.mY=function(){return this.m().y}
 
 t = cjs.Text.prototype
 t.lineH = t.lH = function (lH) {
@@ -2097,3 +1880,91 @@ $Tc=function(a,f,c,x,y){alert('$Tc')
     t.tA('center')
     return t
 }
+ct.art = function (x, y, c, C) {
+    alert('ct.art')
+    var g = G(arguments), ct = this, h
+    if (U(x)) {
+        alert('must at LEAST define x');
+        return
+    }
+    if (!N(x)) {
+        alert('x not a number! but must be, lah');
+        return
+    }
+
+    y = N(g[1]) ? g[1] : x
+    c = S(g[2]) ? oO('c', g[2]) : null
+    C = S(g[2]) ? oO('c', g[3]) : c
+    h = cjs.h(x, y, c, C).a2(ct)
+    if (g.p) {
+        h.drag()
+    }
+    return h
+}
+st.trDr = function () {alert('st.trDr')
+    var st = this
+    st._md = 0
+    st.MD(function () {
+        st._md = 1
+    })
+    st.MU(function () {
+        st._md = 0
+    })
+    return this
+}
+st.du = function () {
+    alert('st.du')
+    return this.canvas.toDataURL()
+}
+st.snap = function (f) {
+    alert('st.snap')
+    var st = this
+    $.P('img', {d: st.toDataURL()})//, dats: o.x.dats
+    $.in(1, f)
+    return st
+}
+cjs.mXY = function (o, s) {
+    alert('cjs.mXY')
+    xy(o, s.mx(), s.my())
+    return o
+} //mxy
+cjs.me = function (fn) {
+    alert('cjs.me')
+    Q(['me'], function (q) {fn(q.getResult('me'))}) }
+ct.bData = function (data) {
+    alert('ct.bData')
+    return J.bm($.i().src($.parseJSON(data))).a2(this)
+}
+ct.bData = function (data) {
+    alert('ct.bData')
+    return J.bm($.i().src($.parseJSON(data))).a2(this)
+}
+
+st.snap = function (f) {alert('st.snap')
+    var st = this
+    $.P('img', {d: st.toDataURL()})//, dats: o.x.dats
+    $.in(1, f)
+    return st
+}
+st.trDr = function () {
+    alert('st.trDr')
+    var st = this
+    st._md = 0
+    st.MD(function () {
+        st._md = 1
+    })
+    st.MU(function () {
+        st._md = 0
+    })
+    return this
+}
+st.du = function () {
+    alert('st.du')
+    return this.canvas.toDataURL()
+}
+ct.mc = function () {alert('ct.mc')
+    return cjs.mc.apply(null, arguments).a2(this)
+}
+ct.st = function(){
+    alert('ct.st')
+    return this.getStage() }//ct.st = function () {return this.stage}
