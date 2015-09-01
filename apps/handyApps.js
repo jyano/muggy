@@ -1,7 +1,4 @@
-css()
-can()
-function css(){
-
+//css
     EXT=function(){$.x('x','ext')
         $CSS({
             d: {
@@ -38,8 +35,6 @@ function css(){
 
 
     }
-
-
     SIZE=function(){
         $.x('x','size')
 
@@ -58,8 +53,8 @@ function css(){
         $CSS()
     }
 
-}
-function can(){
+
+//can
 
     TXTT=function(){$.C()
         x.b('b','g',30)
@@ -107,4 +102,3 @@ function can(){
 
 
     })}
-}

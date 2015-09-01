@@ -1,18 +1,65 @@
-
+cjs.rgb=function(r,g,b,a){
+    alert('cjs.rgb')
+    var str
+    a = N(a)? a: 1
+    str = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')'
+    return str
+}
+i=cjs.DisplayObject.prototype
+i.fl = function () {
+    var ob = this, g = G(arguments), i
+    if (A(g[0])) {
+        return ob.fl.apply(ob, g[0])
+    }
+    ob.filters = ob.filters || []
+    _.e(g, function (fl) {
+        ob.filters.push(fl)
+    })
+    if (!g.n) {
+        i = ob.image;
+        this.ca(0, 0, i.width, i.height)
+    }
+    return ob
+}
+i.fl2 = function () {
+    var ob = this, g = G(arguments)
+    ob.filters = []
+    ob.filters = ob.filters || []
+    _.e(g, function (fl) {
+        ob.filters.push(fl)
+    })
+    if (!g.n) {
+        i = ob.image;
+        this.ca(0, 0, i.width, i.height)
+    }
+    return ob
+}
+i.aF = function (h) {
+    var ob = this
+    ob.fl($AF(h))
+    return ob
+}
+i.aF2 = function (h) {
+    var ob = this
+    this.fl2($AF(h))
+    return ob
+}
 $BF= $Bf= $FB= $FlB= $Bfl= $bF= function(){var g=G(arguments),fl,o
     o = {x:g[0], y:g[1], q:g[2]}
     o.y = N(o.y)? o.y : o.x
     o.q = o.q||1
-    fl= new J.BlurFilter(o.x, o.y, o.q)
+
+    fl= new cjs.BlurFilter(o.x, o.y, o.q)
     return fl
 }
+
 $AF= $Af= $aF=function(a,b,c,d,e){var fl
 
     if(O(a) && a.cacheCanvas ){
         a= a.cacheCanvas
     }
 
-    fl= new J.AlphaMaskFilter(a,b,c,d,e)
+    fl= new cjs.AlphaMaskFilter(a,b,c,d,e)
 
 
 
@@ -32,13 +79,11 @@ $AF= $Af= $aF=function(a,b,c,d,e){var fl
     }
 }
 $CMF= $CmF= $cMF=function(a,b,c,d){
-
     if(!O(a)){ a = $CM(a,b,c,d) }
-    return new J.ColorMatrixFilter(a)
-
+    return new cjs.ColorMatrixFilter(a)
 }
 $CM= $Cm= $cM=function(a,b,c,d,e){var m
-    m=new J.ColorMatrix(a,b,c,d,e)
+    m=new cjs.ColorMatrix(a,b,c,d,e)
     m.b=m.adjustBrightness
     m.c=m.adjustColor
     m.C=m.adjustContrast
@@ -53,20 +98,27 @@ $CM= $Cm= $cM=function(a,b,c,d,e){var m
     return m
 }
 
-
 BLUR =  function(){
-    wMb(function(b){
-        /*
+
+ s= $St(500).dg()
+
+
+    s.mug(function(b){
+
          var ag=0,rg=100,sp=0.04
          z()
-         s=St(500).drg().a().c('x').a(b.xy(100).cc())
 
-         tt(function(e){v=sin(ag+=sp)*rg
+        s.C('x')
+        b.XY(100)
+        b.cc()
+        T.on('tick', function(e){
+            v=M.sin(ag+=sp)*rg
          b.cc('+').fl([blF(v,v,2)])
-         s.u(e)})
-         */
+         s.u(e)
+        })
     })
 }
+
 
 MASK =  function(){  wMb(function(b){
 
@@ -93,7 +145,7 @@ MASK =  function(){  wMb(function(b){
 })}
 COLOR = clr=function(r){var ag=0,rg=100,sp=0.04
     wMb(function(b){z();
-        s=St(500).dg().a().c('X').a(b.xy(100))
+        s=St(500).dg().a().c('X').a(b.XY(100))
         b.cc()
         b.fl(
             [r=='g'? $cMF(.3,1,.3,1,0,0,0,0)
@@ -111,7 +163,7 @@ COLORMATRIX =  function(){var g=G(arguments);
     g[0]=g[0]||'a'
 
     wMb(function(b){
-            b.xy(100).cc();
+            b.XY(100).cc();
             _.e(g,function(mf){b.clMF(mf,'+')})},
         St(500).dg().A().C('X') )
 }
@@ -137,7 +189,7 @@ BLURFILT=function(){z()
 }
 BLURFILT2=function(){z()
 
-    stage = J.stage('black', 800).tick().A()
+    stage = cjs.stage('black', 800).tick().A()
 
 
 
@@ -145,7 +197,7 @@ BLURFILT2=function(){z()
 
         function(bm){
 
-            var blurFilter = new J.BlurFilter(5, 10)
+            var blurFilter = new cjs.BlurFilter(5, 10)
 
             bm.filters = [blurFilter]
 
@@ -184,7 +236,7 @@ BLURFILT3=function(){z()
             bm.cache(-50+bd.x, -50+bd.y, 400+bd.width, 400+bd.height)
 
 
-            J.Ticker.on('tick', function(){
+            cjs.Ticker.on('tick', function(){
                 $l('tick')
 
                 blur = M.sin(blurAmount += speed) * blurMultiple;
@@ -197,44 +249,44 @@ BLURFILT3=function(){z()
 
 
         })}
-ALPHAMASKREVEALWORKS=function(){z(); J.testCanvas()
-    J.sharedCode()
+ALPHAMASKREVEALWORKS=function(){z(); cjs.testCanvas()
+    cjs.sharedCode()
     //var stage,isDrawing,drawingCanvas,oldPt,oldMidPt,displayCanvas, image,bitmap, maskFilter, cursor, text,blur
     examples.showDistractor()
     i = image = new Image();
     i.onload = handleComplete
     i.src = "/chicks.png"
-    st=stage = new J.Stage("testCanvas")
-    t=text = new J.Text("Loading...", "20px Arial", "#FFF")
+    st=stage = new cjs.Stage("testCanvas")
+    t=text = new cjs.Text("Loading...", "20px Arial", "#FFF")
     t.set({x: st.canvas.width / 2, y: st.canvas.height - 40});
     t.textAlign = "center"
 
     function handleComplete() {
         examples.hideDistractor()
-        J.Touch.enable(stage);
+        cjs.Touch.enable(stage);
         stage.enableMouseOver();
         stage.addEventListener("stagemousedown", handleMouseDown);
         stage.addEventListener("stagemouseup", handleMouseUp);
         stage.addEventListener("stagemousemove", handleMouseMove);
-        drawingCanvas = new J.Shape()
-        bitmap = new J.Bitmap(image)
+        drawingCanvas = new cjs.Shape()
+        bitmap = new cjs.Bitmap(image)
 
-        blur = new J.Bitmap(image)
-        blur.filters = [new J.BlurFilter(24, 24, 2), new J.ColorMatrixFilter(new J.ColorMatrix(60))];
+        blur = new cjs.Bitmap(image)
+        blur.filters = [new cjs.BlurFilter(24, 24, 2), new cjs.ColorMatrixFilter(new cjs.ColorMatrix(60))];
         blur.cache(0, 0, 960, 400)
 
         text.text = "Click and Drag to Reveal the Image.";
         stage.addChild(blur, text, bitmap);
         updateCacheImage(false);
 
-        cursor = new J.Shape(new J.Graphics().beginFill("#FFFFFF").drawCircle(0, 0, 25));
+        cursor = new cjs.Shape(new cjs.Graphics().beginFill("#FFFFFF").drawCircle(0, 0, 25));
         cursor.cursor = "pointer";
 
         stage.addChild(cursor);
     }
 
     function handleMouseDown(event) {
-        oldPt = new J.Point(stage.mouseX, stage.mouseY);
+        oldPt = new cjs.Point(stage.mouseX, stage.mouseY);
         oldMidPt = oldPt;
         isDrawing = true;
     }
@@ -247,7 +299,7 @@ ALPHAMASKREVEALWORKS=function(){z(); J.testCanvas()
             return;
         }
 
-        var midPoint = new J.Point(oldPt.x + stage.mouseX >> 1, oldPt.y + stage.mouseY >> 1);
+        var midPoint = new cjs.Point(oldPt.x + stage.mouseX >> 1, oldPt.y + stage.mouseY >> 1);
 
         drawingCanvas.graphics.setStrokeStyle(40, "round", "round")
             .beginStroke("rgba(0,0,0,0.2)")
@@ -273,7 +325,7 @@ ALPHAMASKREVEALWORKS=function(){z(); J.testCanvas()
             drawingCanvas.ca(0, 0, image.width, image.height);
         }
 
-        maskFilter = new J.AlphaMaskFilter(drawingCanvas.cacheCanvas);
+        maskFilter = new cjs.AlphaMaskFilter(drawingCanvas.cacheCanvas);
 
         bitmap.filters = [maskFilter];
         if (update) {
@@ -287,22 +339,22 @@ ALPHAMASKREVEALWORKS=function(){z(); J.testCanvas()
 }
 ALPHAMASKREVEAL1=function(){z(); var isDrawing
 
-    J.testCanvas()
-    J.sharedCode()
+    cjs.testCanvas()
+    cjs.sharedCode()
 
 
     i = $.i("/chicks.png", handleComplete)[0]
-    st=  new J.Stage("testCanvas")
+    st=  new cjs.Stage("testCanvas")
 
 
-    t=  new J.Text("Loading...", "20px Arial", "#FFF")
+    t=  new cjs.Text("Loading...", "20px Arial", "#FFF")
     t.set({x: st.canvas.width / 2, y: st.canvas.height - 40});
     t.textAlign = "center"
 
 
     function handleComplete() {
 
-        J.Touch.enable(st);
+        cjs.Touch.enable(st);
 
         st.mO()
         st.MD(handleMouseDown)
@@ -310,10 +362,10 @@ ALPHAMASKREVEAL1=function(){z(); var isDrawing
         st.MM(handleMouseMove)
 
 
-        drawingCanvas = new J.Shape()
+        drawingCanvas = new cjs.Shape()
         bm = $Bm(i)
         bl = $Bm(i)
-        bl.filters = [new J.BlurFilter(24, 24, 2), new J.ColorMatrixFilter(new J.ColorMatrix(60))];
+        bl.filters = [new cjs.BlurFilter(24, 24, 2), new cjs.ColorMatrixFilter(new cjs.ColorMatrix(60))];
         bl.ca(0, 0, 960, 400)
 
         t.text = "Click and Drag to Reveal the Image.";
@@ -322,13 +374,13 @@ ALPHAMASKREVEAL1=function(){z(); var isDrawing
 
         updateCacheImage(false)
 
-        cu=  new J.Shape(new J.Graphics().beginFill("#FFFFFF").drawCircle(0, 0, 25));
+        cu=  new cjs.Shape(new cjs.Graphics().beginFill("#FFFFFF").drawCircle(0, 0, 25));
         cu.cursor = "pointer";
         st.A(cu)
     }
 
     function handleMouseDown() {
-        oldPt = new J.Point(st.mouseX, st.mouseY);
+        oldPt = new cjs.Point(st.mouseX, st.mouseY);
         oldMidPt = oldPt;
         isDrawing = true;
     }
@@ -337,7 +389,7 @@ ALPHAMASKREVEAL1=function(){z(); var isDrawing
         cu.y = st.mouseY;
         if (!isDrawing) {st.u(); return}
 
-        midPoint = new J.Point(oldPt.x + st.mouseX >> 1, oldPt.y + st.mouseY >> 1);
+        midPoint = new cjs.Point(oldPt.x + st.mouseX >> 1, oldPt.y + st.mouseY >> 1);
 
 
         gx= drawingCanvas.graphics
@@ -362,7 +414,7 @@ ALPHAMASKREVEAL1=function(){z(); var isDrawing
         if (upd) {drawingCanvas.ca()}
         else {drawingCanvas.ca(0, 0, i.width, i.height)}
 
-        maskFilter = new J.AlphaMaskFilter(drawingCanvas.cacheCanvas);
+        maskFilter = new cjs.AlphaMaskFilter(drawingCanvas.cacheCanvas);
         bm.filters = [maskFilter]
 
         if (upd) {bm.ca(0, 0, i.width, i.height);}
@@ -375,29 +427,29 @@ ALPHAMASKREVEAL1=function(){z(); var isDrawing
 }
 ALPHAMASKREVEAL0=function(){z(); var isDrawing
 
-    J.testCanvas()
-    J.sharedCode()
+    cjs.testCanvas()
+    cjs.sharedCode()
 
 
     i = $.i("/chicks.png", handleComplete)[0]
-    st=  new J.Stage("testCanvas")
+    st=  new cjs.Stage("testCanvas")
 
 
-    t=  new J.Text("Loading...", "20px Arial", "#FFF")
+    t=  new cjs.Text("Loading...", "20px Arial", "#FFF")
     t.set({x: st.canvas.width / 2, y: st.canvas.height - 40})
     t.textAlign = "center"
     t.text = "Click and Drag to Reveal the Image.";
 
 
-    function handleComplete() {J.Touch.enable(st);
+    function handleComplete() {cjs.Touch.enable(st);
 
         st.mO()
-        st.MD(  function  () {oldPt = new J.Point(st.mouseX, st.mouseY);oldMidPt = oldPt; isDrawing = true;})
+        st.MD(  function  () {oldPt = new cjs.Point(st.mouseX, st.mouseY);oldMidPt = oldPt; isDrawing = true;})
         st.MU(function(){updateCacheImage(true); isDrawing = false})
         st.MM( function() { var midPoint
             cu.x = st.mouseX;cu.y = st.mouseY;
             if (!isDrawing) {st.u(); return}
-            midPoint = new J.Point(oldPt.x + st.mouseX >> 1, oldPt.y + st.mouseY >> 1);
+            midPoint = new cjs.Point(oldPt.x + st.mouseX >> 1, oldPt.y + st.mouseY >> 1);
             h.graphics
                 .ss(40, "round", "round").s("rgba(0,0,0,0.2)")
                 .mt(midPoint.x, midPoint.y).qt(oldPt.x, oldPt.y, oldMidPt.x, oldMidPt.y)
@@ -435,13 +487,13 @@ ALPHAMASKREVEAL0=function(){z(); var isDrawing
 ALPHAMASKREVEAL00=function(){z(); var isDrawing
 
     i = $.i('chicks', function(){
-        J.sharedCode()
-        st = $St(800)  //J.Touch.enable(st);
+        cjs.sharedCode()
+        st = $St(800)  //cjs.Touch.enable(st);
         st.mO()
 
 
         st.MD(  function(){
-            _pt= oldPt = J.Pt(st.mouseX, st.mouseY);
+            _pt= oldPt = cjs.Pt(st.mouseX, st.mouseY);
             _mPt= oldMidPt = oldPt
         })
         st.MU(uCaI)
@@ -653,33 +705,21 @@ SCRATCHOFF=function(){z();
     var   _mPt
 
     st = $St(1000).mO(1)
-
-
-    $.i('chicks', function(i){_i= i = i[0]
-
+ st.bm('chicks', function(bm){
 
         h = $H().s(.3)
-
-        h.ss(45, 'r'
-            ,'round'
-
-        ).ca(i)
-
-
+        h.ss(45, 'r','round').ca(bm.image)
         bF=$bF(24,24,2)
         cMF=$cMF($cM(60))
-
-
-        bm = st.Bm(i).fl( h.aF(), '-').ca(i)
-
-
+        bm.fl( h.aF(), '-').ca(i)
         st.MD(function(){
 
             _mPt = _pt = st.m()
 
         })
-
-        st.MU(function(){h.ca(i); bm.fl($aF(h),'-').ca(i); _mPt=null})
+        st.MU(function(){
+            h.ca(i); bm.fl($aF(h),'-').ca(i); _mPt=null
+        })
 
 
         st.MM( function(){
@@ -713,26 +753,23 @@ SCRATCHOFF=function(){z();
 BRUSH=BLOTCHY=function(){z();
     var   _mPt
 
-    st = $St(1000).mO(1)
+    st = $St(1000)
 
-    h = $H().a2(st)
-
-
+    st.mO(1)
+    h = $h().a2(st)
     h.ss('o', 40, 's', 'bevel', 1)
 
-
-    $.i('chicks', function(i){_i= i = i[0]
-
-
-
-        bm = st.Bm(i).al(.2)
-
-        st.MD(function(){_mPt = _pt = st.m()})
+   st.bm('chicks', function(bm){
+       // _i= i = i[0]
+        bm.al(.2)
+        st.A(bm)
+       st.MD(function(){_mPt = _pt = st.m()})
         st.MU(function(){ _mPt=null})
         st.MM( function(){if(!_mPt){return}
             _pt = st.m()
             mx = _pt.x
             my = _pt.y
+
             mPt = $Pt(M.av(_pt.x, mx), M.av(_pt.y, my))
             h.mt(mPt.x, mPt.y).qt(_pt, _mPt)
             _mPt = V(mPt)
@@ -740,7 +777,6 @@ BRUSH=BLOTCHY=function(){z();
     })
 
 }
-
 Q21=function(){z();
     var   pt
 
@@ -771,27 +807,20 @@ Q21=function(){z();
 
     $.i('chicks', function(i){st.Bm(i[0]).al(.2)})
 }
-Q2=function(){St().mO(1)
-    h = st.h().ss('g', 40, 's', 'b', 1)
-    st.bm('chicks', function(b){b.XY(500,300).al(.2)})
-    pt=0
-    st.MD(function(){pt = st.m()})
-    st.MU(function(){pt = 0})
-    st.MM(function(){if(pt){h.line(pt, pt=st.m())}})
-}
-ALF1 =function(){z(); J.testCanvas()
+
+ALF1 =function(){z(); cjs.testCanvas()
     var isDrawing
-    J.sharedCode()
+    cjs.sharedCode()
     //var stage,isDrawing,drawingCanvas,oldPt,oldMidPt,displayCanvas, image,bitmap, maskFilter, cursor, text,blur
     examples.showDistractor()
     i = image = new Image();
     i.onload = handleComplete
     i.src = "/chicks.png"
-    st=stage = new J.Stage("testCanvas")
+    st=stage = new cjs.Stage("testCanvas")
 
     function handleComplete(){
         examples.hideDistractor()
-        J.Touch.enable(st);
+        cjs.Touch.enable(st);
 
         st.enableMouseOver();
         st.MD( handleMouseDown);
@@ -800,12 +829,12 @@ ALF1 =function(){z(); J.testCanvas()
 
         h =  $H().ss(40, "round", "round").C("rgba(0,0,0,0.2)")
 
-        t = new J.Text('Drag to Reveal!!', "20px Arial", "#FFF"); t.set({x: st.canvas.width / 2, y: st.canvas.height - 40}); t.textAlign = "center"
+        t = new cjs.Text('Drag to Reveal!!', "20px Arial", "#FFF"); t.set({x: st.canvas.width / 2, y: st.canvas.height - 40}); t.textAlign = "center"
 
         st.A( bl= $Bm(i), t,  b= $Bm(i)  ) //x=0, y=0, quality=1
 
 
-        bl.filters = [$FlB(20,0), new J.ColorMatrixFilter(new J.ColorMatrix(-20,20,500,-80))  ]//   ,new J.BlurFilter(24, 24, 2)
+        bl.filters = [$FlB(20,0), new cjs.ColorMatrixFilter(new cjs.ColorMatrix(-20,20,500,-80))  ]//   ,new cjs.BlurFilter(24, 24, 2)
         bl.ca()
 
         updateCacheImage(false)
@@ -836,16 +865,16 @@ ALF1 =function(){z(); J.testCanvas()
 
 }
 ALF11=function(){z();
-    J.testCanvas()
+    cjs.testCanvas()
     var isDrawing
-    J.sharedCode()
+    cjs.sharedCode()
     examples.showDistractor()
-    st=new J.Stage("testCanvas")
+    st=new cjs.Stage("testCanvas")
 
     i = new Image()
     i.onload =  function(){
         examples.hideDistractor()
-        J.Touch.enable(st)
+        cjs.Touch.enable(st)
         st.enableMouseOver()
         st.MD(function () {isDrawing = true; oldPt = st.m(); oldMidPt = oldPt;});
         st.MU(function () {updateCacheImage(true); isDrawing = false});
@@ -858,9 +887,9 @@ ALF11=function(){z();
             oldMidPt.x = midPoint.x;oldMidPt.y = midPoint.y;
             updateCacheImage(true)})
         h =  $H().ss(40, "round", "round").C("rgba(0,0,0,0.2)")
-        t = new J.Text('Drag to Reveal!!', "20px Arial", "#FFF"); t.set({x: st.canvas.width / 2, y: st.canvas.height - 40}); t.textAlign = "center"
+        t = new cjs.Text('Drag to Reveal!!', "20px Arial", "#FFF"); t.set({x: st.canvas.width / 2, y: st.canvas.height - 40}); t.textAlign = "center"
         st.A( bl= $Bm(i), t,  b= $Bm(i)  )
-        bl.filters = [$FlB(20,0), new J.ColorMatrixFilter(new J.ColorMatrix(-20,20,500,-80))  ]//   ,new J.BlurFilter(24, 24, 2)
+        bl.filters = [$FlB(20,0), new cjs.ColorMatrixFilter(new cjs.ColorMatrix(-20,20,500,-80))  ]//   ,new cjs.BlurFilter(24, 24, 2)
         bl.ca()
         updateCacheImage(false)
         cu= st.h().f("#FFFFFF").dc(  25).cu('pointer')
@@ -873,7 +902,7 @@ ALF11=function(){z();
         if (update) {b.ca()} else {b.ca()}
         st.u()}
 }
-ALF=function(){$.i('chicks',function(e,i){St()//J.Touch.enable(st)  //st.mO(1) !!!
+ALF=function(){$.i('chicks',function(e,i){St()//cjs.Touch.enable(st)  //st.mO(1) !!!
     var isDrawing
 
 
@@ -887,7 +916,7 @@ ALF=function(){$.i('chicks',function(e,i){St()//J.Touch.enable(st)  //st.mO(1) !
 
     )
 
-    bl.filters = [$FlB(20,0), new J.ColorMatrixFilter(new J.ColorMatrix(-20,20,500,-80))  ]//   ,new J.BlurFilter(24, 24, 2)
+    bl.filters = [$FlB(20,0), new cjs.ColorMatrixFilter(new cjs.ColorMatrix(-20,20,500,-80))  ]//   ,new cjs.BlurFilter(24, 24, 2)
 
     bl.ca()
 
@@ -916,7 +945,7 @@ ALF=function(){$.i('chicks',function(e,i){St()//J.Touch.enable(st)  //st.mO(1) !
 
 
 })}
-ERASEFL1=function(){$.i('chicks',function(e,i){St()//J.Touch.enable(st)  //st.mO(1) !!!
+ERASEFL1=function(){$.i('chicks',function(e,i){St()//cjs.Touch.enable(st)  //st.mO(1) !!!
     var isDrawing
     st.A(
         $Bm(i).fl($FB(20,0), $CMF(-20,20,500,-80)), $T('Drag to Reveal!!', "20px Arial", "#FFF", st.W()/2, st.H()-40).tA("center"),
@@ -970,15 +999,9 @@ ERASEDOT=function(){$.i('chicks',function(e,i){St()
         $Bm(i).fl($FB(20,0), $CMF(-20,20,500,-80)), $T('Drag to Reveal!!', "20px Arial", "#FFF", st.W()/2, st.H()-40).tA("center"),
         b= $Bm(i).aF2(h=$H().ss(40,'r','r').C(.9).ca(i))
     )
-
-
     st.m({
-
         d: function(){ oldPt = st.m(); oldMidPt = oldPt;},
-
         u: function(){ b.fl2($AF(h.ca(i))).ca() },
-
-
         m: function(){var midPoint
             if(!st._dr){return st.u()}
 
@@ -988,12 +1011,9 @@ ERASEDOT=function(){$.i('chicks',function(e,i){St()
             b.aF2(h.ca(i)).ca()}
     })
 
-
-    cu = st.h('w').dc(25).cu('N').bM()
-
-
-
-})}
+    cu = st.h('w').dc(25).cu('N')//.bM()
+})
+}
 ERASEFL111=function(){$.i('chicks',function(e,i){St()
     st.enableMouseOver=true
     st.trDr().A(
@@ -1072,9 +1092,6 @@ ERASEFL=function(){$.i('chicks',function(e,i){St().trDr()
 
 
 })}
-
-
-
 FILTERS=function(){
     cM = $CM()
     cM.adjustHue(80)
@@ -1096,8 +1113,6 @@ FILTERS=function(){
     })
 
 
-
-
     s.mug(function(b){
         b.XY(-100,-50)
         b.cc()
@@ -1105,28 +1120,37 @@ FILTERS=function(){
         b.clMF('w','+')
         cjs.bindSlide(b)
     })
-    wMb(function(b){b.xy(400,0).cc()
+
+    s.mug(function(b){b.XY(400,0).cc()
         SL(b)
         b.fl([aMF(Gx().lf(trx(1,0),[0,1],0,0,300,300)
             .dr0(400).H().cc(400).cc('*'))
-        ]).cc(400)},s)
-    wMb(function(b){
-
+        ]).cc(400)})
+    s.mug(function(b){
         b.XY(100,300).cc();SL(b)
-
         b.cc().fl([ clF(.3,1,.3,1,0,0,0,0) ]).cc('+')
-
-    }, s)
-    wMb(function(b){
+    })
+    s.mug(function(b){
         var ag=0,rg=20,sp=0.04;
-        b.xy(500,300).cc();
+        b.XY(500,300).cc();
         SL(b)
         //this has gotta just mean 'on tick'
         tt(function(e){
-            v=sin(ag+=sp)*rg;
+            v=M.sin(ag+=sp)*rg;
             b.cc('+').fl([blF(v,v,2)])
-        })},s)
-
+        })})
 
 }
 
+
+function cool(){
+    Q2=function(){St().mO(1)
+        h = st.h().ss('g', 40, 's', 'b', 1)
+        st.bm('chicks', function(b){b.XY(500,300).al(.2)})
+        pt=0
+        st.MD(function(){pt = st.m()})
+        st.MU(function(){pt = 0})
+        st.MM(function(){if(pt){h.line(pt, pt=st.m())}})
+    }
+
+}

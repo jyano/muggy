@@ -154,31 +154,7 @@ function later(){
         return self.text}
 
 //alert
-    $Pt = cjs.Pt = function (x, y) {
-        alert('cjs.Pt $Pt')
-        if (U(x)) {
-            return new C$.Point}
-        if (O(x) && O(y)) {
-            return new C$.Point(x.x + y.mx() >> 1, x.y + y.my() >> 1)
-        }
-        if (O(x)) {
-            return new cjs.Point(
-                x.mx(),
-                x.my()
-            )
-        }
-        return new cjs.Point(x, y)
-    }
-    selected=function(bm){
-        alert('selected')
-        alert('selected')
-        SL(bm)
-        bm.$(function(){
-            cjs.Tween.removeAllTweens()
-            bitmap=bm
-            cjs.scaleShake(bm.dO)
-        })
-    }
+
     bmp()
     function bmp(){
         SuperBitmap = SuperBitmapSync = bm = function (img, stage) {
@@ -261,64 +237,12 @@ function later(){
             :
             $r('c', n1)
     }
-    cjs.rgb=function(r,g,b,a){
-        alert('cjs.rgb')
-        var str
-        a = N(a)? a: 1
-        str = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')'
-        return str
-    }
-    TextAdder=function(stage){
-        alert('TextAdder')
-        var f= $.f().a().c('x').P(10).w(300).dg()
 
-        f.A(
-            $.ip().id('text'),
-            $.bt('for text',   function(){var  _text,theText,val = $l( $('#text').val()  )
-                $('#text').val('')
-                _t = $T(val,'w', 30, 100, 10)
-                t=  $Ct().A( _t )
-                t.dO = _t
-                SL(t)
-                st.A(t)
-                selected(t)
-            }))
-
-        return f
-    }
-    TextAdder2=function(stage){
-        alert('TextAdder2')
-        var form= $form().a().c('x').P(10).w(300).drg()
-
-        form(
-
-            $textInput().id('text'),
-
-            $.bt(  'for text',   function(){
-                var val = $l( $('#text').val()  )
-
-                $('#text').val('')
-
-                var theText= EaselText(val,'w', 30, 100, 10)
-                SL(theText)
-
-
-                stage.a( theText )
-
-
-            }))
-
-
-
-
-        return form }
 
     //obPhysics()
     function obPhysics() {
 //easel physics.. ugh
-        ob.move = function () {
-            return this.X(this.vx || 0, '+').Y(this.vy || 0, '+')
-        }
+
         ob.accelerate = function () {
             return this.vX(this.ax || 0, '+').vY(this.ay || 0, '+')
         }
@@ -326,101 +250,7 @@ function later(){
             return this.aX(this.jx || 0, '+').aY(this.jy || 0, '+')
         }
 
-        ob.aX = function (a) {
-            var g = G(arguments);
-            a = g[0]
 
-            if (g.p) {
-                this.vx = this.vx + a;
-                return this
-            }
-
-            else if (g.n) {
-                if (N(a)) {
-                    this.vx = this.vx - a
-                }
-
-                else {
-                    this.vx = this.vx * -1
-                }
-                return this
-            }
-            else if (U(g[0])) {
-                return this.vx
-            }
-            this.vx = a;
-            return this
-        }
-        ob.aY = function (a) {
-            var g = G(arguments);
-            a = g[0]
-            if (g.p) {
-                this.vy = this.vy + a;
-                return this
-            }
-            else if (g.n) {
-                if (N(a)) {
-                    this.vy = this.vy - a
-                }
-                else {
-                    this.vy = this.vy * -1
-                }
-                return this
-            }
-            else if (U(g[0])) {
-                return this.vy
-            }
-
-            this.vy = a
-            return this
-        }
-        ob.jX = function (a) {
-            var g = G(arguments);
-            a = g[0]
-
-            if (g.p) {
-                this.vx = this.vx + a;
-                return this
-            }
-
-            else if (g.n) {
-                if (N(a)) {
-                    this.vx = this.vx - a
-                }
-
-                else {
-                    this.vx = this.vx * -1
-                }
-                return this
-            }
-            else if (U(g[0])) {
-                return this.vx
-            }
-            this.vx = a;
-            return this
-        }
-        ob.jY = function (a) {
-            var g = G(arguments);
-            a = g[0]
-            if (g.p) {
-                this.vy = this.vy + a;
-                return this
-            }
-            else if (g.n) {
-                if (N(a)) {
-                    this.vy = this.vy - a
-                }
-                else {
-                    this.vy = this.vy * -1
-                }
-                return this
-            }
-            else if (U(g[0])) {
-                return this.vy
-            }
-            this.vy = a
-            return this
-        }
         ob.brake = function () {
             this.vx = this.vy = 0
         }
@@ -723,7 +553,6 @@ function later(){
             return b
         }
     }
-
     cjs.M = function (rot) {
         alert('cjs.M')
         var m = new cjs.Matrix2D()
@@ -782,9 +611,6 @@ function later(){
         xy(o, s.mx(), s.my())
         return o
     } //mxy
-    cjs.me = function (fn) {
-        alert('cjs.me')
-        Q(['me'], function (q) {fn(q.getResult('me'))}) }
     ct.bData = function (data) {
         alert('ct.bData')
         return J.bm($.i().src($.parseJSON(data))).a2(this)
@@ -793,7 +619,6 @@ function later(){
         alert('ct.bData')
         return J.bm($.i().src($.parseJSON(data))).a2(this)
     }
-
     st.snap = function (f) {alert('st.snap')
         var st = this
         $.P('img', {d: st.toDataURL()})//, dats: o.x.dats
@@ -812,17 +637,9 @@ function later(){
         })
         return this
     }
-    st.du = function () {
-        alert('st.du')
-        return this.canvas.toDataURL()
-    }
-    ct.mc = function () {alert('ct.mc')
-        return cjs.mc.apply(null, arguments).a2(this)
-    }
     ct.st = function(){
         alert('ct.st')
         return this.getStage() }//ct.st = function () {return this.stage}
-
 }
 cjs.Keys = function(o){
     alert('cjs.Keys')
@@ -1155,10 +972,7 @@ h.C2 = function (C, l) {
     return h
 
 }
-h.same = function () {
-    alert('h.same')
-    return $h(this)
-} //h.copy
+
 
 
 h.dcWorking = function (x, y, r) {

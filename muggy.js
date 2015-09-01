@@ -429,6 +429,67 @@ $(function(){
 ////////////////////////
 ////////////////////////
 ////////////////////////
+
+
+
+$.pop = function (message, o) {
+
+    if (S(o)) {
+        return $.pop(o, {title: message})
+    }
+
+    o = O(o) ? o : {}
+    message = message || 'pop pop'
+    mB = $.modalBody().A($.h2(message))
+    m = $.modalFade().A($.modalDialog().A($.modalContent().A(mB)))
+
+    if (!o.hd) {
+        m.modal()
+    }
+
+    if (o.tt) {
+        mB.pp($.h1(o.titC).col(o.titC || 'z'),
+            $.hr().C(o.headerC || 'z').css('height', 2))
+    }
+
+    if (o.bt) {
+        mB.A($.bt(o.bt))
+    }
+
+    if (o.dg) {
+        m.dg()
+    }
+
+    if (o.al) {
+        m.al(o.al)
+    }
+
+    //text color of the MESSAGE
+    if (o.col) {
+        m.col(o.col)
+    }
+    //color of background of modal itself
+    if (o.C) {
+        //flash like crazy
+        if (o.C == '*') {
+            _.ev(.1, function () {
+                mB.C($r())
+            })
+        }
+        else {
+            mB.C(o.C)
+        }
+    }
+    //this color takes over the whole screen!
+    //this is the background color of the hiding body
+    if (o.c) {
+        m.C(o.c)
+    }
+    return m
+
+}
+
+
 function later() {
     $clr= Y.clr=  function(){z(); Y.nav()}
 
@@ -524,62 +585,8 @@ function later() {
             .fS(20).T(t || 'msgText')
 
     }
-    $.pop = function (message, o) {
 
-        if (S(o)) {
-            return $.pop(o, {title: message})
-        }
 
-        o = O(o) ? o : {}
-        message = message || 'pop pop'
-        mB = $.modalBody().A($.h2(message))
-        m = $.modalFade().A($.modalDialog().A($.modalContent().A(mB)))
-
-        if (!o.hd) {
-            m.modal()
-        }
-
-        if (o.tt) {
-            mB.pp($.h1(o.titC).col(o.titC || 'z'),
-                $.hr().C(o.headerC || 'z').css('height', 2))
-        }
-
-        if (o.bt) {
-            mB.A($.bt(o.bt))
-        }
-
-        if (o.dg) {
-            m.dg()
-        }
-
-        if (o.al) {
-            m.al(o.al)
-        }
-
-        //text color of the MESSAGE
-        if (o.col) {
-            m.col(o.col)
-        }
-        //color of background of modal itself
-        if (o.C) {
-            //flash like crazy
-            if (o.C == '*') {
-                _.ev(.1, function () {
-                    mB.C($r())
-                })
-            }
-            else {
-                mB.C(o.C)
-            }
-        }
-        //this color takes over the whole screen!
-        //this is the background color of the hiding body
-        if (o.c) {
-            m.C(o.c)
-        }
-        return m
-
-    }
     $.floatIp = function (t, fn) {
         alert('$.floatIp')
         var g = G(arguments), f
@@ -666,83 +673,7 @@ function later() {
     }
     editD()
     function editD() {
-        $.eD = $.editDiv = function (words) {//$.dE
-            canMove = true
-            changeLocation = true
-            inputMove = true
-            mouse = 'up'
 
-            ta = $.ta().mar(4)
-            sp = $.sp().C('z')
-            fn = function () {
-                sp.T(ta.v())
-            }
-            d = $.dA('+').C('n', 'y').pad(8)
-            d.zIndex(0)
-
-            xBt = $.bt('', function () {
-                d.rm()
-            }).WH(4).C('red')
-
-
-            d.md(function () {
-                inputMove = false;
-                mouse = 'div'
-            })
-            d.mu(function () {
-                mouse = 'up'
-            })
-            d.md(function () {
-                $.editDiv.TOP++
-                $(this).zIndex($.editDiv.TOP)
-            })
-            ta.md(function (e) {
-                $.editDiv.TOP++
-                $(this).parent().zIndex($.editDiv.TOP)
-                location = {top: d.Y(), left: d.X()}
-                inputMove = true
-                mouse = 'input'
-                e.stopPropagation()
-            })
-
-            ta.mm(function (e) {
-                if (inputMove) {
-                    e.stopPropagation();
-                    d.XY(location.left, location.top)
-                }
-            })
-
-            if (U(words)) {
-                return d.A(xBt, $.br(), sp.hd(), ta,
-
-                    $.d('y', 16, 12).tA('c').mar('0 auto').$(function () {
-                        $(this).pa().free()
-                    })
-                ).$$(function (e) {
-                        e.stopPropagation()
-                        sp.T(ip.v())
-                        xBt.gg();
-                        ip.gg();
-                        sp.gg()
-                    })
-            }
-
-            else {
-                ip.v(words)
-                sp.T(ta.v())
-
-
-                return d.$$(function (e) {
-                    e.stopPropagation()
-                    sp.T(ta.v())
-                    xBt.gg();
-                    ip.gg();
-                    sp.gg()
-                }).A(xBt, $.br(), sp, ip.hd())
-
-            }
-        };
-        $.editDiv.TOP = 0
         TXEDITDIV = function () {
             z()
             $.dE()

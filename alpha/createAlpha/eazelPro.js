@@ -96,7 +96,6 @@ FIT=function(){$.C()
     c.fit('me')
 }
 
-///////
 
 canEl=function(){
 
@@ -2616,7 +2615,6 @@ h.mt = function (x, y) {
 
 
 h.bf= function(){var h=this, gx=h.graphics, g=G(arguments), tf
-
     if(!F(Q)){
 
         if(A(g.s)){g.s = cjs.m2d.apply(cjs, g.s)}
@@ -2632,7 +2630,6 @@ h.bf= function(){var h=this, gx=h.graphics, g=G(arguments), tf
 
         return h
     }
-
     if(S(g.f)){
         $.i(g.f, function(i){
             gx.bf(i[0])
@@ -4537,17 +4534,9 @@ container=function(){
         ct.can.abs(x, y)
         return s
     }
-    ct.ch=   ct.e=   ct.ix= ct.sChI=  ct.sChI= function(fn,n){
-        var ct=this,CH
-        if(N(n)){ct.setChildIndex(fn,n); return ct}
-        CH=[]
-        _.e(ct.children, function(ch){ CH.push(ch)})
-        if(U(fn)){return CH}
-        _.e(CH, function(ch){
-            fn(ch)
-        })
-        return ct
-    }
+
+
+
     ct.E= ct.clr= function(){return this.e(function(i){i.rm()})}
     ct.Cv=function(){return this.St().canvas }
     ct.A=function(x,y){var ct=this,  g=G(arguments)
@@ -4559,7 +4548,6 @@ container=function(){
     ct.cen= ct.pt= ct.M= function(){
         return V(this.W()/2, this.H()/2)
     }
-
 
 
     ct.bgI=function(i){var ct=this
