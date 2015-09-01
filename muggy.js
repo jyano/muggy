@@ -178,3 +178,7 @@ $.wd=  $.w=$.win=function(a, size,  id){
     return wd
 
 }
+
+$mug=  function(un, fn){
+    //make default un YOU (_username)
+    $.g('/mugByUsername/'+un,  function(mug){if(mug){fn(mug)}})}
