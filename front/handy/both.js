@@ -1,7 +1,6 @@
 above()
 function above(){
     s$=S
-
     _.b = _.bind
     _.l = _.last;
     _.f = _.first;
@@ -713,6 +712,42 @@ function above(){
         }
     }
     function alpha() {
+// _.xxx=function e(p,q,w){return S(p) && s(q)? _.eW(p,q) :S(q)?  e(p,function(v,k){eval(q)}, w)}
+
+        _.rng = function (a, b) {
+            var g = G(arguments);
+            return N(b) ? _.range(a, b) :
+                g.p ? _.range(1, (a || 10) + 1) :
+                    _.range(a)}
+
+        _.ht = function (a, b, c) {
+            if (O(a)) {
+                if (U(b)) {
+                    return a.height ? (F(a.height) ? a.height() : a.height) :
+                        _.isFunction(a.h) ? a.h() : N(a.h) ? a.h : false
+                }
+                if (N(b)) {
+                    if (F(a.height)) {
+                        a.height(b);
+                        return a
+                    }
+                    if (N(a.height)) {
+                        a.height = b;
+                        return a
+                    }
+                    if (F(a.h)) {
+                        a.h(b);
+                        return a
+                    }
+                    if (N(a.h)) {
+                        a.h = b;
+                        return a
+                    }
+                }
+
+
+            }
+        }
         _.gS = function (pop) {
 //for gen
             var g = G(arguments), that = this
@@ -794,53 +829,14 @@ function above(){
         return {x:x, y:y}
     }
     AA = function (a) {return A(a) && A(a[0])}
-
-
-
-
 }
-
- M.tN = _.tN = function (what, aNum) {return N(what) ? what : aNum || 0}
-
-_.ht = function (a, b, c) {
-    if (O(a)) {
-        if (U(b)) {
-            return a.height ? (F(a.height) ? a.height() : a.height) :
-                _.isFunction(a.h) ? a.h() : N(a.h) ? a.h : false
-        }
-        if (N(b)) {
-            if (F(a.height)) {
-                a.height(b);
-                return a
-            }
-            if (N(a.height)) {
-                a.height = b;
-                return a
-            }
-            if (F(a.h)) {
-                a.h(b);
-                return a
-            }
-            if (N(a.h)) {
-                a.h = b;
-                return a
-            }
-        }
-
-
-    }
-}
-_.rng = function (a, b) {
-    var g = G(arguments);
-    return N(b) ? _.range(a, b) : g.p ? _.range(1, (a || 10) + 1) : _.range(a)
-}
-_.toU = function () {
-    _.e(G(arguments), function (g) {
-        g = undefined
-    })
-}
-S.tU = function (a) {
-    return S(a) ? a.toUpperCase() : A(a) ? _.m(a, function (a) {
+M.tN = _.tN = function (what, aNum) {return N(what) ? what : aNum || 0}
+_.j=function (a, b) {return (a || []).join(b || ' ')}
+_.jS = function (a, b, c) {return S(a) ? $.Gj(a, b, c) : JSON.stringify(a)}
+_.jP = function (a, b, c) {return S(a) ? JSON.parse(a, b) : $(a).prepend(b, c)}
+S.tU = _.tUc = _.tU = _.tUC = function (a) {
+    return S(a) ? a.toUpperCase() :
+        A(a) ? _.m(a, function (a) {
         return S.tU(a)
     }) : a
 }
@@ -852,108 +848,118 @@ S.iU = function (a) {
 _.tLc = _.tL = _.tLC = function (a) {
     return a.toLowerCase()
 }
-_.tUc = _.tU = _.tUC = function (a) {
-    return a.toUpperCase()
-}
-_.spl = function (a, b) {
-    return String(a).split(b)
-}
-_.bf = function (a, b) {
-    return a.split(b || '.')[0]
-} //before('.')
-// _.xxx=function e(p,q,w){return S(p) && s(q)? _.eW(p,q) :S(q)?  e(p,function(v,k){eval(q)}, w)}
-//
-_.ext = function (o) {
-    o.e = o.extend
-    return o
-}//ext
-S.ext = _.ext = function (a, b) {
-    if (S(a)) {
-        return s$(a).contains('.') ? a :
-            s$(a).ensureRight(b || '.png').s
+chompEnsure()
+splt()
+imgUrl()
+function splt() {
+    _.spl = function (a, b) {
+        return String(a).split(b)
     }
-}//$.ext
-_.left = function (a, b) {
-    var g = G(arguments)
-    return S(b) ? (!g.m ? s$(a).ensureLeft(b).s
-        : s$(a).chompLeft(b).s) : 0
+    _.bf = function (a, b) {
+        return a.split(b || '.')[0]
+    } //before('.')
 }
-_.slash = _.ensureSlash = function (str) {
-    var hasSlash = str[0] == '/'
-    return hasSlash ? str : '/' + str
-}
-S.cR = function (a, b) {
-    return s$(a).chompRight(b).s
-}
-S.eR = function (a, b) {
-    return s$(a).ensureRight(b).s
-}
-S.cL = function (a, b) {
-    return s$(a).chompLeft(b).s
-}
-S.eL = function (a, b) {
-    b = b || '/';
-    return s$(a).ensureLeft(b).s
-}
-S.r = function (a, b) {
-    var g = G(arguments)
-    return g.n ? s$(a).chompRight(b).s :
-        s$(a).ensureRight(b).s
-}
-_.j=function (a, b) {
-    return (a || []).join(b || ' ')
-}
-_.jS = function (a, b, c) {
-    return S(a) ? $.Gj(a, b, c) : JSON.stringify(a)
-}
-_.jP = function (a, b, c) {
-    return S(a) ? JSON.parse(a, b) : $(a).prepend(b, c)
-}
-_.crs=$J.crs = crs=function(a){return a.split('/').pop().split('.png')[0]}//it's the opposite of 'src' ! //it strips '/me.png' -> 'me'
-_.src =  $J.src =    function f(e){
-    var _src=function(a){ a = _.ext(a)
-        return s$(a).startsWith('/')? a : '/'+ a }
-    //if(Q(e)){$l('q');e=$(e)[0]}
-    if( e.image ){ e=e.image}
-    if( C(e) ){ e = C(e) }
-    if( e.src ){ e = e.src}
-    if( e.toDataURL ){  e=tDU(e) }
-    return s$(e).contains('data:')?  e
-        :  S(e) ?  _src(e)
-        : 0
+function chompEnsure() {
+    _.left = function (a, b) {
+        alert('_.left')
+        var g = G(arguments)
+        return S(b) ? (!g.m ? s$(a).ensureLeft(b).s
+            : s$(a).chompLeft(b).s) : 0
+    }
+    _.slash = function (str) {
+        alert('_.slash')
+        var hasSlash = str[0] == '/'
+        return hasSlash ? str : '/' + str
+    } //= _.ensureSlash
+    S.cR = function (a, b) {
+        return s$(a).chompRight(b).s
+    }
+    S.eR = function (a, b) {
+        return s$(a).ensureRight(b).s
+    }
+    S.cL = function (a, b) {
+        return s$(a).chompLeft(b).s
+    }
+    S.eL = function (a, b) {
+        b = b || '/';
+        return s$(a).ensureLeft(b).s
+    }
 
-    function old(){
+    S.r = function (a, b) {
+        var g = G(arguments)
+        return g.n ? s$(a).chompRight(b).s :
+            s$(a).ensureRight(b).s
+    }
 
-        $J.src =    function f(e){
-            var _src=function(a){ a = $.extension(a)
-                return s$(a).startsWith('/')? a : '/'+ a }
-            //if(Q(e)){$l('q');e=$(e)[0]}
-            if( e.image ){ e=e.image}
-            if( C(e) ){ e = C(e) }
-            if( e.src ){ e = e.src}
-            if( e.toDataURL ){  e=tDU(e) }
-
-            return s$(e).contains('data:')?  e
-
-                :  S(e) ?  _src(e)
-
-                : 0
+}
+function imgUrl() {
+    _.isDU = $J.isDU = function (d) {
+        if (U(d)) {
+            return false
         }
-
+        return s$(d).contains('data:')
     }
+    _.src = $J.src = function f(e) {
+        var _src = function (a) {
+            a = _.ext(a)
+            return s$(a).startsWith('/') ? a : '/' + a
+        }
+        //if(Q(e)){$l('q');e=$(e)[0]}
+        if (e.image) {
+            e = e.image
+        }
+        if (C(e)) {
+            e = C(e)
+        }
+        if (e.src) {
+            e = e.src
+        }
+        if (e.toDataURL) {
+            e = tDU(e)
+        }
+        return s$(e).contains('data:') ? e : S(e) ? _src(e) : 0
+        function old() {
+
+            $J.src = function f(e) {
+                var _src = function (a) {
+                    a = $.extension(a)
+                    return s$(a).startsWith('/') ? a : '/' + a
+                }
+                //if(Q(e)){$l('q');e=$(e)[0]}
+                if (e.image) {
+                    e = e.image
+                }
+                if (C(e)) {
+                    e = C(e)
+                }
+                if (e.src) {
+                    e = e.src
+                }
+                if (e.toDataURL) {
+                    e = tDU(e)
+                }
+
+                return s$(e).contains('data:') ? e
+
+                    : S(e) ? _src(e)
+
+                    : 0
+            }
+
+        }
+    }
+    _.ext = S.ext = function (a, b) {
+        if (S(a)) {
+            return s$(a).contains('.') ? a :
+                s$(a).ensureRight(b || '.png').s
+        }
+    }
+    _.crs = $J.crs = crs = function (a) {
+        return a.split('/').pop().split('.png')[0]
+    }//it's the opposite of 'src' ! //it strips '/me.png' -> 'me'
 
 }
+//alert
 S.url = function (a) {
-    return 'url("' + a + '")'
-}
-_.isDU=$J.isDU=function(d){
-
-    if(U(d)){return false}
-    return s$(d).contains('data:')
-}
-_.ext = function (a, b) {
-    if (S(a)) {
-        return s$(a).contains('.') ? a :
-            s$(a).ensureRight(b || '.png').s
-    }
-}
+    alert('S.url')
+    return 'url("' + a + '")'}
