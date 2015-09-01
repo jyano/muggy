@@ -556,7 +556,6 @@ function stageProto() {
         if (U(a)) {
             return this.canvas.width
         }
-        ;
         this.canvas.width = a;
         return this
     }
@@ -564,10 +563,10 @@ function stageProto() {
         if (U(a)) {
             return this.canvas.height
         }
-        ;
         this.canvas.height = a;
         return this
     }
+
     st.WH = function (w, h) {
         var st = this;
         if (U(w)) {

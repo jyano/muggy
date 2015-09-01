@@ -531,6 +531,37 @@ function bmp(){
 
      }
      ob.WH=function(w,h){return this.W(w).H(h||w)}
+
+     ob.W = function (a) {
+         var i = this
+         if (U(a)) {
+             var b = i.getBounds()
+             if (b) {return b.width * i.scaleX}
+             return null
+         }
+         i.sX(i.scaleX * a / i.W())
+         return i
+     }
+
+     ob.H = function (a) {
+         var i = this
+
+         if (U(a)) {
+
+             var b = i.getBounds()
+             if (b) {
+                 return b.height * i.scaleY
+             }
+             return null
+         }
+
+         this.sY(this.scaleY * a / this.H())
+         return this
+     }
+     ob.WH = function (w, h) {
+         return this.W(w).H(h || w)
+     }
+
      ob.X=function(x,duration){//can add easing :)
 
 

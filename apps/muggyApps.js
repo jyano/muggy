@@ -194,11 +194,12 @@ AVATAR = function () {
     //d2( st )
 }
 PAINT = function () {
+
     _paintColor = 'blue'
     _paintSize = 10
     canvas = $.c('r', 400, 400).A().P('a', 100, 50)
     st = canvas.stage.tick()
-    shape = new createjs.Shape()
+    shape = new cjs.Shape()
     st.mug(function (mug) {
         mug.sXY(.4)
         st.A(shape)
@@ -215,18 +216,27 @@ PAINT = function () {
     st.on('stagemouseup', function () {
         st.removeAllEventListeners('stagemousemove')
     })
-    div = $.dK('controls').a2($('body'))
+
+    div = $.dK('controls')
+
+    div.a2($('body'))
+
     colorPicker = $(' <input   type="color">')
+
     div.A(colorPicker, $.sp(10), $.sp(20), $.sp(30))
+
     colorPicker.on('input', function () {
-        $l('input ')
+
         _paintColor = $l(colorPicker.val())
         graphics.beginStroke(_paintColor)
     })
-    $('.controls span').$$(function () {
-        graphics.setStrokeStyle(parseInt($(this).T()))
-    })
+
+    span=$('.controls span')
+        if(span && F(span.$$)){span.$$(function () {
+            graphics.setStrokeStyle(parseInt($(this).T()))
+         })}
 }
+
 EDITOR = function () {
     z()
     var r = '#0FF', size = 2, oX = 0, oY = 0, shape,
@@ -811,7 +821,7 @@ function more() {
         }
         loadImagesDiv()
         d = $.dA('y', 500).A(
-            $.bt('freeze', createjs.Tween.removeAllTweens),
+            $.bt('freeze', cjs.Tween.removeAllTweens),
             $.bt('right', function () {
                 bm.x(bm.x() + 10)
             }),
@@ -1471,7 +1481,7 @@ function more() {
         QUEUE = function () {
             z()
             s = $St(500)
-            queue = new createjs.LoadQueue()
+            queue = new cjs.LoadQueue()
             queue.on("complete", handleComplete, this)
             queue.loadManifest(
                 [{id: "myImage", src: "/me.png"}, {id: "guyImage", src: "/guy.png"}])
@@ -1479,7 +1489,7 @@ function more() {
 
                 image = queue.getResult("myImage")
 
-                s.A(createjs.bm(image))
+                s.A(cjs.bm(image))
 
             }
         }
