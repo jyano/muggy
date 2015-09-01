@@ -748,24 +748,7 @@ function above(){
 
             }
         }
-        _.gS = function (pop) {
-//for gen
-            var g = G(arguments), that = this
-            return function (val) {
-                if (U(val)) {
-                    return this[pop]
-                }
-                this[pop] = val
-                return this
-            }
-        }
-        _.ap = $a = function (ob, met, arr) {
-            var g = G(arguments)
-            if (g.t) {
-                return g.f[g.s].apply(g.f, g.t)
-            }
-            return g.f.apply(null, g.s)
-        }
+
         _.plOb = function (a) {
             return O(a) && !_.isFunction(a) && !A(a) && !(E(a))
         }
@@ -963,3 +946,21 @@ function imgUrl() {
 S.url = function (a) {
     alert('S.url')
     return 'url("' + a + '")'}
+$a = function (ob, met, arr) {
+    var g = G(arguments)
+    if (g.t) {
+        return g.f[g.s].apply(g.f, g.t)
+    }
+    return g.f.apply(null, g.s)
+}
+_.gS = function (pop) {
+//for gen
+    var g = G(arguments), that = this
+    return function (val) {
+        if (U(val)) {
+            return this[pop]
+        }
+        this[pop] = val
+        return this
+    }
+}
