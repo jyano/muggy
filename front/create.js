@@ -8,20 +8,7 @@ ct = cjs.Container.prototype
 i = cjs.DisplayObject.prototype
 
 
-ct.ct = function (x, y) {
-    var ct = this, g = G(arguments), x = g[0], y = g[1]
-    nCt = $Ct().a2(ct)
-    if (N(g[0])) {
-        nCt.XY(g[0], g[1])
-    }
-    if (F(g[0])) {
-        g[0](nCt, ct)
-    }
-    if (g.p) {
-        nCt.SL()
-    }
-    return nCt
-}
+
 ct.h =   function (x, y, c, C, l, opt) {var ct = this,
         h = cjs.h(x, y, c, C, l, opt).a2(ct)
     return h.drag()
@@ -112,47 +99,7 @@ $St = function (a, b, c, d, e) {
     }
     return st.t()
 }
-$H = function (a, b, c) {return new cjs.Shape(a, b, c)}
-$h = cjs.h = cjs.shape = cjs.shp = function (x, y, c, C, l) {
-    var g = G(arguments),
-        x = g[0],
-        y = g[1],
-        c = g[2],
-        C = g[3],
-        l = g[4],
-        h
 
-    if (cjs.iH(x)) {
-        return new cjs.Shape(x.graphics)
-    }
-
-    h = new cjs.Shape()
-
-    if (S(x)) {
-        h.c(x, y, c)
-    }
-
-    else {
-
-        if (N(x)) {
-            h.X(x)
-        }
-        if (N(y)) {
-            h.Y(y)
-        }
-
-        if (S(c)) {
-            h.c(c, C, l)
-        }
-
-
-        else if (N(c)) {
-            h.l(c)
-        }
-    }
-    //if(g.N){h.drag()}
-    return h
-}
 h.ss = h.l = function (a) {var h = this, gx = h.graphics, g, o
     if (S(a)) {
         this.C(a)
