@@ -13,76 +13,27 @@ ct.h =   function (x, y, c, C, l, opt) {var ct = this,
         h = cjs.h(x, y, c, C, l, opt).a2(ct)
     return h.drag()
 }
-$Bm = function (i) {
+$Bm = function (i) {  var bm
     if (O(i)) {
-
-        var bm
-
-
         if ($.iI(i)) {
             i = $(i)[0]
             _i = i
             bm = new cjs.Bitmap(i)
             return bm
         }
-
-
         bm = $Bm(i.i)
-
         if (i.al) {
             bm.al(i.al)
         }
         if (i.fl) {
             bm.fl(i.fl)
         }
-
         if (i.aF2) {
             bm.aF2(i.aF2)
         }
-
         return bm
 
     }
-}
-ct.rec = function (c, W, H, x, y, a) {
-    var ct = this, ct2, h,
-        o = O(c) ? c :
-            S(c) ? {c: c, w: W, h: H, x: x, y: y, a: a} :
-                N(c) ? {w: c, h: W, x: H, y: x, a: y}
-                    : {}
-
-
-    oDef(o)
-
-    ct2 = ct.ct()
-
-    h = ct2.h()
-        .XY(o.x, o.y)
-        .rt(o.a)
-        .c(o.c, o.C, o.l)
-
-
-    if (N(o.o)) {
-
-        //$l('op: '+ o.o)
-        h.opacity(o.o)
-    }
-
-    if (o.rg) {
-        h.rg(o.c, o.C)
-    }
-    if (o.lg) {
-        h.lg(o.c, o.C)
-    }
-    if (o.bm) {
-        h.bf('me', function () {
-            h.dr2(o.w, o.h)
-        })
-    }
-    else {
-        h.dr2(o.w, o.h)
-    }
-    return ct2
 }
 $St = function (a, b, c, d, e) {
     var g = G(arguments), st
@@ -99,7 +50,6 @@ $St = function (a, b, c, d, e) {
     }
     return st.t()
 }
-
 h.ss = h.l = function (a) {var h = this, gx = h.graphics, g, o
     if (S(a)) {
         this.C(a)
@@ -287,48 +237,6 @@ h.cir =  function (x, y, r, c, C, l) {//= h.circle
     }
     return h
 } //h.circle=function(o){var h=this; h.c(o).dc(o); return h}
-h.dc = function (x, y, r) {
-    var h = this, gx = h.graphics,
-        g = G(arguments), o
-    if (A(g[0]) && O(g[1])) {
-        _.e(g, function (c) {
-            h.dc(c)
-        });
-        return h
-    }
-    if (A(g[0])) {
-        return h.dc.apply(h, g[0])
-    }
-    o = O(g[0]) ? g[0] :
-        N(g[2]) ? {x: g[0], y: g[1], r: g[2]} :
-            N(g[0]) ? {r: g[0]} : {}
-    o.x = _.tN(o.x)
-    o.y = _.tN(o.y)
-    o.r = _.tN(o.r, 100)
-    //h.mt(o.x, o.y).cp()
-    gx.dc(o.x, o.y, o.r)
-    h.C()
-    return h
-
-}
-h.dr = function () {
-    var h = this,
-        gx = h.graphics,
-        g = G(arguments),
-        o = N(g[2]) ? {x: g[0], y: g[1], w: g[2], h: g[3]} :
-            N(g[0]) ? {w: g[0], h: g[1]} :
-                O(g[0]) ? g[0] : {}
-
-
-    o.x = _.tN(o.x)
-    o.y = _.tN(o.y)
-    o.w = _.tN(o.w, 100)
-    o.h = _.tN(o.h, o.w)
-
-    gx.dr(o.x, o.y, o.w, o.h)
-    return h
-
-}
 h.rec = h.rect = function (c, C, x, y, w, H, l) {
     var h = this, g = G(arguments)//h.rexx=
     o = O(c) ? c :
@@ -357,7 +265,6 @@ h.rec = h.rect = function (c, C, x, y, w, H, l) {
         //   h.mt(  [o.x-o.w/2, o.y+o.h/2],   [o.x-o.w/2, o.y-o.h/2],    [o.x+o.w/2, o.y-o.h/2],  [o.x+o.w/2, o.y+o.h/2])
     }
 }
-
 q.fileload = function (func) {
     this.addEventListener("fileload", func)
     return this
