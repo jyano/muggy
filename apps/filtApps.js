@@ -232,7 +232,7 @@ BLURFILT3=function(){z()
 
 
             cjs.Ticker.on('tick', function(){
-                $l('tick')
+
 
                 blur = M.sin(blurAmount += speed) * blurMultiple;
 
@@ -1097,7 +1097,7 @@ FILTERS=function(){
     cM.adjustBrightness(40)
     cM.adjustContrast(-60)
 
-    s = $.c(1000).A().stage.tick()
+    s = $.c(1000).A().stage.t()
 
     s.mug(  function(b){
 

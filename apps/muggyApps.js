@@ -198,7 +198,7 @@ PAINT = function () {
     _paintColor = 'blue'
     _paintSize = 10
     canvas = $.c('r', 400, 400).A().P('a', 100, 50)
-    st = canvas.stage.tick()
+    st = canvas.stage.t()
     shape = new cjs.Shape()
     st.mug(function (mug) {
         mug.sXY(.4)
@@ -490,7 +490,7 @@ SOLAR = function () {
     i.warpX = function (low, high, cush) {
         var ob = this,
             warp = M.warp(low, high, cush)
-        cjs.tick(function () {
+        cjs.t(function () {
             ob.x = warp(ob.x)
         })
 
@@ -499,7 +499,7 @@ SOLAR = function () {
     i.warpY = function (low, high, cush) {
         var ob = this,
             warp = Math.warp(low, high, cush)
-        cjs.tick(function () {
+        cjs.t(function () {
             ob.y = warp(ob.y)
         })
         return this
@@ -544,7 +544,7 @@ SOLAR = function () {
     i.bounce = function (n) {
         n = N(n) ? n : 0
         var ob = this, st = this.st(), h = st.H(), w = st.W()
-        cjs.tick(
+        cjs.t(
             function () {
                 var x = ob.x, y = ob.y
                 if (x > w - ob.W() - n || x < (n )) {
