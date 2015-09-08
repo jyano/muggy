@@ -1,5 +1,7 @@
+$El=function(tag){
+    if(tag){return document.createElement(tag)}
 
-$l('html')
+}
 $.hr = function (c, h, w) {
     var hr = $('<hr>')
 

@@ -397,70 +397,26 @@ function strJs(){
 
     }
     function imgUrl() {
-        _.isDU = $J.isDU = function (d) {
-            if (U(d)) {
-                return false
-            }
-            return s$(d).contains('data:')
-        }
-        _.src = $J.src = function f(e) {
-            var _src = function (a) {
-                a = _.ext(a)
-                return s$(a).startsWith('/') ? a : '/' + a
-            }
-            //if(Q(e)){$l('q');e=$(e)[0]}
-            if (e.image) {
-                e = e.image
-            }
-            if (C(e)) {
-                e = C(e)
-            }
-            if (e.src) {
-                e = e.src
-            }
-            if (e.toDataURL) {
-                e = tDU(e)
-            }
-            return s$(e).contains('data:') ? e : S(e) ? _src(e) : 0
-            function old() {
 
-                $J.src = function f(e) {
-                    var _src = function (a) {
-                        a = $.extension(a)
-                        return s$(a).startsWith('/') ? a : '/' + a
-                    }
-                    //if(Q(e)){$l('q');e=$(e)[0]}
-                    if (e.image) {
-                        e = e.image
-                    }
-                    if (C(e)) {
-                        e = C(e)
-                    }
-                    if (e.src) {
-                        e = e.src
-                    }
-                    if (e.toDataURL) {
-                        e = tDU(e)
-                    }
 
-                    return s$(e).contains('data:') ? e
-
-                        : S(e) ? _src(e)
-
-                        : 0
-                }
-
-            }
-        }
         _.ext = S.ext = function (a, b) {
             if (S(a)) {
                 return s$(a).contains('.') ? a :
                     s$(a).ensureRight(b || '.png').s
             }
         }
-        _.crs = $J.crs = crs = function (a) {
+        _.crs =  function (a) {
             return a.split('/').pop().split('.png')[0]
         }//it's the opposite of 'src' ! //it strips '/me.png' -> 'me'
+        S.url = function (a) {
+            return 'url("' + a + '")'
+        }
+        _.iDU = function (a) {
+            return s$(a).contains('data:')
+        }
+        _.src=function(a){
+            a = _.ext(a);return s$(a).startsWith('/')? a : '/'+ a
+        }
 
     }
 
@@ -898,4 +854,14 @@ function time() {
 }
 
 
-
+_.inx = function(){}
+_.eR=function(g,fn){_.e(_.r(g),fn)}
+_.fW=_.findWhere
+_.wh=_.where
+_.rj=_.reject
+_.evx=function(a){return a}
+R=function(n,n2){var num
+    n=N(n)?n:1
+    n2=N(n2)?n2:0
+    return M.round((M.random()*n)+n2)
+}
