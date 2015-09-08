@@ -5481,62 +5481,6 @@ later=function(){
         })
     }
 
-    cjs.bindRotate = RT = function (b, b2) {
-
-
-        //b = what the control is
-        //b2 what it should control (default = itself!)
-        //if(g.p){  //b.rgc( '+' )   }
-
-        var g = G(arguments), b = g[0], b2 = g[1] || b
-
-        return b.on('mousedown',
-
-            function (e) {
-
-                var X = e.rawX, Y = e.rawY, r = b2.rotation
-
-                b.on('pressmove', function (e) {
-
-
-                    b2.rotation = r - (   (e.rawY - Y) / 500   ) - (   e.rawX - X  )
-
-
-                })
-            })
-
-    }
-
-    cjs.bindRotate2 = RTT = function (b, b2) {
-
-
-        //b = what the control is
-        //b2 what it should control (default = itself!)
-
-
-        var g = G(arguments), b = g[0], b2 = g[1] || b
-
-
-        if (g.p) {  // b.rgc( '+' )
-        }
-
-        return b.on('mousedown',
-
-            function (e) {
-
-                var X = e.rawX, Y = e.rawY, r = b2.rotation
-
-                b.on('pressmove', function (e) {
-
-
-                    b2.rotation = r + (   (e.rawY - Y) / 500   ) + (   e.rawX - X  )
-
-
-                })
-            })
-
-    }
-
     cjs.bindScale = SC = function (b, b2) {
         var g = G(arguments), b = g[0], b2 = g[1],
             d = oE('d'), pm = oE('pm'), b2 = b2 || b,
@@ -5685,11 +5629,6 @@ later=function(){
                 RK(b, b2, m)
             })
     }
-
-
-
-
-
 
 
     cjs.bulletHit = function (bullet, inWhat) {
@@ -5901,14 +5840,8 @@ later=function(){
 
     }
 
-
-
     //to shape -> ct.circle = function(x,y,r,c){var ct=this;ct.A(cjs.circle(x,y,r,c));return ct}
-
     // 'P' is avaible.  potition?  (M is taken by Math, but mouse needs something)
-
-
-
 
 
     old=function(){
