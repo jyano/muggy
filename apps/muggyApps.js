@@ -830,60 +830,9 @@ SPRITE=function(sprite){
     return  controls}
 
 
+ 
+
 BOD=function(){z()
-    s = $St(800, 800).A(
-
-        b1=Bod()
-    )
-
-
-}
-function Bod(){
-
-    var  outerCont = $Ct()//.dg()
-    var  innerCont= $Ct()
-
-    outerCont.A( innerCont )
-    outerCont.mug(
-        function(m){
-            m.sXY(.4)
-            cjs.bindSlide(m, outerCont)
-            outerCont.bm('arm', function(b){
-               arm=b
-                b.name = 'arm' //;b.rgc()
-
-                b.sX(-.8).XY(140,110)//.rXY(-450,80)
-                //b.rX(220);b.rY(100)
-                    b.rXY(220,100)
-                cjs.bindRotate(b)
-
-                b.$$(function(){  tweens.rpunch(b)  })
-            })
-
-
-            innerCont.XY(40, 120).rXY(40, 100)
-
-            innerCont.bm('uparm', function(b){
-                b.sX(.8).XY(80,180).rXY(200, 80)
-                cjs.bindRotate(b, innerCont)
-            })
-
-            innerCont.bm('forearm',  function(b){
-                b.name='lf'
-                b.XY(-100,140).sX(.8).rXY(20,120)
-                cjs.bindRotate(b)
-                innerCont.$$(  function(){tweens.lpunch(b)})
-            })
-
-
-        })
-
-    _iC= innerCont
-    return b = outerCont
-}
-
-
-BODS=function(){z()
     s = $St(800, 800).A(
         b1=Bod1(),
         b2=Bod2().XY(300),
