@@ -1,28 +1,18 @@
-above()
-function above(){
-    s$=S
-    _.b = _.bind
-    _.l = _.last;
-    _.f = _.first;
-    _.i = _.initial;
-    _.r = _.rest
-    _.e = _.each;
-    _.m = _.map;
-    _.t = _.times
-    _.x = _.extend;
-    _.p = _.partial;
-    _.tA = function (a) {
-        return O(a) ? _.toArray(a) : [a]
-    }
-    _.tp = _.template
-    _.df = _.defaults
+s$=S
+basix()
+undrscr()
+strJs()
+math()
+time()
+
+function basix() {
     $A = Array;
     $B = Boolean;
     $N = Number;
     $O = Object;
     $F = Function;
     $S = String;
-    J= $J = JSON
+    J = $J = JSON
     U = function u(a, b) {
 
         if (_.isUndefined(b)) {
@@ -301,6 +291,209 @@ function above(){
         return M.floor(num)
     }
     M = Math
+    V=function(x,y){
+        return {x:x, y:y}
+    }
+    AA = function (a) {return A(a) && A(a[0])}
+    $a = function (ob, met, arr) {
+        var g = G(arguments)
+        if (g.t) {
+            return g.f[g.s].apply(g.f, g.t)
+        }
+        return g.f.apply(null, g.s)
+    }
+    _.gS = function (pop) {
+//for gen
+        var g = G(arguments), that = this
+        return function (val) {
+            if (U(val)) {
+                return this[pop]
+            }
+            this[pop] = val
+            return this
+        }
+    }
+    _v = function (a) {
+        return S(a) ? function () {
+            Function(a)()
+        } : F(a) ? a : F(a.value) ? a.value() : a.value
+    }
+}
+function undrscr() {
+    _.b = _.bind
+    _.l = _.last;
+    _.f = _.first;
+    _.i = _.initial;
+    _.r = _.rest
+    _.e = _.each;
+    _.m = _.map;
+    _.t = _.times
+    _.x = _.extend;
+    _.p = _.partial;
+    _.tA = function (a) {
+        return O(a) ? _.toArray(a) : [a]
+    }
+    _.tp = _.template
+    _.df = _.defaults
+    function later(){
+
+        _.ic = _.include
+        _.wo = _.without
+        _.rs = _.result
+        _.cp = _.compact
+        _.rd = function r(a, b, c, d) {
+            return F(b) && D(c) ? _.reduce(a, b, c) : _.reduceRight(a, c, b)
+        }
+        _.rp = function (a, b, c) {
+            return a.replace(b || '#', c || '')
+        }
+
+
+    }
+}
+function strJs(){
+    chompEnsure()
+    splt()
+    imgUrl()
+
+    function splt() {
+        _.spl = function (a, b) {
+            return String(a).split(b)
+        }
+        _.bf = function (a, b) {
+            return a.split(b || '.')[0]
+        } //before('.')
+    }
+    function chompEnsure() {
+        _.left = function (a, b) {
+            alert('_.left')
+            var g = G(arguments)
+            return S(b) ? (!g.m ? s$(a).ensureLeft(b).s
+                : s$(a).chompLeft(b).s) : 0
+        }
+        _.slash = function (str) {
+            alert('_.slash')
+            var hasSlash = str[0] == '/'
+            return hasSlash ? str : '/' + str
+        } //= _.ensureSlash
+        S.cR = function (a, b) {
+            return s$(a).chompRight(b).s
+        }
+        S.eR = function (a, b) {
+            return s$(a).ensureRight(b).s
+        }
+        S.cL = function (a, b) {
+            return s$(a).chompLeft(b).s
+        }
+        S.eL = function (a, b) {
+            b = b || '/';
+            return s$(a).ensureLeft(b).s
+        }
+        S.r = function (a, b) {
+            var g = G(arguments)
+            return g.n ? s$(a).chompRight(b).s :
+                s$(a).ensureRight(b).s
+        }
+
+    }
+    function imgUrl() {
+        _.isDU = $J.isDU = function (d) {
+            if (U(d)) {
+                return false
+            }
+            return s$(d).contains('data:')
+        }
+        _.src = $J.src = function f(e) {
+            var _src = function (a) {
+                a = _.ext(a)
+                return s$(a).startsWith('/') ? a : '/' + a
+            }
+            //if(Q(e)){$l('q');e=$(e)[0]}
+            if (e.image) {
+                e = e.image
+            }
+            if (C(e)) {
+                e = C(e)
+            }
+            if (e.src) {
+                e = e.src
+            }
+            if (e.toDataURL) {
+                e = tDU(e)
+            }
+            return s$(e).contains('data:') ? e : S(e) ? _src(e) : 0
+            function old() {
+
+                $J.src = function f(e) {
+                    var _src = function (a) {
+                        a = $.extension(a)
+                        return s$(a).startsWith('/') ? a : '/' + a
+                    }
+                    //if(Q(e)){$l('q');e=$(e)[0]}
+                    if (e.image) {
+                        e = e.image
+                    }
+                    if (C(e)) {
+                        e = C(e)
+                    }
+                    if (e.src) {
+                        e = e.src
+                    }
+                    if (e.toDataURL) {
+                        e = tDU(e)
+                    }
+
+                    return s$(e).contains('data:') ? e
+
+                        : S(e) ? _src(e)
+
+                        : 0
+                }
+
+            }
+        }
+        _.ext = S.ext = function (a, b) {
+            if (S(a)) {
+                return s$(a).contains('.') ? a :
+                    s$(a).ensureRight(b || '.png').s
+            }
+        }
+        _.crs = $J.crs = crs = function (a) {
+            return a.split('/').pop().split('.png')[0]
+        }//it's the opposite of 'src' ! //it strips '/me.png' -> 'me'
+
+    }
+
+
+    _.fCC = function (a) {
+        return String.fromCharCode(a)
+    }
+    _.tS = function (a) {return a.toString()}
+    _.eW=function(a,b){return s$(a).endsWith(b) } //_.eW = function (a, b) {return l$(a, _z(b)) == b}
+    _.j=function (a, b) {return (a || []).join(b || ' ')}
+    S.tU = _.tUc = _.tU = _.tUC = function (a) {
+        return S(a) ? a.toUpperCase() :
+            A(a) ? _.m(a, function (a) {
+                return S.tU(a)
+            }) : a
+    }
+    S.iU = function (a) {
+        if (S(a)) {
+            return s$(a).isUpper()
+        }
+    }
+    _.tLc = _.tL = _.tLC = function (a) {
+        return a.toLowerCase()
+    }
+    S.url = function (a) {
+        alert('S.url')
+        return 'url("' + a + '")'}
+    _.jS = function (a, b, c) {return S(a) ? $.Gj(a, b, c) : JSON.stringify(a)}
+    _.jP = function (a, b, c) {return S(a) ? JSON.parse(a, b) : $(a).prepend(b, c)}
+
+}
+function math() {
+    M.tN = _.tN = function (what, aNum) {return N(what) ? what : aNum || 0}
 
     M.fl = M.floor
     M.c = M.cos;
@@ -398,7 +591,7 @@ function above(){
     }
 
 
-    M.lC=M.lineCenter = function (x1, y1, x2, y2) {
+    M.lC = M.lineCenter = function (x1, y1, x2, y2) {
         if (A(x1)) {
 
             if (N(x1[3])) {
@@ -437,13 +630,13 @@ function above(){
             return V(x, y)
         }
     }
-    M.pIC=M.pointInCircle = function (x, y, circle) {
+    M.pIC = M.pointInCircle = function (x, y, circle) {
         var withinX, withinY
         withinX = x < circle.x + circle.radius && x > circle.x - circle.radius
         withinY = y < circle.y + circle.radius && y > circle.y - circle.radius
         return withinX && withinY
     }//Y.pointInCircle = pntInCir =
-    M.pIR=M.pointInRect = Math.pointInRectangle = function (x, y, rect) {
+    M.pIR = M.pointInRect = Math.pointInRectangle = function (x, y, rect) {
         var withinX, withinY
         var halfwidth = (rect.width || rect.w) / 2
         var halfheight = (rect.height || rect.h) / 2
@@ -485,6 +678,7 @@ function above(){
         else res = update
         return res
     }
+
     _.sz = _z = function z(a, b, c) {
         return U(b) ? _.size(a)
             : N(b) ? _z(a) == b
@@ -518,449 +712,190 @@ function above(){
             : n > M ? M
             : n
     }
-    _.fCC = function (a) {
-        return String.fromCharCode(a)
-    }
-    _.tS = function (a) {return a.toString()}
-
-    _.eW=function(a,b){return s$(a).endsWith(b) } //_.eW = function (a, b) {return l$(a, _z(b)) == b}
-
-
-
-    time()
-    function time() {
-        $Dt = Date
-        $Dt.n = $Dt.now  //->  cur time - ms since  1970 UTC (N)
-        $Dt.H = 3600000
-        $Dt.U = $Dt.UTC// ?
+}
+function time() {
+    $Dt = Date
+    $Dt.n = $Dt.now  //->  cur time - ms since  1970 UTC (N)
+    $Dt.H = 3600000
+    $Dt.U = $Dt.UTC// ?
 // same pams as longest form  of constructor (2 to 7) -> ms since 1970 UTC (N)
-        $Dt.p = $Dt.parse// date as str ->  ms since  1970  UTC (N)
-        $D = function () {
-            var d = new $Dt() // new $Dt(a,b,c,d,e)
-            d.s = d.getSeconds
-            d.t = function (m) {  //time  num MSs af/bf 1/1/70
-                d.sT = d.setTime
-                d.gT = d.getTime
-                if (U(m)) {
-                    return this.gT()
-                }
-                this.sT(m)
-                return this
+    $Dt.p = $Dt.parse// date as str ->  ms since  1970  UTC (N)
+    $D = function () {
+        var d = new $Dt() // new $Dt(a,b,c,d,e)
+        d.s = d.getSeconds
+        d.t = function (m) {  //time  num MSs af/bf 1/1/70
+            d.sT = d.setTime
+            d.gT = d.getTime
+            if (U(m)) {
+                return this.gT()
             }
-            d.s = function (s) { //secs 0-59
-                // $l('d.s')
-                var d = this
-                d.sS = d.setSeconds
-                d.gS = d.getSeconds
-                if (U(s)) {
-                    return d.gS()
-                }
-                d.sS(s)
-                return d
+            this.sT(m)
+            return this
+        }
+        d.s = function (s) { //secs 0-59
+            // $l('d.s')
+            var d = this
+            d.sS = d.setSeconds
+            d.gS = d.getSeconds
+            if (U(s)) {
+                return d.gS()
             }
-            d.h = function (m) {  //hour 0-23
-                d.gH = d.getHours
-                d.sH = d.setHours
-                if (U(m)) {
-                    return this.gH()
-                }
-                this.sH(m)
-                return this
-            }
-            d.d = d.getDay  // day of   week (from 0-6)
-            d.D = function (d) {
-                var d = this   //date  day of   month (from 1-31)
-                d.gD = d.getDate //
-                d.sD = d.setDate
-                if (U(d)) {
-                    return this.gD()
-                }
-                this.sD(d)
-                return this
-            }
-            d.M = function (m) {  //month 0-11
-                d.sM = d.setMonth
-                d.gM = d.getMonth
-                if (U(m)) {
-                    return this.getMonth()
-                }
-                this.setMonth(m)
-                return this
-            }
-            d.m = function (m) {//mins 0-59
-                d.gMn = d.getMinutes
-                d.sMn = d.setMinutes
-
-                if (U(m)) {
-                    return this.gMn()
-                }
-                this.sMn(m)
-                return this
-            }
-            d.ms = function (m) { //ms 0-999
-                d.gMs = d.getMilliseconds
-                d.sMs = d.setMilliseconds
-                if (U(m)) {
-                    return this.gMs()
-                }
-                this.sMs(m)
-                return this
-            }
-            d.y = function (y) { //fullYear (year Deprecated -> fullYear )
-                d.sY = d.setFullYear   //Sets the year (four digits) of dtOb
-                d.gY = d.getFullYear//    year (four digits)
-                if (U(y)) {
-                    return this.gY()
-                }
-                this.sY(y)
-                return this
-            }
-            //superParse(d)
-            //superUTC(d)
-
+            d.sS(s)
             return d
         }
-        $D.n = function (a) {
-            return $Dt.n(a)
-        }
-        $D.p = function (a) {
-            return $Dt.p(a)
-        }
-        $D.U = function (a) {
-            return $Dt.U(a)
-        }
-        _.gT = function () {
-            return $Dt().getTime()
-            //return $D().getTime()
-        }
-        $now = function () {
-            return {t: $D, df: $D.n()}
-        }
-        $n = function (plus) {//= $nowPlusWhat_InDateForm
-            var dateNow
-            if (U(plus)) {
-                return $D.n()
+        d.h = function (m) {  //hour 0-23
+            d.gH = d.getHours
+            d.sH = d.setHours
+            if (U(m)) {
+                return this.gH()
             }
-            //plus=plus||0
-            dateNow = $D($D.n() + plus)
-            return dateNow
+            this.sH(m)
+            return this
         }
-        _.fT = function (times, func) {
-            var timeout
-            if (N(times)) {
-                return _.times(times, function (i) {
-                    func(i + 1)
-                })
+        d.d = d.getDay  // day of   week (from 0-6)
+        d.D = function (d) {
+            var d = this   //date  day of   month (from 1-31)
+            d.gD = d.getDate //
+            d.sD = d.setDate
+            if (U(d)) {
+                return this.gD()
             }
-            if (F(times)) {
-                timeout = N(func) ? func : 100
-                func = times
+            this.sD(d)
+            return this
+        }
+        d.M = function (m) {  //month 0-11
+            d.sM = d.setMonth
+            d.gM = d.getMonth
+            if (U(m)) {
+                return this.getMonth()
             }
-            return setTimeout(func, timeout)
+            this.setMonth(m)
+            return this
         }
-        _.mo = function (n, fn) {
-            return N(n) ?
-                _.throttle(fn, n * 1000) : _.throttle(n, 1000)
-        }
-        _.sI = function (a, b) {
-            return setInterval(a, b)
-        }
-        _.ev = function (n, fn) {
-            setInterval(fn, n * 1000)
-        }
-        _.in1 = function (time) {
-            time = ( N(time) ? time : 1) * 1000
-            cjs.wait = true
-            return setTimeout(function () {
-                cjs.wait = false
+        d.m = function (m) {//mins 0-59
+            d.gMn = d.getMinutes
+            d.sMn = d.setMinutes
 
-            }, time)
-        }//in1
-        _.in = function (time, fn) {
-            var g = G(arguments),
-                o = F(g[0]) ? {fn: g[0]} : {s: g[0], fn: g[1]}
-            o.s = N(o.s) ? o.s : 1
-            o.fn = o.fn || function () {
+            if (U(m)) {
+                return this.gMn()
             }
-            return setTimeout(
-                function () {
+            this.sMn(m)
+            return this
+        }
+        d.ms = function (m) { //ms 0-999
+            d.gMs = d.getMilliseconds
+            d.sMs = d.setMilliseconds
+            if (U(m)) {
+                return this.gMs()
+            }
+            this.sMs(m)
+            return this
+        }
+        d.y = function (y) { //fullYear (year Deprecated -> fullYear )
+            d.sY = d.setFullYear   //Sets the year (four digits) of dtOb
+            d.gY = d.getFullYear//    year (four digits)
+            if (U(y)) {
+                return this.gY()
+            }
+            this.sY(y)
+            return this
+        }
+        //superParse(d)
+        //superUTC(d)
 
-                    if (g.m) {
-                        $.c$()
-                    }
-                    o.fn()
-
-                },
-                o.s * 1000)
-        }
-        _.cI = _.xI = function (a, b) {
-            clearInterval(a)
-        }
-        _.timeout = function (times, func) {
-            alert('T')
-            var timeout
-            if (N(times)) {
-                return _.t(times, function (i) {
-                    func(i + 1)
-                })
-            }
-            if (F(times)) {
-                timeout = N(func) ? func : 100;
-                func = times
-            }
-            return setTimeout(func, timeout)
-        }
+        return d
     }
-    function alpha() {
-// _.xxx=function e(p,q,w){return S(p) && s(q)? _.eW(p,q) :S(q)?  e(p,function(v,k){eval(q)}, w)}
+    $D.n = function (a) {
+        return $Dt.n(a)
+    }
+    $D.p = function (a) {
+        return $Dt.p(a)
+    }
+    $D.U = function (a) {
+        return $Dt.U(a)
+    }
+    _.gT = function () {
+        return $Dt().getTime()
+        //return $D().getTime()
+    }
+    $now = function () {
+        return {t: $D, df: $D.n()}
+    }
+    $n = function (plus) {//= $nowPlusWhat_InDateForm
+        var dateNow
+        if (U(plus)) {
+            return $D.n()
+        }
+        //plus=plus||0
+        dateNow = $D($D.n() + plus)
+        return dateNow
+    }
+    _.fT = function (times, func) {
+        var timeout
+        if (N(times)) {
+            return _.times(times, function (i) {
+                func(i + 1)
+            })
+        }
+        if (F(times)) {
+            timeout = N(func) ? func : 100
+            func = times
+        }
+        return setTimeout(func, timeout)
+    }
+    _.mo = function (n, fn) {
+        return N(n) ?
+            _.throttle(fn, n * 1000) : _.throttle(n, 1000)
+    }
+    _.sI = function (a, b) {
+        return setInterval(a, b)
+    }
+    _.ev = function (n, fn) {
+        setInterval(fn, n * 1000)
+    }
+    _.in1 = function (time) {
+        time = ( N(time) ? time : 1) * 1000
+        cjs.wait = true
+        return setTimeout(function () {
+            cjs.wait = false
 
-        _.rng = function (a, b) {
-            var g = G(arguments);
-            return N(b) ? _.range(a, b) :
-                g.p ? _.range(1, (a || 10) + 1) :
-                    _.range(a)}
+        }, time)
+    }//in1
+    _.in = function (time, fn) {
+        var g = G(arguments),
+            o = F(g[0]) ? {fn: g[0]} : {s: g[0], fn: g[1]}
+        o.s = N(o.s) ? o.s : 1
+        o.fn = o.fn || function () {
+        }
+        return setTimeout(
+            function () {
 
-        _.ht = function (a, b, c) {
-            if (O(a)) {
-                if (U(b)) {
-                    return a.height ? (F(a.height) ? a.height() : a.height) :
-                        _.isFunction(a.h) ? a.h() : N(a.h) ? a.h : false
+                if (g.m) {
+                    $.c$()
                 }
-                if (N(b)) {
-                    if (F(a.height)) {
-                        a.height(b);
-                        return a
-                    }
-                    if (N(a.height)) {
-                        a.height = b;
-                        return a
-                    }
-                    if (F(a.h)) {
-                        a.h(b);
-                        return a
-                    }
-                    if (N(a.h)) {
-                        a.h = b;
-                        return a
-                    }
-                }
+                o.fn()
 
-
-            }
-        }
-
-        _.plOb = function (a) {
-            return O(a) && !_.isFunction(a) && !A(a) && !(E(a))
-        }
-        _.px = function (a) {
-            return _.nN(a) ? a + 'px' : a
-        }
-
-        _.fA = function (a) {
-            return function () {
-                alert(a)
-            }
-        }
-        _.fL = function (a) {
-            return function () {
-                $l(a)
-            }
-        }
-
+            },
+            o.s * 1000)
     }
-    _v = function (a) {
-        return S(a) ? function () {
-            Function(a)()
-        } : F(a) ? a : F(a.value) ? a.value() : a.value
+    _.cI = _.xI = function (a, b) {
+        clearInterval(a)
     }
-    function later() {__ = '!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
-
-        _.ic = _.include
-        _.wo = _.without
-
-        _.cp = _.compact
-        _.ic = _.include;
-        _.ks = _.keys;
-        _.rs = _.result
-        _.ixv = function (a, b) {
-            return U(b) ? _.invert(a)
-                : _a(_.intersection, arguments)
+    _.timeout = function (times, func) {
+        alert('T')
+        var timeout
+        if (N(times)) {
+            return _.t(times, function (i) {
+                func(i + 1)
+            })
         }
-        _.bn = function (a, b, c) {
-            return F(a) ? _.bind(a, b, c) : _.bindAll(a, b, c)
+        if (F(times)) {
+            timeout = N(func) ? func : 100;
+            func = times
         }
-        _.fl = _.F = function (a) {
-            if (A(a)) {
-                return _.flatten(a)
-            }
-        }
-        _.rd = function r(a, b, c, d) {
-            return F(b) && D(c) ? _.reduce(a, b, c) : _.reduceRight(a, c, b)
-        }
-        _.rp = function (a, b, c) {
-            return a.replace(b || '#', c || '')
-        }
-        _.rng = function (a, b) {
-            var g = G(arguments);
-            return N(b) ? _.range(a, b) : g.p ? _.range(1, (a || 10) + 1) : _.range(a)
-        }
-        _.ey = function (a, b, c) {
-            return _.every(a, b, c)
-        }
-    }
-    V=function(x,y){
-        return {x:x, y:y}
-    }
-    AA = function (a) {return A(a) && A(a[0])}
-}
-M.tN = _.tN = function (what, aNum) {return N(what) ? what : aNum || 0}
-_.j=function (a, b) {return (a || []).join(b || ' ')}
-_.jS = function (a, b, c) {return S(a) ? $.Gj(a, b, c) : JSON.stringify(a)}
-_.jP = function (a, b, c) {return S(a) ? JSON.parse(a, b) : $(a).prepend(b, c)}
-S.tU = _.tUc = _.tU = _.tUC = function (a) {
-    return S(a) ? a.toUpperCase() :
-        A(a) ? _.m(a, function (a) {
-        return S.tU(a)
-    }) : a
-}
-S.iU = function (a) {
-    if (S(a)) {
-        return s$(a).isUpper()
+        return setTimeout(func, timeout)
     }
 }
-_.tLc = _.tL = _.tLC = function (a) {
-    return a.toLowerCase()
-}
-chompEnsure()
-splt()
-imgUrl()
-function splt() {
-    _.spl = function (a, b) {
-        return String(a).split(b)
-    }
-    _.bf = function (a, b) {
-        return a.split(b || '.')[0]
-    } //before('.')
-}
-function chompEnsure() {
-    _.left = function (a, b) {
-        alert('_.left')
-        var g = G(arguments)
-        return S(b) ? (!g.m ? s$(a).ensureLeft(b).s
-            : s$(a).chompLeft(b).s) : 0
-    }
-    _.slash = function (str) {
-        alert('_.slash')
-        var hasSlash = str[0] == '/'
-        return hasSlash ? str : '/' + str
-    } //= _.ensureSlash
-    S.cR = function (a, b) {
-        return s$(a).chompRight(b).s
-    }
-    S.eR = function (a, b) {
-        return s$(a).ensureRight(b).s
-    }
-    S.cL = function (a, b) {
-        return s$(a).chompLeft(b).s
-    }
-    S.eL = function (a, b) {
-        b = b || '/';
-        return s$(a).ensureLeft(b).s
-    }
 
-    S.r = function (a, b) {
-        var g = G(arguments)
-        return g.n ? s$(a).chompRight(b).s :
-            s$(a).ensureRight(b).s
-    }
 
-}
-function imgUrl() {
-    _.isDU = $J.isDU = function (d) {
-        if (U(d)) {
-            return false
-        }
-        return s$(d).contains('data:')
-    }
-    _.src = $J.src = function f(e) {
-        var _src = function (a) {
-            a = _.ext(a)
-            return s$(a).startsWith('/') ? a : '/' + a
-        }
-        //if(Q(e)){$l('q');e=$(e)[0]}
-        if (e.image) {
-            e = e.image
-        }
-        if (C(e)) {
-            e = C(e)
-        }
-        if (e.src) {
-            e = e.src
-        }
-        if (e.toDataURL) {
-            e = tDU(e)
-        }
-        return s$(e).contains('data:') ? e : S(e) ? _src(e) : 0
-        function old() {
 
-            $J.src = function f(e) {
-                var _src = function (a) {
-                    a = $.extension(a)
-                    return s$(a).startsWith('/') ? a : '/' + a
-                }
-                //if(Q(e)){$l('q');e=$(e)[0]}
-                if (e.image) {
-                    e = e.image
-                }
-                if (C(e)) {
-                    e = C(e)
-                }
-                if (e.src) {
-                    e = e.src
-                }
-                if (e.toDataURL) {
-                    e = tDU(e)
-                }
-
-                return s$(e).contains('data:') ? e
-
-                    : S(e) ? _src(e)
-
-                    : 0
-            }
-
-        }
-    }
-    _.ext = S.ext = function (a, b) {
-        if (S(a)) {
-            return s$(a).contains('.') ? a :
-                s$(a).ensureRight(b || '.png').s
-        }
-    }
-    _.crs = $J.crs = crs = function (a) {
-        return a.split('/').pop().split('.png')[0]
-    }//it's the opposite of 'src' ! //it strips '/me.png' -> 'me'
-
-}
-//alert
-S.url = function (a) {
-    alert('S.url')
-    return 'url("' + a + '")'}
-$a = function (ob, met, arr) {
-    var g = G(arguments)
-    if (g.t) {
-        return g.f[g.s].apply(g.f, g.t)
-    }
-    return g.f.apply(null, g.s)
-}
-_.gS = function (pop) {
-//for gen
-    var g = G(arguments), that = this
-    return function (val) {
-        if (U(val)) {
-            return this[pop]
-        }
-        this[pop] = val
-        return this
-    }
-}
