@@ -1,3 +1,250 @@
+st = cjs.Stage.prototype
+ct = cjs.Container.prototype
+t = cjs.Text.prototype
+st = cjs.Stage.prototype
+h =  cjs.Shape.prototype
+ct = cjs.Container.prototype
+i = cjs.DisplayObject.prototype
+
+
+ct.h =   function (x, y, c, C, l, opt) {var ct = this,
+    h = cjs.h(x, y, c, C, l, opt).a2(ct)
+    return h.drag()
+}
+$Bm = function (i) {  var bm
+    if (O(i)) {
+        if ($.iI(i)) {
+            i = $(i)[0]
+            _i = i
+            bm = new cjs.Bitmap(i)
+            return bm
+        }
+        bm = $Bm(i.i)
+        if (i.al) {
+            bm.al(i.al)
+        }
+        if (i.fl) {
+            bm.fl(i.fl)
+        }
+        if (i.aF2) {
+            bm.aF2(i.aF2)
+        }
+        return bm
+
+    }}
+
+$St = function (a, b, c, d, e) {
+    var g = G(arguments), st
+    st = A(g[0]) ? new cjs.Stage(g[0][0]) :
+        O(g[0]) ? new cjs.Stage($(g[0])[0]) :
+            new cjs.Stage($.c(g[0], g[1], g[2], g[3], g[4]) [0])
+    st.c = st.can = $(st.canvas)
+    if (g.p) {
+        st.can.dg()
+    }
+    if (!g.n) {
+
+        st.can.A()
+    }
+    return st.t()
+}
+h.ss = h.l = function (a) {var h = this, gx = h.graphics, g, o
+    if (S(a)) {
+        this.C(a)
+        return this.ss.apply(this, _.rest(arguments))
+    }
+    g = G(arguments)
+    o = {
+        l: g[0],
+        caps: g[1],
+        jts: g[2],
+        mit: g[3],
+        ignSc: false
+    }
+    o.l = N(o.l) ? o.l : 4
+    if (o.caps == 'r') {
+        o.caps = 'round'
+    }
+    if (o.caps == 's') {
+        o.caps = 'square'
+    }
+    if (o.caps == 'b') {
+        o.caps = 'butt'
+    }
+    if (o.mit == 'r') {
+        o.mit = 'round'
+    }
+    if (o.mit == 'm') {
+        o.mit = 'miter'
+    }
+    if (o.mit == 'b') {
+        o.mit = 'bevel'
+    }
+    o.jts = o.jts || 0
+    if (U(o.mit)) {
+        o.mit = 100
+    }
+    if (g.n) {
+        o.ignSc = true
+    }
+    gx.ss(o.l, o.caps, o.jts, o.mit, o.ignSc)
+    return h
+}
+ct.cir = function (c, r, x, y) {
+    var ct = this,cir
+    if (!S(c)) {y = x;x = r;r = c;c = 'y'}
+    y = N(y,0)
+    x = N(x,0)
+    r =  N(r, 50)
+    cir= $h().c(c).dc(x, y, r)
+    ct.A(cir)
+    return cir
+}
+
+
+
+/*
+ h.col = h.fs = function () {
+ this.graphics.fs.apply(
+ this.graphics, arguments)
+ return this
+ }
+ h.sC = function () {
+ this.graphics.sC.apply(this.graphics, arguments)
+ return this
+ }
+ h.C = h.s = function (a, b, c, d, e, f) {
+ var h = this, gx = h.graphics
+ if (N(a)) {
+ gx.s((a > 0 && a < 1) ? cjs.rgb(0, 0, 0, a) : cjs.rgb(a, b, c, d))
+ }
+ else if (S(a)) {
+
+ gx.s(oO('c', a))
+
+
+ }
+
+ else {
+ gx.s(a, b, c, d, e)
+ }
+ return h
+ }
+ h.c = h.f = function (a, b, c, d, e) {
+ var h = this, gx = h.graphics
+
+ if (N(a)) {
+
+
+ gx.f((a > 0 && a < 1) ? cjs.rgb(0, 0, 0, a) : cjs.rgb(a, b, c, d))
+ }
+
+ else if (S(a)) {
+
+ gx.f(oO('c', a))
+
+ }
+
+ else {
+ gx.f(a, b, c, d, e)
+ }
+
+ return h
+ }*/
+
+
+function probUnused() {
+    cjs.makeManifest = cjs.makeMan = function (a) {
+        alert('cjs.makeMan')
+        return cjs.manifest.apply(null, _.m(a.images, function (i) {
+                return Graphics.fromSource(i)
+            })
+        )
+    }
+}
+function later(){function temp() {
+    TWEEN1 = function (a) {
+        z()
+
+
+        st = $St(800, 500)
+
+
+        st.mug(function (bm) {
+
+
+            i = cjs.Tw.g(bm, {loop: true})
+
+            i.to({x: 400}, 1000, cjs.Ea.getPowInOut(4))
+                .to({alpha: 0, y: 175}, 500, cjs.Ea.getPowInOut(2))
+                .to({alpha: 0, y: 225}, 100)
+                .to({alpha: 1, y: 200}, 500, cjs.Ea.getPowInOut(2))
+                .to({x: 100}, 800, cjs.Ea.getPowInOut(2))
+
+        })
+
+
+    }
+}}
+q = cjs.LoadQueue.prototype
+q.fileload = function (func) {
+    this.addEventListener("fileload", func)
+    return this
+}
+q.complete = function (func) {
+    this.addEventListener("complete", func)
+    return this
+}
+q.manifest = function (manifest) {
+    this.loadManifest(manifest)
+    return this
+}
+q.mf = function () {
+    this.loadManifest(cjs.mf.apply(null, arguments))
+    return this
+
+}
+q.bm = function (img) {
+
+    img = this.getResult(img)
+    return $Bm(img)
+}
+cjs.handleFileLoad = function (e) {
+    alert('cjs.handleFileLoad')
+    if (e.item.type == "image") {
+        images[e.item.id] = e.result
+    }
+}
+cjs.mf =  function (a) {
+
+    var g = G(arguments), mf = []
+    _.e(g, function (v) {
+        mf.push({src: _.src(v), id: v})
+    })
+    return mf
+}//used
+Q = function (imgs, func) {var q = cjs.lq()
+    mf = []
+    _.e(imgs, function (v) {
+        mf.push({
+
+            src: _.src(v),
+            id: v
+
+        })
+    })
+    q.manifest(mf)
+    q.complete(function () {
+        func(q)
+    })
+
+}
+
+
+
+
+
+
 $.dragFrame = function (ob) {
     var outerDiv = $.d('r').drag().pad(20).A()
     ob = ob || $.d('y', 50, 50).mar(20)

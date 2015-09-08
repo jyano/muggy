@@ -398,8 +398,7 @@ function above(){
     }
 
 
-
-    M.lineCenter = function (x1, y1, x2, y2) {
+    M.lC=M.lineCenter = function (x1, y1, x2, y2) {
         if (A(x1)) {
 
             if (N(x1[3])) {
@@ -438,13 +437,13 @@ function above(){
             return V(x, y)
         }
     }
-    M.pointInCircle = function (x, y, circle) {
+    M.pIC=M.pointInCircle = function (x, y, circle) {
         var withinX, withinY
         withinX = x < circle.x + circle.radius && x > circle.x - circle.radius
         withinY = y < circle.y + circle.radius && y > circle.y - circle.radius
         return withinX && withinY
     }//Y.pointInCircle = pntInCir =
-    M.pointInRect = Math.pointInRectangle = function (x, y, rect) {
+    M.pIR=M.pointInRect = Math.pointInRectangle = function (x, y, rect) {
         var withinX, withinY
         var halfwidth = (rect.width || rect.w) / 2
         var halfheight = (rect.height || rect.h) / 2
@@ -454,6 +453,7 @@ function above(){
         return withinX && withinY
     }
     M.circlesOverlap = function (c1, c2) {
+        alert('M.circlesOverlap')
         var sum, dist, rads
         sum = sqr(c1.x - c2.x) + sqr(c1.y - c2.y)
         dist = sqrt(sum)
