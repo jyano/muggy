@@ -1,5 +1,6 @@
-_.th= _.throttle
-cjs = createjs; T = cjs.Ticker
+
+cjs = createjs;
+T = cjs.Ticker
 T.p = function () {
     T.setPaused(false);
     return T
@@ -52,7 +53,6 @@ T.e = function (runTimePropReturnedInsteadOfTime) {
 T.m = function (ticks) {
     return T.getMeasuredTickTime(ticks)
 } //ticks: // optional The number of previous ticks over which to measure the average time spent in a tick.Defaults to the number of ticks per second.To get only the last tick's time, pass in 1.
-
 h = cjs.Shape.prototype
 gx = cjs.Graphics.prototype
 i = cjs.DisplayObject.prototype
@@ -60,6 +60,9 @@ s=st = cjs.Stage.prototype
 ct = cjs.Container.prototype
 q = cjs.LoadQueue.prototype
 t = cjs.Text.prototype
+
+
+
 
 ct.t = ct.oT = function (fn) {
     var g = G(arguments)
@@ -117,6 +120,7 @@ ct.A = function () {var ct = this, g = G(arguments), $b = $('body')
 }
 
 cjs.iDO= function(i){return O(i)&&F(i.getStage)} //cjs.isOb = function (s) {return O(s) && s.parent}
+
 ct.u = function () {
     this.update();
     return this
@@ -2420,7 +2424,6 @@ h.pol = function (V, c, C, l) {
     }
     return h
 }
-
 KEYOB = {
     up: 38, u: 38,
     down: 40, d: 40,
@@ -2431,7 +2434,6 @@ KEYOB = {
 }
 
 $.k = $.key = $.keyDown = $.kD = kD = function self(key, fn) {
-
     if (O(key)) {
         _.e(key, function (fn, k) {
             if (s$(k).isUpper()) {
@@ -2443,20 +2445,16 @@ $.k = $.key = $.keyDown = $.kD = kD = function self(key, fn) {
         })
         return
     }
-
     if (KEYOB[key]) {
         key = KEYOB[key]
     }
-
-
     $('body').on('keydown', function (e) {
-
         if (e.which == key) {
             fn(e, cjs.Keys)
         }
     })
-
 }
+
 $.keyUp = $.kU = kU = function (key, funk) {
     keyObj = {
         up: 38, u: 38,
@@ -2470,16 +2468,15 @@ $.keyUp = $.kU = kU = function (key, funk) {
         key = keyObj[key]
     }
     $('body').on('keyup', function (e) {
-
         if (e.which == key) {
             funk(e, cjs.Keys)
         }
     })
 }
+
+
 cjs.Keys = function (o) {
-
     if (O(o)) {
-
         if (F(o.u)) {
             cjs.tick(function () {
                 if (cjs.Keys.u) {
@@ -2487,7 +2484,6 @@ cjs.Keys = function (o) {
                 }
             })
         }
-
         if (F(o.d)) {
             cjs.tick(function () {
                 if (cjs.Keys.d) {
@@ -2495,7 +2491,6 @@ cjs.Keys = function (o) {
                 }
             })
         }
-
         if (F(o.l)) {
             cjs.tick(function () {
                 if (cjs.Keys.l) {
@@ -2503,7 +2498,6 @@ cjs.Keys = function (o) {
                 }
             })
         }
-
         if (F(o.r)) {
             cjs.tick(function () {
                 if (cjs.Keys.r) {
@@ -2511,7 +2505,6 @@ cjs.Keys = function (o) {
                 }
             })
         }
-
     }
 }
 cjs.watchKeys = function () {
@@ -2575,6 +2568,7 @@ cjs.watchKeys = function () {
         cjs.Keys.d = cjs.Keys.down = false
     })
 }
+
 K = function (k, fn) {
     var g = G(arguments), o, key
     if (g.u) {
@@ -2686,8 +2680,7 @@ K = function (k, fn) {
                 K(k, fn)
             })
         }
-        return
-    }
+        return}
     o = s$(k).isUpper() ? {on: 'keyup', k: k.toLowerCase()} : {on: 'keydown', k: k}
     if (g.p) {
         return z(function () {
@@ -2702,13 +2695,12 @@ K = function (k, fn) {
             fn(e)
         }
     })
-
     function Key(k) {
         var ob = {u: 38, d: 40, l: 37, r: 39, s: 32, e: 13};
         return ob[k] ? ob[k] : k
     }
-
 }
+
 $.space = function (fn) {
     return $.kD('space', fn)
 }
@@ -2720,15 +2712,12 @@ ct.W = function (w) {
     can.width = w
     return this
 }
-
-
 ct.H = function (w) {
     var can = this.getStage().canvas
     if (U(w)) {return can.height}
     can.height = w
     return this
 }
-
 h.rec = function () {var h = this, g = G(arguments), o
     if (g.OO_) {g.e(function (g) {h.rec(g)}); return h }
 
@@ -2761,9 +2750,6 @@ h.rec = function () {var h = this, g = G(arguments), o
     return h
 
 }
-
-
-
 ct.bm = function () {
 
     var ct = this, g = G(arguments), o, bmp
@@ -2863,181 +2849,177 @@ $St = function(){var st, g = G(arguments), cv
     }
 }
 
-$df =  {
-    bsDF:  function (o) {
-        o = o || {}
-        o.x = N(o.x, 0);
-        o.y = N(o.y, 0);
-        o.rt = N(o.rt, 0);
-        o.al = N(o.al, 1)
-        return o
-    },
-    xyr:  function (o) {
-        o.x = N(o.x, 0)
-        o.y = N(o.y, 0)
-        o.r = N(o.r, 0)
-        return o
-    },
-    im:  function (o) {o.i = o.i || 'me'; o.al = N(o.al, 1)},
-    sc:  function (o) {
-        o.sc = N(o.sc, ( cjs.iH(o.i) ? 1 : .4 ));
-        if (!A(o.sc)) {
-            o.sc = [o.sc, o.sc]
+dat()
+function dat() {
+    $df = {
+        bsDF: function (o) {
+            o = o || {}
+            o.x = N(o.x, 0);
+            o.y = N(o.y, 0);
+            o.rt = N(o.rt, 0);
+            o.al = N(o.al, 1)
+            return o
+        },
+        xyr: function (o) {
+            o.x = N(o.x, 0)
+            o.y = N(o.y, 0)
+            o.r = N(o.r, 0)
+            return o
+        },
+        im: function (o) {
+            o.i = o.i || 'me';
+            o.al = N(o.al, 1)
+        },
+        sc: function (o) {
+            o.sc = N(o.sc, ( cjs.iH(o.i) ? 1 : .4 ));
+            if (!A(o.sc)) {
+                o.sc = [o.sc, o.sc]
+            }
+            ;
+            return o
+        },
+        b: function () {
+            var g = G(arguments), o
+            o = g.A ? {hs: g.f} : g.f || {}
+            o.hs = o.hs || []
+            o.i = o.i || 'me'
+            return o
+        },
+        h: function (o) {
+            o = o || {}
+            if (U(o.v)) {
+                o.v = [[-100, 50], [0, -50], [100, 0]]
+            }
+            //o.v= _.m(o.v, function(v){v=V(v);return [v.x,v.y]})
+            o.c = o.c || 'p'
+            o.x = _.tN(o.x)
+            o.y = _.tN(o.y)
+            o.a = _.tN(o.a)
+            o.r = N(o.r, 40)
+            o.w = N(o.w, 50)
+            o.h = N(o.h, o.w || 100)
+            o.d = N(o.d, 0.5)
+            o.b = N(o.b, 0.5)
+            o.f = N(o.f, 0.5)
+            o.s = D(o.s) ? o.s : 0
+            o.o = N(o.o, 1)
+            o.q = D(q) ? o.q : true
+            return o
+        },
+        rec: function (o) {
+            o.al = N(o.al, 1)
+            o.c = o.c || 'z'
+            o.C = o.C || 'w'
+            o.x = N(o.x, 0)
+            o.y = N(o.y, 0)
+            o.a = N(o.a, 0)
+            o.w = N(o.w, 50)
+            o.h = N(o.h, 50)
+            return o
+        },
+        cov: function (x, y, c, C, l, l2) {
+
+            alert('b2d.cov')
+            var g = G(arguments), x = g[0], y = g[1], c = g[2], C = g[3], l = g[4], l2 = g[5],
+
+                o = N(c) ? {x: x, y: y, a: c, c: C, C: l, l: l2}
+                    : N(x) ? {x: x, y: y, c: c, C: C, l: l}
+                    : x,
+                h = new cjs.Shape()
+
+            df.oDef(o)
+
+            h.XY(o.x, o.y).rot(o.a).c(o.c, o.C, o.l)
+
+            if (o.d) {
+                h.drag()
+            }
+
+            return h
+        },
+        oDef: function (o) {
+            o = o || {}
+            o.x = N(o.x, 0)
+            o.y = N(o.y, 0)
+            o.a = N(o.a, 0)
+            o.w = N(o.w, 50)
+            o.h = N(o.h, 50)
+            o.r = N(o.r, 50)
+            o.c = o.c || 'z'
+            o.C = o.C || 'w'
+            return o
+        },
+        grad: function (o) {
+
+            o = o || {}
+            o.c1 = oO('c', o.c1 || 'z')
+            o.c2 = oO('c', o.c2 || 'w')
+            o.s1 = N(o.s1)
+            o.s2 = N(o.s2, 1)
+            o.x1 = N(o.x1)
+            o.y1 = N(o.y1)
+            return o
         }
-        ;
-        return o
-    },
-    b: function () {
-        var g = G(arguments), o
-        o = g.A ? {hs: g.f} : g.f || {}
-        o.hs = o.hs || []
-        o.i = o.i || 'me'
-        return o
-    },
-    h: function (o) {
-        o = o || {}
-        if (U(o.v)) {
-            o.v = [[-100, 50], [0, -50], [100, 0]]
-        }
-        //o.v= _.m(o.v, function(v){v=V(v);return [v.x,v.y]})
-        o.c = o.c || 'p'
-        o.x = _.tN(o.x)
-        o.y = _.tN(o.y)
-        o.a = _.tN(o.a)
-        o.r = N(o.r, 40)
-        o.w = N(o.w, 50)
-        o.h = N(o.h, o.w || 100)
-        o.d = N(o.d, 0.5)
-        o.b = N(o.b, 0.5)
-        o.f = N(o.f, 0.5)
-        o.s = D(o.s) ? o.s : 0
-        o.o = N(o.o, 1)
-        o.q = D(q) ? o.q : true
-        return o
-    },
-    rec : function (o) {
-        o.al = N(o.al, 1)
-        o.c = o.c || 'z'
-        o.C = o.C || 'w'
-        o.x = N(o.x, 0)
-        o.y = N(o.y, 0)
-        o.a = N(o.a, 0)
-        o.w = N(o.w, 50)
-        o.h = N(o.h, 50)
-        return o
-    },
-    cov : function (x, y, c, C, l, l2) {
-
-        alert('b2d.cov')
-        var g = G(arguments), x = g[0], y = g[1], c = g[2], C = g[3], l = g[4], l2 = g[5],
-
-            o = N(c) ? {x: x, y: y, a: c, c: C, C: l, l: l2}
-                : N(x) ? {x: x, y: y, c: c, C: C, l: l}
-                : x,
-            h = new cjs.Shape()
-
-        df.oDef(o)
-
-        h.XY(o.x, o.y).rot(o.a).c(o.c, o.C, o.l)
-
-        if (o.d) {
-            h.drag()
-        }
-
-        return h
-    },
-    oDef : function (o) {
-        o = o || {}
-        o.x = N(o.x, 0)
-        o.y = N(o.y, 0)
-        o.a = N(o.a, 0)
-        o.w = N(o.w, 50)
-        o.h = N(o.h, 50)
-        o.r = N(o.r, 50)
-        o.c = o.c || 'z'
-        o.C = o.C || 'w'
-        return o
-    },
-    grad : function (o) {
-
-        o = o || {}
-        o.c1 = oO('c', o.c1 || 'z')
-        o.c2 = oO('c', o.c2 || 'w')
-        o.s1 = N(o.s1)
-        o.s2 = N(o.s2, 1)
-        o.x1 = N(o.x1)
-        o.y1 = N(o.y1)
-        return o
     }
+    turtle2 = [['green', [0, 0], [-50, -10], [-40, -20], [0, -40], [20, -10]], ['yellow', [-60, -30], [-50, -60], [-20, -45], [-15, -35]], ['yellow', [-50, 10], [-50, -10], [-40, -10], [-40, 10]],
+        ['yellow', [-10, 10], [-10, -10], [0, -10], [0, 10]]]
+    dick = [
+        [50, 300, 0, -100],
+        [50, 100, 150],
+        [50, -100, 150]
+    ]
+    guyInBed = [
+        [30],
+        [20, 30, 30],
+        [100, 30]
+    ]
+    cjs.somePolyFixt = [
+        [
+            [-100, 0], [0, -100],
+            [100, 0], [60, 50]]]
+    cjs.compoundShape = [
+        [50, 10],
+        [60, 30, 0, 0, 40],
+        [120, 30, 0, 0, 29],
+        [60, 10, 0, 50, 60],
+        [84, 10, 15, 80, -120]
+    ]
+    cjs.compoundShape2 = [
+        [50, 10],
+        [20, 20],
+        [20, 10, 0, 0, 10],
+        [40, 10, 50, 0, 45],
+        [84, 10, 15, 80, -120],
+        [60, 10, 0, 50, 60]
+    ]
+    cjs.compoundStar = [
+        [10, 10],
+        [20],
+        [4, 80, 10, 30, 135],
+        [4, 80, 0, 0, 45],
+        [4, 80, 100, 0, 90],
+        [4, 80, 0, 0, 180]
+    ]
+    v1 = [[-100, 0], [0, -100], [100, -50], [0, -50]]
+    turtle = [
+        ['green', [0, 0], [-50, -10], [-40, -20], [0, -40], [20, -10]]
+
+        , ['yellow', [10, -10], [20, -30], [50, -15], [45, -5]]
+
+        , ['yellow',
+
+            [-50, 10], [-50, -10], [-40, -10], [-40, 10]
+        ]
+
+        , ['yellow',
+
+            [-10, 10], [-10, -10], [0, -10], [0, 10]
+        ]
+    ]
+    pin = [
+        ['o', [-20, 20], [0, -80], [20, 20], [0, -40]],
+        ['w', 8, 0, -75],
+        ['w', 8, -20, 20],
+        ['w', 8, 20, 20]
+    ]
 }
-
-
-
-turtle2 = [['green',[0,0],[-50,-10],[-40,-20],[0,-40],[20,-10]],  ['yellow',[-60, -30], [-50,-60], [-20,-45], [-15,-35] ], ['yellow', [-50,10],[-50,-10],[-40,-10],[-40,10]], ['yellow', [-10,10],[-10,-10],[0,-10],[0,10]]]
-
-dick = [
-    [50, 300, 0, -100],
-    [50, 100, 150],
-    [50, -100, 150]
-]
-guyInBed = [
-    [30],
-    [20, 30, 30],
-    [100, 30]
-]
-
-cjs.somePolyFixt = [
-    [
-        [-100, 0], [0, -100],
-        [100, 0], [60, 50]]]
-cjs.compoundShape = [
-    [50, 10],
-    [60, 30, 0, 0, 40],
-    [120, 30, 0, 0, 29],
-    [60, 10, 0, 50, 60],
-    [84, 10, 15, 80, -120]
-]
-cjs.compoundShape2 = [
-    [50, 10],
-    [20, 20],
-    [20, 10, 0, 0, 10],
-    [40, 10, 50, 0, 45],
-    [84, 10, 15, 80, -120],
-    [60, 10, 0, 50, 60 ]
-]
-cjs.compoundStar = [
-    [10, 10],
-    [20],
-    [4, 80, 10, 30, 135],
-    [4, 80, 0, 0, 45],
-    [4, 80, 100, 0, 90],
-    [4, 80, 0, 0, 180]
-]
-
-//////////////////////////////////////////////
-
-v1 =   [[-100, 0], [0, -100], [100, -50], [0, -50]]
-
-turtle = [
-    ['green',[0,0],[-50,-10],[-40,-20],[0,-40],[20,-10]]
-
-    ,  ['yellow',[10,-10],[20,-30],[50,-15], [45,-5]]
-
-    , ['yellow',
-
-        [-50,10],[-50,-10],[-40,-10],[-40,10]
-    ]
-
-    , ['yellow',
-
-        [-10,10],[-10,-10],[0,-10],[0,10]
-    ]
-]
-
-
-pin = [
-    ['o', [-20, 20], [0, -80], [20, 20], [0, -40]],
-    ['w', 8, 0, -75],
-    ['w', 8, -20, 20],
-    ['w', 8, 20, 20]
-]

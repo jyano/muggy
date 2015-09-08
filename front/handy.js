@@ -1166,229 +1166,67 @@ function jqfn() {
             return v
         }
     }
+
+$.rulers = function () {
+    $.d('b', 100, 100).al(.3).dg()
+    $.d('r', 100, 300).al(.3).dg()
+}
+$.dg = $.dragFrame = function (d) {
+    var oD
+    oD = $.d('y').pad(20).drag()
+    d = d || $.d('r').mar(20)
+    d.xPrp().a2(oD)
+    d.oD = oD
+    oD.XY(40, 40)
+    return oD
+}
+_z=function z(a,b,c){return U(b)?_.size(a)
+    :N(b)?_z(a)==b
+    :_z(a)==_z(b)}
+z = function (fn) {
+    var g = G(arguments)
+    if (g.F_) {
+        return T.t(fn)
+    }
+    $('body').empty()
+}
+$.bd=function(){var dc
+    bd = $('body')
+    return bd
+}
+$.x= $.E=z=$.z=$.show=function(c,t){var g=G(arguments)
+    $('body').empty()
+    bd= $.bd()
+    if(g.O_){
+
+        $CSS(g.f)
+        if(g.s){$.h1(g.s);$.hr().A()}
+        bd.C($r())
+        return $}
+    if(c){bd.C(c)} else {bd.C($r())}
+    if(t){bd.A($.h1(t))}
+    if(g.p){bd.A($.hr())}
+    return $
+}
+$.h=function(){var g=G(arguments),o
+    bd= $.bd()
+    bd.empty()
+    bd.C($r())
+    o= g.S_? {t:g.f, s: g.s}: {s: g.f}
+    if(o.s){$CSS(o.s)}
+    if(o.t){$.h1(o.t);$.hr().A()}
+    return $
+}
+
 function evenz(){
-KEYOB = keyObj = {
+    KEYOB = keyObj = {
 
-    up: 38, u: 38,
-    down: 40, d: 40,
-    left: 37, l: 37,
-    right: 39, r: 39,
-    space: 32, s: 32,
-    enter: 13, e: 13
-}
-$.wh = function (a, b) {
-    return D(b) ? a.which == b : a.which
-}
-$.k = $.key = $.kD = function self(k, fn) {
-
-    if (O(k)) {
-        _.e(k, function (fn, k) {
-            if (s$(k).isUpper()) {
-                $.kU(k.toLowerCase(), fn)
-            }
-            else {
-                $.k(k, fn)
-            }
-        })
-        return
-    }
-
-    if (KEYOB[k]) {
-        k = KEYOB[k]
-    }
-
-    $('body').on('keydown', function (e) {
-        if (e.which == k) {
-            fn(e, $.K)
-        }
-    })
-
-}
-$.kU = function (k, fn) {
-
-    if (keyObj[k]) {
-        k = keyObj[k]
-    }
-    $('body').on('keyup', function (e) {
-        if (e.which == k) {
-            fn(e, $.K)
-        }
-    })
-}
-$.spc = function (fn) {
-    return $.kD('space', fn)
-}
-K = function (k, fn) {
-    var g = G(arguments), o, key
-    if (g.u) {
-        if (K._loaded) {
-            return
-        }
-        $.kD('l', function () {
-            if ($.test) {
-                $l('left pressed')
-            }
-            K.l = cjs.Keys.l = cjs.Keys.left = true
-            cjs.Keys.dir = 'left'
-            K.l = 1;
-            K.L = 0
-        })
-        $.kU('l', function () {
-            if ($.test) {
-                $l('left lifted')
-            }
-            K.l = cjs.Keys.l = cjs.Keys.left = false
-            K.l = 0;
-            K.L = 1
-        })
-        $.kD('r', function () {
-            if ($.test) {
-                $l('right pressed')
-            }
-            K.r = cjs.Keys.r = cjs.Keys.right = true
-            cjs.Keys.dir = 'right'
-            K.r = 1;
-            K.R = 0
-        })
-        $.kU('r', function () {
-            if ($.test) {
-                $l('right lifted')
-            }
-            cjs.Keys.r = cjs.Keys.right = false
-            K.r = 0;
-            K.R = 1
-        })
-        $.kD('u', function () {
-            if ($.test) {
-                $l('up pressed')
-            }
-            cjs.Keys.u = cjs.Keys.up = true
-            K.u = 1;
-            K.U = 0
-        })
-        $.kU('u', function () {
-            if ($.test) {
-                $l('up lifted')
-            }
-            cjs.Keys.u = cjs.Keys.up = false
-            K.u = 0;
-            K.U = 1
-        })
-        $.kD('d', function () {
-            if ($.test) {
-                $l('down pressed')
-            }
-            cjs.Keys.d = cjs.Keys.down = true
-            K.d = 1;
-            K.D = 0
-        })
-        $.kU('d', function () {
-            if ($.test) {
-                $l('down lifted')
-            }
-            cjs.Keys.d = cjs.Keys.down = false
-            K.d = 0;
-            K.D = 1
-        })
-        K._loaded = 1
-        return
-    }
-
-    if (O(k)) {
-        if (g.p) {
-            if (F(k.u)) {
-                z(function () {
-                    if (K.u) {
-                        k.u(K.u)
-                    }
-                })
-            }
-            if (F(k.d)) {
-                z(function () {
-                    if (K.d) {
-                        k.d(K.d)
-                    }
-                })
-            }
-            if (F(k.l)) {
-                z(function () {
-                    if (K.l) {
-                        k.l(K.l)
-                    }
-                })
-            }
-            if (F(k.r)) {
-                z(function () {
-                    if (K.r) {
-                        k.r(K.r)
-                    }
-                })
-            }
-        }
-        else {
-            _.e(k, function (fn, k) {
-                K(k, fn)
-            })
-        }
-        return
-    }
-    o = s$(k).isUpper() ? {on: 'keyup', k: k.toLowerCase()} : {on: 'keydown', k: k}
-    if (g.p) {
-        return z(function () {
-            if (K[k]) {
-                fn()
-            }
-        })
-    }
-    key = Key(o.k)
-    return $('body').on(o.on, function (e) {
-        if (e.which == key) {
-            fn(e)
-        }
-    })
-    function Key(k) {
-        var ob = {u: 38, d: 40, l: 37, r: 39, s: 32, e: 13};
-        return ob[k] ? ob[k] : k
-    }
-}
-$.space = function (fn) {
-    return $.kD('space', fn)
-}
-
-    $.fn.dg = $.fn.drag = function () {
-
-        this.A()
-        this.each(function () {
-            $(this).css('top', $(this).position().top)
-            $(this).css('left', $(this).position().left)
-        })
-
-        this.P('a')
-
-        this.on('mousedown', function (e) {
-
-            var el = $(this)
-
-            var offset = el.offset(),
-                deltaX = e.pageX - offset.left,
-                deltaY = e.pageY - offset.top
-
-            $('html').on('mousemove', function (e) {
-                var x = e.pageX - deltaX,
-                    y = e.pageY - deltaY
-
-                el.left(x)
-                el.top(y)
-
-            }).on('mouseup', function () {
-                $(this).off()
-            })
-
-        })
-
-        //touchDrg(element)
-        return this
-
+        up: 38, u: 38,
+        down: 40, d: 40,
+        left: 37, l: 37,
+        right: 39, r: 39,
+        space: 32, s: 32,
+        enter: 13, e: 13
     }
     $.$ = function (f) {
         return $(document).on('click', _v(f))
@@ -1544,112 +1382,230 @@ $.space = function (fn) {
         this.on('mousedown', function(e){  e.stopPropagation()  })
         return this
     }
-}
 
-toHigher()
-function toHigher() {
 
-    $.delBt=function(url, data){var bt
-        bt = $.bt('delete', function( el ){
-
-            $.ajax({type: 'DELETE',
-                data: data,
-                url: url,
-                success: function (){
-                    $(el.target).closest('div').rm() }})
-        })
-        return bt
+    $.wh = function (a, b) {
+        return D(b) ? a.which == b : a.which
     }
+    $.k = $.key = $.kD = function self(k, fn) {
 
-    $.fn.selPic = function () {
-        $('.pic').e(function () {
-            $(this).C('b')
-        })
-        this.parent().C('y')
-    }
-    alrr()
-    function alrr(){
-        $.fn.os = function () {
-            alert('fn.os')
-            return this.offset()}
-        $.fn.sz=function(sz){
-            alert('fn.sz')
-            return this.at('size', sz)}
-        $.fn.fCt=function(str){
-            alert('fCt')
-            return  this.fi(":contains("+ str +")")
-        }
-        $.fn.getPosition = $.fn.getTotalOffset = function () {
-            alert('$.fn.getPosition')
-            var e = this, x = 0, y = 0
-            while ($.tEl(e) && e.tagName) {
-
-                y += e.offsetTop
-
-                x += e.offsetLeft
-
-                if (isBodyElement(e)) {
-                    e = 0
+        if (O(k)) {
+            _.e(k, function (fn, k) {
+                if (s$(k).isUpper()) {
+                    $.kU(k.toLowerCase(), fn)
                 }
+                else {
+                    $.k(k, fn)
+                }
+            })
+            return
+        }
 
-                e = e.offsetParent || e
+        if (KEYOB[k]) {
+            k = KEYOB[k]
+        }
+
+        $('body').on('keydown', function (e) {
+            if (e.which == k) {
+                fn(e, $.K)
             }
-            return {x: x, y: y}
-        }//just gets the TOTAL offset of ANY element
-        $.fn.osP=function(){
-            alert('fn.osP')
-            return this.offsetParent} // not a fn?
-//$w=window; $$w=$(window)
-    }
-}
-$.rulers = function () {
-    $.d('b', 100, 100).al(.3).dg()
-    $.d('r', 100, 300).al(.3).dg()
-}
-$.dg = $.dragFrame = function (d) {
-    var oD
-    oD = $.d('y').pad(20).drag()
-    d = d || $.d('r').mar(20)
-    d.xPrp().a2(oD)
-    d.oD = oD
-    oD.XY(40, 40)
-    return oD
+        })
 
-}
-_z=function z(a,b,c){return U(b)?_.size(a)
-    :N(b)?_z(a)==b
-    :_z(a)==_z(b)}
-z = function (fn) {
-    var g = G(arguments)
-    if (g.F_) {
-        return T.t(fn)
     }
-    $('body').empty()
-}
-$.bd=function(){var dc
-    bd = $('body')
-    return bd
-}
-$.x= $.E=z=$.z=$.show=function(c,t){var g=G(arguments)
-    $('body').empty()
-    bd= $.bd()
-    if(g.O_){
+    $.kU = function (k, fn) {
 
-        $CSS(g.f)
-        if(g.s){$.h1(g.s);$.hr().A()}
-        bd.C($r())
-        return $}
-    if(c){bd.C(c)} else {bd.C($r())}
-    if(t){bd.A($.h1(t))}
-    if(g.p){bd.A($.hr())}
-    return $
-}
-$.h=function(){var g=G(arguments),o
-    bd= $.bd()
-    bd.empty()
-    bd.C($r())
-    o= g.S_? {t:g.f, s: g.s}: {s: g.f}
-    if(o.s){$CSS(o.s)}
-    if(o.t){$.h1(o.t);$.hr().A()}
-    return $
+        if (keyObj[k]) {
+            k = keyObj[k]
+        }
+        $('body').on('keyup', function (e) {
+            if (e.which == k) {
+                fn(e, $.K)
+            }
+        })
+    }
+    $.spc = function (fn) {
+        return $.kD('space', fn)
+    }
+
+    K = function (k, fn) {
+        var g = G(arguments), o, key
+
+        if (g.u) {
+            if (K._loaded) {
+                return
+            }
+            $.kD('l', function () {
+                if ($.test) {
+                    $l('left pressed')
+                }
+                K.l = cjs.Keys.l = cjs.Keys.left = true
+                cjs.Keys.dir = 'left'
+                K.l = 1;
+                K.L = 0
+            })
+
+            $.kU('l', function () {
+                if ($.test) {
+                    $l('left lifted')
+                }
+                K.l = cjs.Keys.l = cjs.Keys.left = false
+                K.l = 0;
+                K.L = 1
+            })
+
+            $.kD('r', function () {
+                if ($.test) {
+                    $l('right pressed')
+                }
+                K.r = cjs.Keys.r = cjs.Keys.right = true
+                cjs.Keys.dir = 'right'
+                K.r = 1;
+                K.R = 0
+            })
+
+            $.kU('r', function () {
+                if ($.test) {
+                    $l('right lifted')
+                }
+                cjs.Keys.r = cjs.Keys.right = false
+                K.r = 0;
+                K.R = 1
+            })
+            $.kD('u', function () {
+                if ($.test) {
+                    $l('up pressed')
+                }
+                cjs.Keys.u = cjs.Keys.up = true
+                K.u = 1;
+                K.U = 0
+            })
+            $.kU('u', function () {
+                if ($.test) {
+                    $l('up lifted')
+                }
+                cjs.Keys.u = cjs.Keys.up = false
+                K.u = 0;
+                K.U = 1
+            })
+            $.kD('d', function () {
+                if ($.test) {
+                    $l('down pressed')
+                }
+                cjs.Keys.d = cjs.Keys.down = true
+                K.d = 1;
+                K.D = 0
+            })
+            $.kU('d', function () {
+                if ($.test) {
+                    $l('down lifted')
+                }
+                cjs.Keys.d = cjs.Keys.down = false
+                K.d = 0;
+                K.D = 1
+            })
+            K._loaded = 1
+            return
+        }
+
+        if (O(k)) {
+            if (g.p) {
+                if (F(k.u)) {
+                    z(function () {
+                        if (K.u) {
+                            k.u(K.u)
+                        }
+                    })
+                }
+                if (F(k.d)) {
+                    z(function () {
+                        if (K.d) {
+                            k.d(K.d)
+                        }
+                    })
+                }
+                if (F(k.l)) {
+                    z(function () {
+                        if (K.l) {
+                            k.l(K.l)
+                        }
+                    })
+                }
+                if (F(k.r)) {
+                    z(function () {
+                        if (K.r) {
+                            k.r(K.r)
+                        }
+                    })
+                }
+            }
+            else {
+                _.e(k, function (fn, k) {
+                    K(k, fn)
+                })
+            }
+
+            return
+        }
+
+        o = s$(k).isUpper() ? {on: 'keyup', k: k.toLowerCase()} : {on: 'keydown', k: k}
+
+        if (g.p) {
+            return z(function () {
+                if (K[k]) {
+                    fn()
+                }
+            })
+        }
+
+        key = Key(o.k)
+        return $('body').on(o.on, function (e) {
+            if (e.which == key) {
+                fn(e)
+            }
+        })
+        function Key(k) {
+            var ob = {u: 38, d: 40, l: 37, r: 39, s: 32, e: 13};
+            return ob[k] ? ob[k] : k
+        }
+    }
+
+    $.space = function (fn) {
+        return $.kD('space', fn)
+    }
+    $.fn.dg = $.fn.drag = function () {
+
+        this.A()
+        this.each(function () {
+            $(this).css('top', $(this).position().top)
+            $(this).css('left', $(this).position().left)
+        })
+
+        this.P('a')
+
+        this.on('mousedown', function (e) {
+
+            var el = $(this)
+
+            var offset = el.offset(),
+                deltaX = e.pageX - offset.left,
+                deltaY = e.pageY - offset.top
+
+            $('html').on('mousemove', function (e) {
+                var x = e.pageX - deltaX,
+                    y = e.pageY - deltaY
+
+                el.left(x)
+                el.top(y)
+
+            }).on('mouseup', function () {
+                $(this).off()
+            })
+
+        })
+
+        //touchDrg(element)
+        return this
+
+    }
+
 }

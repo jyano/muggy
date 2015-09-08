@@ -4,7 +4,6 @@ undrscr()
 strJs()
 math()
 time()
-
 function basix() {
     $A = Array;
     $B = Boolean;
@@ -326,6 +325,7 @@ function undrscr() {
     _.i = _.initial;
     _.r = _.rest
     _.e = _.each;
+    _.eR=function(g,fn){_.e(_.r(g),fn)}
     _.m = _.map;
     _.t = _.times
     _.x = _.extend;
@@ -335,9 +335,12 @@ function undrscr() {
     }
     _.tp = _.template
     _.df = _.defaults
-    function later(){
+    _.th= _.throttle
 
-        _.ic = _.include
+    _.fW=_.findWhere
+    _.wh=_.where
+    _.rj=_.reject
+    _.ic = _.include
         _.wo = _.without
         _.rs = _.result
         _.cp = _.compact
@@ -348,8 +351,6 @@ function undrscr() {
             return a.replace(b || '#', c || '')
         }
 
-
-    }
 }
 function strJs(){
     chompEnsure()
@@ -419,8 +420,6 @@ function strJs(){
         }
 
     }
-
-
     _.fCC = function (a) {
         return String.fromCharCode(a)
     }
@@ -446,7 +445,6 @@ function strJs(){
         return 'url("' + a + '")'}
     _.jS = function (a, b, c) {return S(a) ? $.Gj(a, b, c) : JSON.stringify(a)}
     _.jP = function (a, b, c) {return S(a) ? JSON.parse(a, b) : $(a).prepend(b, c)}
-
 }
 function math() {
     M.tN = _.tN = function (what, aNum) {return N(what) ? what : aNum || 0}
@@ -668,6 +666,11 @@ function math() {
             : n > M ? M
             : n
     }
+    R=function(n,n2){var num
+        n=N(n)?n:1
+        n2=N(n2)?n2:0
+        return M.round((M.random()*n)+n2)
+    }
 }
 function time() {
     $Dt = Date
@@ -851,17 +854,5 @@ function time() {
         }
         return setTimeout(func, timeout)
     }
-}
-
-
-_.inx = function(){}
-_.eR=function(g,fn){_.e(_.r(g),fn)}
-_.fW=_.findWhere
-_.wh=_.where
-_.rj=_.reject
-_.evx=function(a){return a}
-R=function(n,n2){var num
-    n=N(n)?n:1
-    n2=N(n2)?n2:0
-    return M.round((M.random()*n)+n2)
-}
+    _.inx = function(){}
+    _.evx=function(a){return a}}

@@ -28,7 +28,6 @@ $.sp=function(){var g=G(arguments),
     sp.A()
     return sp
 }
-
 $.p = function () {
     var g = G(arguments), p = $('<p>')
     if (g.A_) {
@@ -51,7 +50,6 @@ $.ps = function () {
     })
     return sp
 }
-
 make()
 div()
 ach()
@@ -59,7 +57,6 @@ sem()
 tabl()
 lsst()
 inpuz()
-
 function make() {
     $.tg=function(a){return $('<'+a+'>')}
     nest()
@@ -1307,85 +1304,5 @@ function tabl() {
         var cg = $('<colgroup>');
         return cg
     }
-
-}
-
-
-function later(){
-    $t = function(a, b){if(b2d.test){
-        var g=G(arguments), a=g[0], b=g[1],str
-        if(D(b)){ str='||'
-            _.e(g, function(s){str+=  ' '  + s.toString() + ' |'})
-            str += '|'}
-        else {str = a.toString()}
-        $l(str)}
-        return a
-    }
-ipsum()
-function ipsum(){
-
-    $.ips=function(len){   len = len || 1;
-        var str = '';
-        _.t(len, function(){
-            str = str + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua. '
-        });
-        return str}
-    $.ipsP=function(len){return $.p().A($.ipsum(len) )}
-
-
-    ips1 = 'dolor sit amet, consectetuer adipi nibh euismod tincidunt ut laoreet dolore magna aliquam' +
-    'erat volutpat. Ut wisi enim ad mini corper suscipit lobortis nisl ut a commodo consequat.'
-    ips2 = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam' +
-    'erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo' +
-    'consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat' +
-    'nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore' +
-    'te feugait nulla facilisi.'
-
-    ips3 = 'Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper' +
-    'suscipit lobortis nisl ut aliquip ex ea commodo consequat.' +
-    'Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,' +
-    'vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan' +
-    'et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue' +
-    'duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,' +
-    'consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt' +
-    'ut laoreet dolore magna aliquam erat volutpat.'
-
-    $.fn.ipsum=function(){    var that =this
-
-        _.each(arguments, function(num){
-            that.A( $.ipsum(num) )
-        })
-
-        return this}
-    $.fn.ipsumP=function(){
-        var that =this
-
-        _.each(arguments, function(num){
-            that.A( $.ipsumP(num) )
-        })
-        return this}
-    $.fn.ips = $.fn.ipsum = function () {
-        var that = this
-
-        _.each(arguments, function (num) {
-            that.A($.ipsum(num))
-        })
-
-        return this
-    }
-    $.fn.ipsumP = function () {
-        var el = this
-
-        _.e(arguments, function (num) {
-            el.A($.ipsumP(num))
-        })
-        return el
-    }
-
-}
-
-
-
-
 
 }

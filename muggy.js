@@ -1,3 +1,22 @@
+$.delBt=function(url, data){var bt
+    bt = $.bt('delete', function( el ){
+
+        $.ajax({type: 'DELETE',
+            data: data,
+            url: url,
+            success: function (){
+                $(el.target).closest('div').rm() }})
+    })
+    return bt
+}
+$.fn.selPic = function () {
+    $('.pic').e(function () {
+        $(this).C('b')
+    })
+    this.parent().C('y')
+}
+
+
 st = cjs.Stage.prototype
 ct = cjs.Container.prototype
 t = cjs.Text.prototype
@@ -5,7 +24,6 @@ st = cjs.Stage.prototype
 h =  cjs.Shape.prototype
 ct = cjs.Container.prototype
 i = cjs.DisplayObject.prototype
-
 
 ct.h =   function (x, y, c, C, l, opt) {var ct = this,
     h = cjs.h(x, y, c, C, l, opt).a2(ct)
@@ -32,7 +50,6 @@ $Bm = function (i) {  var bm
         return bm
 
     }}
-
 $St = function (a, b, c, d, e) {
     var g = G(arguments), st
     st = A(g[0]) ? new cjs.Stage(g[0][0]) :
@@ -100,92 +117,6 @@ ct.cir = function (c, r, x, y) {
     ct.A(cir)
     return cir
 }
-
-
-
-/*
- h.col = h.fs = function () {
- this.graphics.fs.apply(
- this.graphics, arguments)
- return this
- }
- h.sC = function () {
- this.graphics.sC.apply(this.graphics, arguments)
- return this
- }
- h.C = h.s = function (a, b, c, d, e, f) {
- var h = this, gx = h.graphics
- if (N(a)) {
- gx.s((a > 0 && a < 1) ? cjs.rgb(0, 0, 0, a) : cjs.rgb(a, b, c, d))
- }
- else if (S(a)) {
-
- gx.s(oO('c', a))
-
-
- }
-
- else {
- gx.s(a, b, c, d, e)
- }
- return h
- }
- h.c = h.f = function (a, b, c, d, e) {
- var h = this, gx = h.graphics
-
- if (N(a)) {
-
-
- gx.f((a > 0 && a < 1) ? cjs.rgb(0, 0, 0, a) : cjs.rgb(a, b, c, d))
- }
-
- else if (S(a)) {
-
- gx.f(oO('c', a))
-
- }
-
- else {
- gx.f(a, b, c, d, e)
- }
-
- return h
- }*/
-
-
-function probUnused() {
-    cjs.makeManifest = cjs.makeMan = function (a) {
-        alert('cjs.makeMan')
-        return cjs.manifest.apply(null, _.m(a.images, function (i) {
-                return Graphics.fromSource(i)
-            })
-        )
-    }
-}
-function later(){function temp() {
-    TWEEN1 = function (a) {
-        z()
-
-
-        st = $St(800, 500)
-
-
-        st.mug(function (bm) {
-
-
-            i = cjs.Tw.g(bm, {loop: true})
-
-            i.to({x: 400}, 1000, cjs.Ea.getPowInOut(4))
-                .to({alpha: 0, y: 175}, 500, cjs.Ea.getPowInOut(2))
-                .to({alpha: 0, y: 225}, 100)
-                .to({alpha: 1, y: 200}, 500, cjs.Ea.getPowInOut(2))
-                .to({x: 100}, 800, cjs.Ea.getPowInOut(2))
-
-        })
-
-
-    }
-}}
 q = cjs.LoadQueue.prototype
 q.fileload = function (func) {
     this.addEventListener("fileload", func)
@@ -239,12 +170,6 @@ Q = function (imgs, func) {var q = cjs.lq()
     })
 
 }
-
-
-
-
-
-
 $.dragFrame = function (ob) {
     var outerDiv = $.d('r').drag().pad(20).A()
     ob = ob || $.d('y', 50, 50).mar(20)
@@ -313,78 +238,6 @@ $.fm = $.format = function () {
 
 };
 k = io.connect(); k.em = k.emit
-function sockAlpha(){
-    k.o = function (ob) {
-        var sock = this
-        _.e(ob, function (v, k) {
-            sock.on(k, v)
-        })
-    }
-    k.test = 1
-    K.l = function (t) {
-        this.em('l', t)
-    }
-    k.on('res', function (d) {
-        _r = res = d
-    })
-    k.on('alert', alert)
-    k.on('l', $l);
-    k.on('log', $l)
-    k.on('dir', function (d) {
-        $l('SERVER: %j', d)
-    })
-    k.on('pop', $.pop)
-    k.on('a', function (a) {
-        alert(a)
-    })
-    k.on('d', function (d) {
-        $l('SERVER: %j', d)
-    })
-    k.on('dpop', function (d, n) {
-        dud(d, n)
-    })
-    k.on('dudPop', function (d, n) {
-        dud(d, n)
-    })
-    k.on('notice', function (d) {
-        $l('SERVER NOTICE: %s', d);
-    })
-    k.on('p', function (e) {
-        $.pop(e)
-    })
-    k.on('IM', function (msgOb) {
-        var iMsg = Y.IMS[msgOb.from]
-        if (iMsg) {
-            iMsg.A($.h4(msgOb.message))
-        }
-        else {
-            $.iMsg(msgOb)
-        }
-    })
-    k.IM = function (toWho, ms) {
-        $l('toWho: ' + toWho + ', ms: ' + ms)
-        k.em('IM', {m: ms, t: toWho, f: _username})
-    }
-    k.on('popbox', function (o) {
-        $.pop(o);
-        $('popbox').m()
-    })
-    k.on('v', function (d) {
-        VAR = d
-    })
-    k.on('newImgAck', function (d) {
-        $.c().fit(d.u)
-    })
-    k.on('im', function (i) {
-        $.c().fit(i)
-    })
-    k.emP = k.sop = function (m, u) {
-        k.em('p', m, u)
-    }
-    k.emEm = function (a, b) {
-        k.em('em', a, b)
-    } //connect to the k //..need to change this on the deployment server!!!
-}
 Y = function self(page){
 
     self.render(page)
@@ -652,6 +505,7 @@ $.ChatBt = function (n) {
         $.chat(n)
     }).mar(40)
 }
+
 ////////////////////////
 ////////////////////////
 ////////////////////////
@@ -676,8 +530,6 @@ $(function(){
 ////////////////////////
 ////////////////////////
 ////////////////////////
-
-
 
 $.pop = function (message, o) {
 
@@ -735,9 +587,162 @@ $.pop = function (message, o) {
     return m
 
 }
-
-
 function later() {
+    function sockAlpha(){
+        k.o = function (ob) {
+            var sock = this
+            _.e(ob, function (v, k) {
+                sock.on(k, v)
+            })
+        }
+        k.test = 1
+        K.l = function (t) {
+            this.em('l', t)
+        }
+        k.on('res', function (d) {
+            _r = res = d
+        })
+        k.on('alert', alert)
+        k.on('l', $l);
+        k.on('log', $l)
+        k.on('dir', function (d) {
+            $l('SERVER: %j', d)
+        })
+        k.on('pop', $.pop)
+        k.on('a', function (a) {
+            alert(a)
+        })
+        k.on('d', function (d) {
+            $l('SERVER: %j', d)
+        })
+        k.on('dpop', function (d, n) {
+            dud(d, n)
+        })
+        k.on('dudPop', function (d, n) {
+            dud(d, n)
+        })
+        k.on('notice', function (d) {
+            $l('SERVER NOTICE: %s', d);
+        })
+        k.on('p', function (e) {
+            $.pop(e)
+        })
+        k.on('IM', function (msgOb) {
+            var iMsg = Y.IMS[msgOb.from]
+            if (iMsg) {
+                iMsg.A($.h4(msgOb.message))
+            }
+            else {
+                $.iMsg(msgOb)
+            }
+        })
+        k.IM = function (toWho, ms) {
+            $l('toWho: ' + toWho + ', ms: ' + ms)
+            k.em('IM', {m: ms, t: toWho, f: _username})
+        }
+        k.on('popbox', function (o) {
+            $.pop(o);
+            $('popbox').m()
+        })
+        k.on('v', function (d) {
+            VAR = d
+        })
+        k.on('newImgAck', function (d) {
+            $.c().fit(d.u)
+        })
+        k.on('im', function (i) {
+            $.c().fit(i)
+        })
+        k.emP = k.sop = function (m, u) {
+            k.em('p', m, u)
+        }
+        k.emEm = function (a, b) {
+            k.em('em', a, b)
+        } //connect to the k //..need to change this on the deployment server!!!
+    }
+        function probUnused() {
+            cjs.makeManifest = cjs.makeMan = function (a) {
+                alert('cjs.makeMan')
+                return cjs.manifest.apply(null, _.m(a.images, function (i) {
+                        return Graphics.fromSource(i)
+                    })
+                )
+            }
+        }
+
+        /*
+         h.col = h.fs = function () {
+         this.graphics.fs.apply(
+         this.graphics, arguments)
+         return this
+         }
+         h.sC = function () {
+         this.graphics.sC.apply(this.graphics, arguments)
+         return this
+         }
+         h.C = h.s = function (a, b, c, d, e, f) {
+         var h = this, gx = h.graphics
+         if (N(a)) {
+         gx.s((a > 0 && a < 1) ? cjs.rgb(0, 0, 0, a) : cjs.rgb(a, b, c, d))
+         }
+         else if (S(a)) {
+
+         gx.s(oO('c', a))
+
+
+         }
+
+         else {
+         gx.s(a, b, c, d, e)
+         }
+         return h
+         }
+         h.c = h.f = function (a, b, c, d, e) {
+         var h = this, gx = h.graphics
+
+         if (N(a)) {
+
+
+         gx.f((a > 0 && a < 1) ? cjs.rgb(0, 0, 0, a) : cjs.rgb(a, b, c, d))
+         }
+
+         else if (S(a)) {
+
+         gx.f(oO('c', a))
+
+         }
+
+         else {
+         gx.f(a, b, c, d, e)
+         }
+
+         return h
+         }*/
+        function temp() {
+            TWEEN1 = function (a) {
+                z()
+
+
+                st = $St(800, 500)
+
+
+                st.mug(function (bm) {
+
+
+                    i = cjs.Tw.g(bm, {loop: true})
+
+                    i.to({x: 400}, 1000, cjs.Ea.getPowInOut(4))
+                        .to({alpha: 0, y: 175}, 500, cjs.Ea.getPowInOut(2))
+                        .to({alpha: 0, y: 225}, 100)
+                        .to({alpha: 1, y: 200}, 500, cjs.Ea.getPowInOut(2))
+                        .to({x: 100}, 800, cjs.Ea.getPowInOut(2))
+
+                })
+
+
+            }
+        }
+
     $clr= Y.clr=  function(){z(); Y.nav()}
 
     $uPop= Y.uPop=function(i,  size){
